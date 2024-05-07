@@ -18,6 +18,8 @@ const Header = () => {
             <i className="fas fa-search"></i>
           </SearchIcon>
         </Search>
+
+
         <Nav>
           <NavListWrap>
             <NavList className="active">
@@ -75,6 +77,7 @@ const Header = () => {
 };
 
 const Container = styled.div`
+  
   background-color: white;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   left: 0;
@@ -83,6 +86,10 @@ const Container = styled.div`
   top: 0;
   width: 100vw;
   z-index: 100;
+
+  @media (max-width: 768px) {
+    padding: 20px ;
+  }
 
   i{
     font-size: 14px;
@@ -95,7 +102,10 @@ const Content = styled.div`
   margin: 0 auto;
   min-height: 100%;
   max-width: 1128px;
+  
 `;
+
+
 
 const Logo = styled.span`
   margin-right: 8px;
@@ -143,6 +153,7 @@ const SearchIcon = styled.div`
 const Nav = styled.nav`
   margin-left: auto;
   display: block;
+  height: 60px;
   @media (max-width: 768px) {
     position: fixed;
     bottom: 0;
@@ -168,7 +179,7 @@ const NavListWrap = styled.ul`
       position: absolute;
       transition: transform 0.2s ease-in-out;
       width: 100%;
-      border-color: rgba(0, 0, 0, 0.9);
+      border-color: #058c42;
     }
   }
 `; 
@@ -206,7 +217,7 @@ const NavList = styled.li`
   &:hover,
   &:active {
       a, span {
-        color: rgba(0, 0, 0, 0.9);
+        color: #058c42;
       transition: transform 0.2s ease-in-out;
 
 

@@ -9,7 +9,7 @@ export default function Home() {
     <Container> 
        <Section>
         <h5><a href="">Besoin d'embaucher rapidement ?</a></h5>
-        <p>Trouvez des professionnels talentueux en un temps record avec Upwork et maintenez l'activité de votre entreprise. </p>
+        <p>Trouvez des professionnels talentueux en un temps record et maintenez l'activité de votre entreprise. </p>
        </Section>
 
        <Layout>
@@ -24,6 +24,10 @@ export default function Home() {
 const Container = styled.div`
 padding-top: 52px; 
 max-width: 100%;
+
+@media (max-width: 768px) {
+    margin-top: 12px ;
+  }
 
 `;
 
