@@ -1,11 +1,3 @@
-@font-face {
-  font-family: myFont1;
-  src: url(/Users/original/Desktop/JOBs/jobs-fonts/Dela.ttf);
-}
-@font-face {
-  font-family: myFont2;
-  src: url(/Users/original/Desktop/JOBs/jobs-fonts/DM.ttf);
-}
 * {
   list-style: none;
   text-decoration: none;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
@@ -7,6 +7,11 @@ import styled from "styled-components";
 // React Component
 const Login = () => {
   const location = useLocation();
+  const navRef=useRef();
+  
+  const showNavrBar=()=>{
+    navRef.current.classList.toggle("responsive_nav")
+  }
 
   return (
     <Header className="header">
@@ -14,8 +19,9 @@ const Login = () => {
         <Logo>
           <img src="logo-no-background-green.png" alt="JOB'S" />
         </Logo>
-        <Nav>
+        <Nav ref={navRef} className="nav">
           <NavUl>
+            <div class="closeMenu icon" onClick={showNavrBar}><i className="fa fa-times"></i></div>
             <li>
               <Link to="/" className={`${location.pathname === "/" ? "active" : ""}`}>
                 <i className="fas fa-home"></i>Acceuil
@@ -25,7 +31,7 @@ const Login = () => {
               <Link
                 to="/listes-des-offres"
                 className={`${location.pathname === "/listes-des-offres" ? "active" : ""}`}
-              >
+                >
                 <i className="fas fa-list"></i>Liste des offres
               </Link>
             </li>
@@ -33,30 +39,34 @@ const Login = () => {
               <Link
                 to="/avis-entreprises"
                 className={`${location.pathname === "/avis-entreprises" ? "active" : ""}`}
-              >
+                >
                 <i className="fas fa-star-half-alt"></i> Avis sur les entreprises
               </Link>
             </li>
+                
           </NavUl>
         </Nav>
 
         <div className="sign">
           <ul>
             <li>
+              {/* <button className="btnsign"> */}
               <Link
                 to="/créer-compte"
                 className={`${location.pathname === "/créer-compte" ? "active" : ""}`}
-              >
+                class="creer">
                 <i className="fas fa-user "></i>
                 Créer un compte
               </Link>
+            {/* </button> */}
             </li>
           </ul>
+        <div class="openMenu icon" onClick={showNavrBar}><i className="fa fa-bars"></i></div>
         </div>
       </div>
 
-      <SearchBar>
-        <div className="content">
+      <SearchBar class="content">
+        <div>
           <p>Le moyen le plus simple de trouver un emploi</p>
           <div className="box">
             <input type="text" placeholder="Entrez un mot-clé" />
@@ -152,7 +162,24 @@ const Header = styled.header`
   .sign{
   display: flex;
   align-items: center;
-}
+  }
+
+  // .creer{
+  //   display:flex;
+  //   align-items:center;
+  //   justify-content:center;
+  //   color:#f2f2f2;
+  // }
+
+  // .btnsign{
+  //   display:flex;
+  //   align-items:center;
+  //   justify-content:center;
+  //   height:40px;
+  //   background-color:#16db65;
+  //   border:none;
+  //   border-radius:5px;
+  // }
 
 
 nav ul {
@@ -173,6 +200,55 @@ i{
 .active {
   color: #058c42; 
 }
+
+.icon{
+  padding: 5px;
+  cursor:pointer;
+  display:none;
+  font-size:1.8rem;
+}
+
+@media only screen and (max-width :800px){
+  .icon{
+    display:block;
+  }
+
+  .nav{
+    position:fixed;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    align-items:center;
+    justify-content:center;
+    transition:1s;
+    transform:translateY(-100vh);
+    background: #f2f2f2
+  }
+
+  nav ul {
+    display:flex;
+    flex-direction:column;
+  }
+
+  i {
+    padding:20px
+  }
+
+  .responsive_nav{
+    transform:none;
+  }
+
+  .closeMenu{
+    position:absolute;
+    top:1.3rem;
+    right:0.8rem;
+  }
+
+  
+
+}
+
 `;
 
 const Logo = styled.div`
@@ -195,16 +271,20 @@ const NavUl = styled.ul`
 
 
 const SearchBar = styled.div`
+  display:flex;
+  align-items:center;
+  justify-content:center;
   width: 100%;
   height: 200px;
   background-color: #454955;
+  
 
   .content {
     display: flex;
     align-items: center;
     flex-direction: column;
     transform: translateY(30px);
-
+  }
     p {
       color: #f3eff5;
       font-weight: bold;
@@ -216,9 +296,11 @@ const SearchBar = styled.div`
       grid-template-columns: 2fr 1fr;
       width: 55%;
       margin-top: 20px;
-
+    }
       input[type="text"] {
+        margin-left:50px;
         padding: 15px;
+        width:250px;
         outline-style: none;
         border: none;
       }
@@ -231,8 +313,6 @@ const SearchBar = styled.div`
         outline-style: none;
         cursor: pointer;
       }
-    }
-  }
 `;
 
 const Section = styled.div`
@@ -243,6 +323,22 @@ const Section = styled.div`
   img {
     width: auto;
     height: 200px;
+  }
+
+  @media only screen and (max-width :1262px){
+    img{
+      display:flex;
+      flex-direction:column;
+      width: auto;
+      height: 130px;
+    }
+  }
+
+  @media only screen and (max-width :1049px){
+    img{
+      display:none;
+    }
+    
   }
 `;
 
