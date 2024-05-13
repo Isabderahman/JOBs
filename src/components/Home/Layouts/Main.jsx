@@ -7,7 +7,7 @@ export default function Main() {
       <ShareBox>
         <div>
           <img src="imgs/user.svg" alt="" />
-          <input type='text' placeholder="Commencer une publication" /> <i className='fas fa-edit'></i>
+          <input type='text' placeholder="Commencer une publication"  /> <i className='fas fa-edit'></i>
         </div>
         <div>
           <button>
@@ -30,7 +30,18 @@ export default function Main() {
       </ShareBox>
 
       <Article>
+          <div className='actor'>
+              <a >
+                <img src="imgs/user.svg" />
+                <div>
+                  <span>Titre</span>
+                  <span>Infos</span>
+                  <span>Date</span>
+                </div>
+              </a>
 
+                <button><i className='fas fa-ellipsis'></i></button>
+          </div>
       </Article>
     </Container>
   );
@@ -43,13 +54,14 @@ const Card = styled.div`
   box-shadow: 0 0 0 1px (0 0 0 / 15%), rgb(0 0 0 / 20%);
   border: 1px solid  #cbcbca; 
   border-radius: 5px; 
+  background-color: white;
+  margin: 5px 0;
 `;
 
 const ShareBox = styled(Card)`
 color: rgba(0, 0, 0, 0.7);
 display: flex; 
 flex-direction: column;
-background: white;
 div{
   button, input{
     outline: none; 
@@ -90,9 +102,9 @@ div{
     margin: 4px 0;
     flex-grow: 1;
     padding-left: 36px;
-    border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 35px;
     text-align: left;
+    background-color: #eef3f8;
   } 
   }
 
@@ -114,6 +126,43 @@ div{
 }
 `;
 
-const Article = styled.article`
-  
+const Article = styled(Card)`
+  .actor{
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 12px 16px 0;
+    margin-bottom: 8px;
+  a{
+    margin-right: 12px;
+    flex-grow: 1;
+    display: flex;
+  }
+  div{
+   display: flex;
+   flex-direction: column;
+   flex-grow: 1;
+   margin-left: 12px;
+  }
+  span{
+    text-align: left;
+  &:first-child{
+    font-size: 14px;
+    font-weight: 700;
+  }
+  &:nth-child(n+1){
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  }
+  }
+
+  button {
+    position: relative;
+    background: transparent;
+    border: none;
+    top: -20px;
+    font-size: 20px;
+    outline: none ;
+  }
 `;

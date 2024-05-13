@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"path": "../../.."
+	},
+	{
+		"path": "../../../../../../my mac/Get ready/my_projects/gestion_location/getyourcar"
+	}
+],
+  "settings": {
+    "git.ignoreLimitWarning": true
+  }
+}

@@ -3,24 +3,33 @@ import "./style/App.css";
 import Login from "./components/Login";
 import Header from "./components/Home/Header.jsx";
 import Home from "./components/Home/Home.jsx";
+import {Provider} from 'react-redux';
+import store from "./redux/store/store.js";
 
 function App() {
   return (
-
-    
-    <div className="App">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"  />
+    <Provider store={store}>
+      <div className="App">
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        />
 
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/home" element={<>
-            <Header />
-            <Home/>
-          </>} />
+          <Route
+            path="/home"
+            element={
+              <>
+                <Header />
+                <Home />
+              </>
+            }
+          />
         </Routes>
-    </div>
+      </div>
+    </Provider>
   );
 }
 
 export default App;
-

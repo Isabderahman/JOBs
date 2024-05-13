@@ -130,7 +130,6 @@ const Search = styled.div`
       font-weight: 400;
       font-size: 14px;
       height: 40px;
-      border-color: #16db65;
       vertical-align: text-top;
     }
   }

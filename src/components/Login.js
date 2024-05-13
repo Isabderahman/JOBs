@@ -2,16 +2,14 @@ import React, { useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-
-
 // React Component
 const Login = () => {
   const location = useLocation();
-  const navRef=useRef();
-  
-  const showNavrBar=()=>{
-    navRef.current.classList.toggle("responsive_nav")
-  }
+  const navRef = useRef();
+
+  const showNavrBar = () => {
+    navRef.current.classList.toggle("responsive_nav");
+  };
 
   return (
     <Header className="header">
@@ -21,47 +19,59 @@ const Login = () => {
         </Logo>
         <Nav ref={navRef} className="nav">
           <NavUl>
-            <div class="closeMenu icon" onClick={showNavrBar}><i className="fa fa-times"></i></div>
+            <div class="closeMenu icon" onClick={showNavrBar}>
+              <i className="fa fa-times"></i>
+            </div>
             <li>
-              <Link to="/" className={`${location.pathname === "/" ? "active" : ""}`}>
+              <Link
+                to="/"
+                className={`${location.pathname === "/" ? "active" : ""}`}
+              >
                 <i className="fas fa-home"></i>Acceuil
               </Link>
             </li>
             <li>
               <Link
                 to="/listes-des-offres"
-                className={`${location.pathname === "/listes-des-offres" ? "active" : ""}`}
-                >
+                className={`${
+                  location.pathname === "/listes-des-offres" ? "active" : ""
+                }`}
+              >
                 <i className="fas fa-list"></i>Liste des offres
               </Link>
             </li>
             <li>
               <Link
                 to="/avis-entreprises"
-                className={`${location.pathname === "/avis-entreprises" ? "active" : ""}`}
-                >
-                <i className="fas fa-star-half-alt"></i> Avis sur les entreprises
+                className={`${
+                  location.pathname === "/avis-entreprises" ? "active" : ""
+                }`}
+              >
+                <i className="fas fa-star-half-alt"></i> Avis sur les
+                entreprises
               </Link>
             </li>
-                
           </NavUl>
         </Nav>
 
         <div className="sign">
           <ul>
             <li>
-              {/* <button className="btnsign"> */}
               <Link
                 to="/créer-compte"
-                className={`${location.pathname === "/créer-compte" ? "active" : ""}`}
-                class="creer">
+                className={`${
+                  location.pathname === "/créer-compte" ? "active" : ""
+                }`}
+                class="creer"
+              >
                 <i className="fas fa-user "></i>
-                Créer un compte
+                <span >Créer un compte</span>
               </Link>
-            {/* </button> */}
             </li>
           </ul>
-        <div class="openMenu icon" onClick={showNavrBar}><i className="fa fa-bars"></i></div>
+          <div class="openMenu icon" onClick={showNavrBar}>
+            <i className="fa fa-bars"></i>
+          </div>
         </div>
       </div>
 
@@ -102,14 +112,21 @@ const Login = () => {
             </div>
 
             <form className="email-form">
-              <input type="email" placeholder="Entrer l'adresse email" className="email-input" />
-              <button type="submit" className="btn btn-email">Continuer avec email</button>
+              <input
+                type="email"
+                placeholder="Entrer l'adresse email"
+                className="email-input"
+              />
+              <button type="submit" className="btn btn-email">
+                Continuer avec email
+              </button>
             </form>
           </div>
 
           <div className="terms-and-privacy">
             <p>
-              En continuant, vous acceptez nos <a href="#">Conditions d'utilisation</a> et
+              En continuant, vous acceptez nos{" "}
+              <a href="#">Conditions d'utilisation</a> et
               <a href="#"> Politique de confidentialité</a>.
             </p>
           </div>
@@ -124,11 +141,11 @@ const Login = () => {
       <Footer>
         <hr />
         <ul>
-          <a href=''>browse job</a>
-          <a href=''>browse companies</a>
-          <a href=''>countries</a>
-          <a href=''>about</a>
-          <a href=''>help center</a>
+          <a href="">browse job</a>
+          <a href="">browse companies</a>
+          <a href="">countries</a>
+          <a href="">about</a>
+          <a href="">help center</a>
         </ul>
         <select name="languages">
           <option value="English">English</option>
@@ -141,16 +158,7 @@ const Login = () => {
   );
 };
 
-
-
-
-
 // ------------------------------------------------Styled Components
-
-
-
-
-
 
 const Header = styled.header`
   .container {
@@ -159,9 +167,9 @@ const Header = styled.header`
     align-items: center;
   }
 
-  .sign{
-  display: flex;
-  align-items: center;
+  .sign {
+    display: flex;
+    align-items: center;
   }
 
   // .creer{
@@ -181,74 +189,75 @@ const Header = styled.header`
   //   border-radius:5px;
   // }
 
-
-nav ul {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-li a {
-  padding: 10px;
-  color: #454955;
-  letter-spacing: 1px;
-  font-size: 14px;
-}
-i{
-  padding: 5px;
-  margin-left: 3px;
-}
-.active {
-  color: #058c42; 
-}
-
-.icon{
-  padding: 5px;
-  cursor:pointer;
-  display:none;
-  font-size:1.8rem;
-}
-
-@media only screen and (max-width :800px){
-  .icon{
-    display:block;
-  }
-
-  .nav{
-    position:fixed;
-    top:0;
-    left:0;
-    height:100%;
-    width:100%;
-    align-items:center;
-    justify-content:center;
-    transition:1s;
-    transform:translateY(-100vh);
-    background: #f2f2f2
-  }
-
   nav ul {
-    display:flex;
-    flex-direction:column;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-
+  li a {
+    padding: 10px;
+    color: #454955;
+    letter-spacing: 1px;
+    font-size: 14px;
+  }
+  li a:hover {
+    padding: 10px;
+    color: #058c42;
+    font-size: 15px;
+    transition: 0.1s ease-in-out;
+  }
   i {
-    padding:20px
+    padding: 5px;
+    margin-left: 3px;
+  }
+  .active {
+    color: #058c42;
   }
 
-  .responsive_nav{
-    transform:none;
+  .icon {
+    padding: 5px;
+    cursor: pointer;
+    display: none;
+    font-size: 1.8rem;
   }
 
-  .closeMenu{
-    position:absolute;
-    top:1.3rem;
-    right:0.8rem;
+  @media only screen and (max-width: 800px) {
+    .icon {
+      display: block;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      transition: 1s;
+      transform: translateY(-100vh);
+      background: #f2f2f2;
+    }
+
+    nav ul {
+      display: flex;
+      flex-direction: column;
+    }
+
+    i {
+      padding: 20px;
+    }
+
+    .responsive_nav {
+      transform: none;
+    }
+
+    .closeMenu {
+      position: absolute;
+      top: 1.3rem;
+      right: 0.8rem;
+    }
   }
-
-  
-
-}
-
 `;
 
 const Logo = styled.div`
@@ -269,15 +278,13 @@ const NavUl = styled.ul`
   align-items: center;
 `;
 
-
 const SearchBar = styled.div`
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 200px;
   background-color: #454955;
-  
 
   .content {
     display: flex;
@@ -285,34 +292,34 @@ const SearchBar = styled.div`
     flex-direction: column;
     transform: translateY(30px);
   }
-    p {
-      color: #f3eff5;
-      font-weight: bold;
-      letter-spacing: 3px;
-    }
+  p {
+    color: #f3eff5;
+    font-weight: bold;
+    letter-spacing: 3px;
+  }
 
-    .box {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      width: 55%;
-      margin-top: 20px;
-    }
-      input[type="text"] {
-        margin-left:50px;
-        padding: 15px;
-        width:250px;
-        outline-style: none;
-        border: none;
-      }
+  .box {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    width: 55%;
+    margin-top: 20px;
+  }
+  input[type="text"] {
+    margin-left: 50px;
+    padding: 15px;
+    width: 250px;
+    outline-style: none;
+    border: none;
+  }
 
-      button {
-        padding: 15px;
-        background-color: #16db65;
-        color: #f3eff5;
-        border: none;
-        outline-style: none;
-        cursor: pointer;
-      }
+  button {
+    padding: 15px;
+    background-color: #16db65;
+    color: #f3eff5;
+    border: none;
+    outline-style: none;
+    cursor: pointer;
+  }
 `;
 
 const Section = styled.div`
@@ -325,29 +332,27 @@ const Section = styled.div`
     height: 200px;
   }
 
-  @media only screen and (max-width :1262px){
-    img{
-      display:flex;
-      flex-direction:column;
+  @media only screen and (max-width: 1262px) {
+    img {
+      display: flex;
+      flex-direction: column;
       width: auto;
       height: 130px;
     }
   }
 
-  @media only screen and (max-width :1049px){
-    img{
-      display:none;
+  @media only screen and (max-width: 1049px) {
+    img {
+      display: none;
     }
-    
   }
 `;
 
 const SignInContainer = styled.div`
-background-color: #fff;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 450px;
   margin: 50px 150px;
   padding: 20px;
   border: 1px solid #ccc;
