@@ -14,10 +14,10 @@ class employeurSeeder extends Seeder
     public function run()
     {
         // Supprime toutes les entrées existantes dans la collection avant de créer les nouveaux enregistrements
-        DB::connection('mongodb')->collection('employeur')->delete();
+        DB::connection('mongodb')->collection('candidat')->delete();
 
         // Crée les nouveaux enregistrements dans la collection
-        DB::connection('mongodb')->collection('employeur')->insert([
+        DB::connection('mongodb')->collection('candidat')->insert([
             [
                 'prenom' => 'John',
                 'nom' => 'Doe',

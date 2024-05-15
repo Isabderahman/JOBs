@@ -100,7 +100,7 @@ return [
             'username' => env('MONGODB_USERNAME'),
             'password' => env('MONGODB_PASSWORD'),
             'options'  => [
-                'database' => env('MONGODB_AUTHENTICATION_DATABASE', 'admin'), // Authentification base de données
+                'database' => env('MONGODB_AUTHENTICATION_DATABASE', 'jobs'), // Authentification base de données
             ],
         ],
 
