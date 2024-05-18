@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class employeurSeeder extends Seeder
+class candidatSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,10 +14,10 @@ class employeurSeeder extends Seeder
     public function run()
     {
         // Supprime toutes les entrées existantes dans la collection avant de créer les nouveaux enregistrements
-        DB::connection('mongodb')->collection('candidat')->delete();
+        DB::connection('mongodb')->collection('candidats')->delete();
 
         // Crée les nouveaux enregistrements dans la collection
-        DB::connection('mongodb')->collection('candidat')->insert([
+        DB::connection('mongodb')->collection('candidats')->insert([
             [
                 'prenom' => 'John',
                 'nom' => 'Doe',

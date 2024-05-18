@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Offre extends Model
 {
+    protected $connection = 'mongodb';
     protected $collection = 'offres';
 
     public function entreprise(): BelongsTo
@@ -16,8 +17,9 @@ class Offre extends Model
         return $this->belongsTo(Entreprises::class);
     }
 
-    public function candidats(): BelongsToMany
+
+    public function candidatures()
     {
-        return $this->belongsToMany(Candidat::class);
+        return $this->hasMany(Candidature::class, 'idOffre');
     }
 }

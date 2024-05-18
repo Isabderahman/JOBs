@@ -9,13 +9,11 @@ return new class extends Migration
     public function up()
     {
         Schema::connection('mongodb')->create('candidats', function (Blueprint $table) {
-            $table->increments('id');
+            $table->index('users');
             $table->string('prenom');
             $table->string('nom');
             $table->string('adresse');
-            $table->unique('email');
             $table->date('date_naissance');
-            $table->string('mot_de_passe');
 
             $table->nested('education', function (Blueprint $table) {
                 $table->string('diplome');
@@ -35,9 +33,7 @@ return new class extends Migration
 
             $table->array('competences');
             $table->string('telephone');
-
-            // Relationships
-            $table->many('candidatures')->references('id')->on('offres'); // Many-to-many relationship with 'offres' collection
+        
 
             $table->timestamps();
         });

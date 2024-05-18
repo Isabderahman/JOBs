@@ -10,9 +10,15 @@ class Candidat extends Model
 {
     use HasFactory;
     protected $collection = 'candidats';
+    protected $connection = 'mongodb';
 
-    public function offres(): BelongsToMany
+    public function user()
     {
-        return $this->belongsToMany(Offre::class);
+        return $this->belongsTo(User::class, 'id');
+    }
+
+    public function candidatures()
+    {
+        return $this->hasMany(Candidature::class, 'idCandidat');
     }
 }

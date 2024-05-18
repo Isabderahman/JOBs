@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string('site_web')->nullable();
             $table->string('logo')->nullable();
 
-            // Relationships
-            $table->hasMany('offres'); // One-to-many relationship with 'offres' collection
 
             $table->timestamps();
         });

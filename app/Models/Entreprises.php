@@ -11,7 +11,12 @@ class Entreprises extends Model
     use HasFactory;
     protected $collection = 'entreprises';
 
-    public function offres(): HasMany
+
+    public function reucruteur(): HasMany
+    {
+        return $this->hasMany(Recruteur::class);
+    }
+    public function offre(): HasMany
     {
         return $this->hasMany(Offre::class);
     }

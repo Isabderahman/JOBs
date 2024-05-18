@@ -17,6 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $connection = 'mysql';
     protected $fillable = [
         'name',
         'email',
@@ -41,4 +42,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function recruteur()
+    {
+        return $this->hasOne(Recruteur::class, 'id');
+    }
+    public function candidat()
+    {
+        return $this->hasOne(Candidat::class, 'id');
+    }
 }

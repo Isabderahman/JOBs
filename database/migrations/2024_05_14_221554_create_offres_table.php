@@ -21,8 +21,7 @@ return new class extends Migration
             $table->string('lieu');
 
             // Relationships
-            $table->foreignId('entreprise')->constrained('entreprises'); // Foreign key to 'entreprises' collection
-            $table->array('candidats')->references('id')->on('utilisateurs'); // Many-to-many relationship with 'utilisateurs' collection
+            $table->index('idEntreprises'); 
 
             // Additional fields
             $table->array('competences');
@@ -32,9 +31,9 @@ return new class extends Migration
             $table->date('date_debut')->nullable();
             $table->date('date_fin')->nullable();
             $table->nested('commentaires', function (Blueprint $table) {
-            $table->string('utilisateur'); // User ID who posted the comment
-            $table->string('contenu'); // Comment content
-            $table->date('date_creation'); // Timestamp when the comment was created
+            $table->index('idCommentateur');
+            $table->string('contenu'); 
+            $table->date('date_creation');
             });
             $table->timestamps();
         });

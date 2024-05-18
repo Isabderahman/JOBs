@@ -12,14 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::connection('mongodb')->create('recruteurs', function (Blueprint $collection) {
-            $collection->increments('id');
+            $collection->index('id');
             $collection->index('idEntreprise');
             $collection->string('prenom');
             $collection->string('nom');
             $collection->string('adresse');
-            $collection->unique('email');
             $collection->date('date_naissance');
-            $collection->string('mot_de_passe');
         });
     }
 
