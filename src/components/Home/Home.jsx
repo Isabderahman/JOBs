@@ -11,7 +11,6 @@ export default function Home() {
         <h5><a href="">Besoin d'embaucher rapidement ?</a></h5>
         <p>Trouvez des professionnels talentueux en un temps record et maintenez l'activité de votre entreprise. </p>
        </Section>
-
        <Layout>
             <LeftSide/>
             <Main/>
@@ -34,7 +33,8 @@ max-width: 100%;
 const Section = styled.section`
   box-sizing: content-box; 
   min-height: 52px; 
-  padding: 16px 0; 
+  padding-top: 10px; 
+  margin-top: 10px; 
   text-align: center;
   text-decoration: underline;
   display: flex;
@@ -64,13 +64,13 @@ grid-template-areas: "leftSide main rightSide";
 grid-template-columns: minmax(0, 5fr) minmax(0, 12fr) minmax(300px, 7fr) ; 
 column-gap :25px;
 grid-template-rows: auto;
-margin: 25px 0;
+
 
 @media (max-width: 768px){
   display: flex; 
   flex-direction: column;
   padding: 0 5px;
   row-gap : 25px; 
+  margin-top: 15px ;
 }
-
 `;
