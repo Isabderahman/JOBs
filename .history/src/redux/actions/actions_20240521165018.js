@@ -1,6 +1,6 @@
 import { UTILISATEUR } from "./actionTypes";
 
-export const ajouterUtilisateur = (utilisateur) => {
+export const definirUtilisateur = (utilisateur) => {
   return {
     type: UTILISATEUR,
     payload: utilisateur,

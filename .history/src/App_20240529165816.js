@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import "./style/App.css";
-import Login from "./components/Login.js";
+import Login from "./components/Login/Login.js";
 import Header from "./components/Home/Header.jsx";
 import Home from "./components/Home/Home.jsx";
 import {Provider} from 'react-redux';
