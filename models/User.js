@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -26,5 +27,9 @@ const userSchema = new mongoose.Schema({
 }, {
   timestamps: true // Ajoute automatiquement createdAt et updatedAt
 });
+
+userSchema.methods.comparePassword = function(password) {
+  return bcrypt.compare(password, this.password);
+};
 
 module.exports = mongoose.model('User', userSchema);

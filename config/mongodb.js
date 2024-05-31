@@ -1,13 +1,15 @@
-// config/mongodb.js
-
+// db.js
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/jobs', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-}).then(() => {
-    console.log('Connexion à la base de données MongoDB établie avec succès');
-}).catch((err) => {
-    console.error('Erreur de connexion à la base de données MongoDB:', err);
-});
+const connectDB = async () => {
+  try {
+    await mongoose.connect('mongodb://localhost:27017/jobs01', {
+    });
+    console.log('MongoDB connected successfully');
+  } catch (err) {
+    console.error('MongoDB connection error:', err);
+    process.exit(1); // Exit process with failure
+  }
+};
+
+module.exports = connectDB;

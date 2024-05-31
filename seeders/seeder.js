@@ -3,11 +3,10 @@
 const mongoose = require('mongoose');
 const User = require('../models/User'); 
 const Publication = require('../models/Publication'); 
+const bcrypt = require('bcryptjs');
 
 // Connexion à MongoDB
 mongoose.connect('mongodb://localhost:27017/jobs01', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
 }).then(() => {
   console.log('Connexion à MongoDB établie avec succès');
   seedDatabase();
@@ -15,6 +14,10 @@ mongoose.connect('mongodb://localhost:27017/jobs01', {
   console.error('Erreur de connexion à MongoDB:', err);
 });
 
+const hashPassword = async (password) => {
+  const salt = await bcrypt.genSalt(10);
+  return await bcrypt.hash(password, salt);
+};
 // Fonction de seeding
 async function seedDatabase() {
   try {
@@ -24,8 +27,10 @@ async function seedDatabase() {
 
     // Ajouter des utilisateurs
     const users = [
-      { username: 'user1', email: 'user1@example.com', password: 'password1',type_user:"candidat" },
-      { username: 'user2', email: 'user2@example.com', password: 'password2',type_user:"recruteur" },
+      { username: 'user1', email: 'user1@example.com', password: await hashPassword('password'),type_user:"candidat" },
+      { username: 'user2', email: 'user2@example.com', password: await hashPassword('password'),type_user:"recruteur" },
+      { username: 'user3', email: 'user3@example.com', password: await hashPassword('password'),type_user:"candidat" },
+      { username: 'user4', email: 'user4@example.com', password: await hashPassword('password'),type_user:"recruteur" },
       // Ajoutez plus d'utilisateurs ici
     ];
 
