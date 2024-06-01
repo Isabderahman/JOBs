@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const User = require('../models/User'); 
 const Publication = require('../models/Publication'); 
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
 
 // Connexion à MongoDB
 mongoose.connect('mongodb://localhost:27017/jobs01', {
@@ -55,5 +55,5 @@ async function seedDatabase() {
   }
 }
 
-// pour exucuter le seeders saisi la commande suivant : 
+//pour exucuter le seeder saisi la commande suivant : 
 //npm run seed

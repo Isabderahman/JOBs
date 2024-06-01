@@ -28,6 +28,10 @@ const recruteurSchema = new mongoose.Schema({
   date_naissance: {
     type: Date,
     required: true
+  },
+  telephone: {
+    type: String,
+    required: true
   }
 }, {
   timestamps: true

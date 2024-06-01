@@ -2,7 +2,8 @@
 
 const express = require('express');
 const connectDB=require('./config/mongodb')
-const apiRoutes = require('./routes/auth');
+const apiAuth = require('./routes/auth');
+const apiEntreprise = require('./routes/entrepriseApi')
 // const sequelize = require('./config/db');
 
 const app = express();
@@ -11,8 +12,10 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
 // Routes API
-app.use('/api',apiRoutes);
-
+//authentification
+app.use('/api',apiAuth);
+//entreprise api 
+app.use('/api',apiEntreprise);
 // Synchroniser les modèles avec la base de données
 connectDB();
 
