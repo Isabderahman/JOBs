@@ -57,7 +57,7 @@ const offreSchema = new Schema({
     type: [String],
     required: true
   },
-  'autres-informations': {
+  autres_informations: {
     type: String,
     required: true
   },
