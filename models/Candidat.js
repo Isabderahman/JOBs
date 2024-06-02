@@ -80,6 +80,10 @@ const candidatSchema = new Schema(
       type: Date,
       required: true,
     },
+    profilepath: {
+      type: String,
+      required: false
+    },
     education: [educationSchema],
     experiences: [experienceSchema],
     competences: [competenceShema],

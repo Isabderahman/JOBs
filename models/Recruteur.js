@@ -32,7 +32,11 @@ const recruteurSchema = new mongoose.Schema({
   telephone: {
     type: String,
     required: true
-  }
+  },
+  profilePath: {
+    type: String,
+    required: false
+  },
 }, {
   timestamps: true
 });

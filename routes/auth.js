@@ -16,19 +16,6 @@ const hashPassword = async (password) => {
   return await bcrypt.hash(password, salt);
 };
 // Route d'inscription
-// router.post('/signup', async (req, res) => {
-//   const { email, password, type_user } = req.body;
-//   try {
-//     password = hashPassword(password)
-//     const user = new User({ email, password, type_user });
-
-//     await user.save();
-
-//     res.status(201).json({ message: 'Utilisateur créé avec succès' });
-//   } catch (error) {
-//     res.status(400).json({ error: 'Erreur lors de la création de l\'utilisateur' });
-//   }
-// });
 router.post("/signup", async (req, res) => {
   const type_user = req.body.type_user;
   if (type_user === "recruteur") {
@@ -41,6 +28,7 @@ router.post("/signup", async (req, res) => {
       telephone,
       date_naissance,
       id_entreprise,
+      profilepath
     } = req.body;
     try {
       const hashedPassword = await hashPassword(password);
@@ -54,6 +42,7 @@ router.post("/signup", async (req, res) => {
         date_naissance,
         id_entreprise,
         telephone,
+        profilepath
       });
       await recruteur.save();
       res.status(201).json({ message: `Recruteur ${nom} créé avec succès` });
@@ -74,6 +63,7 @@ router.post("/signup", async (req, res) => {
       education,
       experiences,
       competences,
+      profilepath
     } = req.body;
     try {
       const hashedPassword = await hashPassword(password);
@@ -89,6 +79,7 @@ router.post("/signup", async (req, res) => {
         education,
         experiences,
         competences,
+        profilepath
       });
       await candidat.save();
       res.status(201).json({ message: `Candidat ${nom} créé avec succès` });
