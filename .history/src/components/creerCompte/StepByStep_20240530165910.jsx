@@ -1,0 +1,37 @@
+import {React, useState, useEffect, useRef} from 'react';
+import '../../style/StepByStep.css';
+
+
+const StepByStep = (props) => {
+useEffect(() => {
+
+  const stepsState = props.steps.map((x, index) => {
+    Object.assign({}, {
+      description: x, 
+      completed: false, 
+      highlited: index == 0 ? true : false,
+      selected: index == 0 ? true : false,
+    })
+  });
+
+  const updateStep = (currentStep-1, stepRef.current) => 
+
+
+
+}, [props.steps, props.currentStep])
+
+
+
+
+  return (
+    <div className='container_step_by_step'>
+      <div className="content">
+        <div className="display_number">1</div>
+        <div className="display_line"></div>
+        <div className="display_description">Description</div>
+      </div>
+    </div>
+  );
+}
+
+export default StepByStep;

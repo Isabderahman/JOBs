@@ -1,0 +1,27 @@
+.container_step_by_step {
+width: 100%;
+  }
+  
+.content {
+    width: 100%; /* Sets the width of the container */
+    background-color: #f0f2f5; /* Sets the background color to light gray */
+  }
+  .display_number {
+    color: white; /* Sets the text color to white */
+    font-size: 2rem; /* Sets the font size of the number */
+    font-weight: bold; /* Makes the font bold */
+    margin-top: 30px; /* Adds margin from the top */
+    text-align: center; /* Centers the text horizontally */
+  }
+  .display_description {
+  color: black; /* Sets the text color to black */
+  font-size: 1rem; /* Sets the font size of the description */
+  text-align: center; /* Centers the text horizontally */
+  margin-top: 100px; /* Adds margin from the top */
+}
+  .display_line {
+    width: 100%; /* Stretches the line across the entire container */
+    border-top: 2px solid gray; /* Creates a horizontal line */
+    margin: 10px 0; /* Adds margin above and below the line */
+  }
+        

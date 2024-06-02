@@ -1,0 +1,7 @@
+.content {
+    /* Assuming you want a flex column layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Tailwind's items-center centers items horizontally */
+  }
+  

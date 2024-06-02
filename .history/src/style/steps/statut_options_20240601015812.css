@@ -1,0 +1,14 @@
+.statut_options_container{
+    margin: 100px 0;
+    display: flex;
+    align-items: center;
+}
+span{
+    font-family: helvetica;
+    font-size: 18px;
+    font-weight: 600;
+    width: 300px;
+}
+select{
+    width: 300px;
+}

@@ -1,0 +1,43 @@
+.container_step_by_step {
+    display: flex; /* Makes the container a flexbox container */
+    flex-direction: column; /* Stacks items vertically */
+    align-items: center; /* Centers items horizontally */
+    justify-content: center; /* Centers items vertically */
+    width: 200px; /* Sets the width of the container */
+    height: 200px; /* Sets the height of the container */
+    border-radius: 50%; /* Creates a circular shape for the container */
+    background-color: #f0f2f5; /* Sets the background color to light gray */
+  }
+  
+.content {
+    /* Assuming you want a flex column layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Tailwind's items-center centers items horizontally */
+  }
+  .display_number {
+    /* Assuming you want a rounded circle for the number */
+    border-radius: 50%;  /* Tailwind's rounded-full translates to a 50% border radius */
+    width: 3rem;  /* Assuming you want a circle with a width of 3rem */
+    height: 3rem;  /* Assuming you want a circle with a height of 3rem */
+    text-align: center;  /* Centers text inside the circle */
+    line-height: 3rem;  /* Aligns text vertically in the center of the circle */
+    background-color: teal; /* Assuming you want a teal background color based on Tailwind's text-teal-600 class */
+    color: white;  /* Assuming you want white text inside the circle */
+  }
+  .display_description {
+    /* Assuming you want some margin above the description */
+    margin-top: 1rem;  /* Tailwind's mt-16 translates to a 1rem margin top */
+    text-align: center;  /* Aligns text to the center */
+    font-weight: medium; /* Tailwind's font-medium translates to font weight of medium */
+    text-transform: uppercase; /* Tailwind's uppercase transforms text to uppercase */
+    font-size: 0.75rem; /* Assuming you want a font size of 0.75rem (Tailwind's text-xs translates to a font size relative to the base font size) */
+  }
+  .display_line {
+    /* Assuming you want a horizontal line */
+    width: 100%;  /* Spans the full width of the container */
+    border-top: 2px solid gray; /* Tailwind's border-t-2 translates to a 2px solid border on the top */
+    /* Assuming you want some margin on the bottom of the line */
+    margin-bottom: 1rem;  /* Tailwind's mb-2 translates to a 1rem margin bottom */
+  }
+        

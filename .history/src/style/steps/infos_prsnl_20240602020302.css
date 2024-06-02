@@ -1,0 +1,17 @@
+.infos_prsnl_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin
+}
+input{
+    width: 1000px; 
+    padding: 10px 5px;
+    margin: 10px 0;
+    border-radius: 5px; 
+    border: none;
+    text-align: center;
+    font-size: 16px;
+
+}

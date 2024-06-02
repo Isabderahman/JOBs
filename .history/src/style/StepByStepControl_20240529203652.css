@@ -1,0 +1,18 @@
+.next{
+    background-color: none;
+    border: outset;
+}
+.back{
+    background-color: none;
+    border: outset;
+}
+.next button{
+    padding: 10px;
+    background-color: #058c42;
+}
+.back button{
+    padding: 10px;
+}
+.next button:hover{
+    background-color: #16db65;
+}

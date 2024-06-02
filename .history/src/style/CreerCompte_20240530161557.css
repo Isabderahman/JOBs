@@ -1,0 +1,42 @@
+.container_steps{
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: auto;
+    padding: 20px 50px;
+    transform: translateY(50px);
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.015);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+.StepByStep{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.type_user{
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.text_question{
+    margin-right: 20px;
+    color: #058c42;
+
+}
+.text_question span{
+    color: #058c42;
+    letter-spacing: 1.1px;
+
+}
+.select select{
+    width: 300px;
+    padding: 7px 0;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+}

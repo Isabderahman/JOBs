@@ -1,0 +1,26 @@
+import React from "react";
+import StepByStep from "./StepByStep";
+import StepByStepControl from "./StepByStepControl";
+import "../../style/CreerCompte.css";
+
+const CreerCompte = () => {
+  return (
+    <div className="container_steps">
+      <StepByStep />
+      <div className="type_user">
+        <div className="text_question">
+          <span>vous êtes de quelle Quel  statut professionnel ??</span>
+        </div>
+        <div className="select">
+          <select name="select" id="">
+            <option value="emplyeur">Chercher un emploi</option>
+            <option value="entreprise">Une entreprise</option>
+          </select>
+        </div>
+      </div>
+      <StepByStepControl />
+    </div>
+  );
+};
+
+export default CreerCompte;

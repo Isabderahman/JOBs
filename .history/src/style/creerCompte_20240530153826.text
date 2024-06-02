@@ -1,0 +1,22 @@
+type_user{
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.text_question{
+    margin-right: 20px;
+    color: #058c42;
+
+}
+.text_question span{
+    color: #058c42;
+    letter-spacing: 1.1px;
+
+}
+.select select{
+    width: 300px;
+    padding: 7px 0;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+}

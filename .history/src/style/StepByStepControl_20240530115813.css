@@ -1,0 +1,33 @@
+.container_step_by_step_control{
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    padding: 20px 50px;
+
+}
+.next, .back{
+    background-color: none;
+}
+.next button, .back button{
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    border-radius: 7px;
+    padding: 10px 30px;
+    font-weight: 600;
+    font-family: helvetica;
+    letter-spacing: 1.2px;
+}
+.next button:hover{
+    background-color: #16db65;
+    background-color: #16db65;
+    cursor: pointer;
+    color: #f1f5f9;
+}
+.back button:hover{
+    background-color: #058c42;
+    cursor: pointer;
+    color: #ffffff;
+
+}

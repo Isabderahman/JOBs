@@ -1,0 +1,24 @@
+.container{
+    width: %;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.content{
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.next, .back{
+    background-color: none;
+}
+.next button, .back button{
+    padding: 10px;
+}
+.next button:hover{
+    background-color: #16db65;
+}
+.back button:hover{
+    background-color: #058c42;
+}
