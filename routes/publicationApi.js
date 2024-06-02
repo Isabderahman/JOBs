@@ -3,10 +3,10 @@
 const express = require('express');
 const router = express.Router();
 const Publication = require('../models/Publication');
-const { authenticateUser } = require('../middleware/authMiddleware');
+const authMiddleware = require("../middleware/authMiddleware");
 
 // Create a new publication
-router.post('/', authenticateUser, async (req, res) => {
+router.post('/', authMiddleware, async (req, res) => {
   const { titre, contenu, auteur, imagePath } = req.body;
   try {
     const publication = new Publication({ titre, contenu, auteur, imagePath });
@@ -42,7 +42,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Update a publication
-router.put('/:id', authenticateUser, async (req, res) => {
+router.put('/:id', authMiddleware, async (req, res) => {
   const { id } = req.params;
   const { titre, contenu, imagePath } = req.body;
   try {
@@ -61,7 +61,7 @@ router.put('/:id', authenticateUser, async (req, res) => {
 });
 
 // Delete a publication
-router.delete('/:id', authenticateUser, async (req, res) => {
+router.delete('/:id', authMiddleware, async (req, res) => {
   const { id } = req.params;
   try {
     const publication = await Publication.findByIdAndDelete(id);
@@ -75,7 +75,7 @@ router.delete('/:id', authenticateUser, async (req, res) => {
 });
 
 // Add a comment to a publication
-router.post('/:id/commentaires', authenticateUser, async (req, res) => {
+router.post('/:id/commentaires', authMiddleware, async (req, res) => {
   const { id } = req.params;
   const { idCommentateur, contenu } = req.body;
   try {
