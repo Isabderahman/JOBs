@@ -1,5 +1,4 @@
 // models/Publication.js
-
 const mongoose = require('mongoose');
 
 const commentaireSchema = new mongoose.Schema({
@@ -37,6 +36,10 @@ const publicationSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
+  },
+  imagePath: {
+    type: String,
+    required: false
   },
   commentaires: [commentaireSchema]
 });

@@ -4,20 +4,28 @@ const express = require('express');
 const connectDB=require('./config/mongodb')
 const apiAuth = require('./routes/auth');
 const apiEntreprise = require('./routes/entrepriseApi')
+const offreApi = require('./routes/offreApi')
+const publicationApi = require('./routes/publicationApi')
 // const sequelize = require('./config/db');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+// Synchroniser les modèles avec la base de données
+connectDB();
 
 // Middleware
 app.use(express.json());
+
+
 // Routes API
 //authentification
 app.use('/api',apiAuth);
 //entreprise api 
 app.use('/api',apiEntreprise);
-// Synchroniser les modèles avec la base de données
-connectDB();
+// offre api 
+app.use('/api',offreApi)
+// publication api
+app.use('/api',publicationApi)
 
 
 // Server
