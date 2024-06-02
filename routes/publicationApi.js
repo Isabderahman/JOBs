@@ -6,7 +6,7 @@ const Publication = require('../models/Publication');
 const authMiddleware = require("../middleware/authMiddleware");
 
 // Create a new publication
-router.post('/', authMiddleware, async (req, res) => {
+router.post('/publication', authMiddleware, async (req, res) => {
   const { titre, contenu, auteur, imagePath } = req.body;
   try {
     const publication = new Publication({ titre, contenu, auteur, imagePath });
@@ -18,7 +18,7 @@ router.post('/', authMiddleware, async (req, res) => {
 });
 
 // Get all publications
-router.get('/', async (req, res) => {
+router.get('/publication', async (req, res) => {
   try {
     const publications = await Publication.find().populate('auteur').populate('commentaires.idCommentateur');
     res.status(200).json(publications);
@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get a specific publication by ID
-router.get('/:id', async (req, res) => {
+router.get('/publication/:id', async (req, res) => {
   const { id } = req.params;
   try {
     const publication = await Publication.findById(id).populate('auteur').populate('commentaires.idCommentateur');
@@ -42,7 +42,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Update a publication
-router.put('/:id', authMiddleware, async (req, res) => {
+router.put('/publication/:id', authMiddleware, async (req, res) => {
   const { id } = req.params;
   const { titre, contenu, imagePath } = req.body;
   try {
@@ -61,7 +61,7 @@ router.put('/:id', authMiddleware, async (req, res) => {
 });
 
 // Delete a publication
-router.delete('/:id', authMiddleware, async (req, res) => {
+router.delete('/publication/:id', authMiddleware, async (req, res) => {
   const { id } = req.params;
   try {
     const publication = await Publication.findByIdAndDelete(id);
@@ -75,7 +75,7 @@ router.delete('/:id', authMiddleware, async (req, res) => {
 });
 
 // Add a comment to a publication
-router.post('/:id/commentaires', authMiddleware, async (req, res) => {
+router.post('/publication/:id/commentaires', authMiddleware, async (req, res) => {
   const { id } = req.params;
   const { idCommentateur, contenu } = req.body;
   try {
