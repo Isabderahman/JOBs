@@ -1,52 +1,49 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-const router = express.Router();
-const authMiddleware = require("../middleware/authMiddleware");
 const { Recruteur, Candidat } = require("../models");
 const bcrypt = require("bcryptjs");
-const multer = require('multer');
-const path = require('path');
+const multer = require("multer");
+const fs = require("fs");
+const path = require("path");
+
+const router = express.Router();
+const authMiddleware = require("../middleware/authMiddleware");
 
 // Clé secrète pour signer les tokens JWT
 const JWT_SECRET = "votre_clé_secrète";
 
-// Configure Multer storage
+// Configuration de Multer pour le stockage des fichiers
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/profiles/');
+    const dir = './uploads/profiles';
+    fs.exists(dir, (exist) => {
+      if (!exist) {
+        return fs.mkdir(dir, { recursive: true }, (err) => cb(err, dir));
+      }
+      return cb(null, dir);
+    });
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
+    cb(null, Date.now() + '-' + file.originalname);
   }
 });
 
-// Configure Multer to use the storage
-const upload = multer({ storage });
+const upload = multer({ storage: storage });
 
-// fonction pour hacher le mot de passe
+// Fonction pour hacher le mot de passe
 const hashPassword = async (password) => {
   const salt = await bcrypt.genSalt(10);
   return await bcrypt.hash(password, salt);
 };
 
 // Route d'inscription
-router.post("/signup", upload.single('profileImage'), async (req, res) => {
+router.post("/signup", upload.single('profilePath'), async (req, res) => {
   const type_user = req.body.type_user;
-  const profilepath = req.file ? req.file.path : null;
+  const profileImagePath = req.file ? req.file.path : null;
 
   if (type_user === "recruteur") {
-    const {
-      email,
-      password,
-      prenom,
-      nom,
-      adresse,
-      telephone,
-      date_naissance,
-      id_entreprise,
-    } = req.body;
-
+    const { email, password, prenom, nom, adresse, telephone, date_naissance, id_entreprise } = req.body;
     try {
       const hashedPassword = await hashPassword(password);
       const user = new User({ email, password: hashedPassword, type_user });
@@ -59,29 +56,15 @@ router.post("/signup", upload.single('profileImage'), async (req, res) => {
         date_naissance,
         id_entreprise,
         telephone,
-        profilepath
+        profilePath: profileImagePath
       });
       await recruteur.save();
       res.status(201).json({ message: `Recruteur ${nom} créé avec succès` });
     } catch (error) {
-      res
-        .status(400)
-        .json({ error: `Erreur lors de la création de ce recruteur ${error}` });
+      res.status(400).json({ error: `Erreur lors de la création de ce recruteur: ${error.message}` });
     }
   } else {
-    const {
-      email,
-      password,
-      prenom,
-      nom,
-      adresse,
-      telephone,
-      date_naissance,
-      education,
-      experiences,
-      competences,
-    } = req.body;
-
+    const { email, password, prenom, nom, adresse, telephone, date_naissance, education, experiences, competences } = req.body;
     try {
       const hashedPassword = await hashPassword(password);
       const user = new User({ email, password: hashedPassword, type_user });
@@ -93,17 +76,15 @@ router.post("/signup", upload.single('profileImage'), async (req, res) => {
         adresse,
         telephone,
         date_naissance,
-        education,
-        experiences,
-        competences,
-        profilepath
+        education: JSON.parse(education),
+        experiences: JSON.parse(experiences),
+        competences: JSON.parse(competences),
+        profilePath: profileImagePath
       });
       await candidat.save();
       res.status(201).json({ message: `Candidat ${nom} créé avec succès` });
     } catch (error) {
-      res
-        .status(400)
-        .json({ error: `Erreur lors de la création de ce candidat ${error}` });
+      res.status(400).json({ error: `Erreur lors de la création de ce candidat: ${error.message}` });
     }
   }
 });
@@ -120,11 +101,7 @@ router.post("/signin", async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ error: "Mot de passe incorrect" });
     }
-    const token = jwt.sign(
-      { id: user._id, type_user: user.type_user },
-      JWT_SECRET,
-      { expiresIn: "3h" }
-    );
+    const token = jwt.sign({ id: user._id, type_user: user.type_user }, JWT_SECRET, { expiresIn: "3h" });
     res.json({ token });
   } catch (error) {
     res.status(500).json({ error: "Erreur lors de la connexion" });
