@@ -1,13 +1,27 @@
-// routes/publication.js
-
 const express = require('express');
 const router = express.Router();
 const Publication = require('../models/Publication');
-const authMiddleware = require("../middleware/authMiddleware");
+const authMiddleware = require('../middleware/authMiddleware');
+const multer = require('multer');
+const path = require('path');
+
+// Configure Multer storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  }
+});
+
+// Configure Multer to use the storage
+const upload = multer({ storage });
 
 // Create a new publication
-router.post('/publication', authMiddleware, async (req, res) => {
-  const { titre, contenu, auteur, imagePath } = req.body;
+router.post('/publication', authMiddleware, upload.single('image'), async (req, res) => {
+  const { titre, contenu, auteur } = req.body;
+  const imagePath = req.file ? req.file.path : null;
   try {
     const publication = new Publication({ titre, contenu, auteur, imagePath });
     await publication.save();
@@ -42,9 +56,10 @@ router.get('/publication/:id', async (req, res) => {
 });
 
 // Update a publication
-router.put('/publication/:id', authMiddleware, async (req, res) => {
+router.put('/publication/:id', authMiddleware, upload.single('image'), async (req, res) => {
   const { id } = req.params;
-  const { titre, contenu, imagePath } = req.body;
+  const { titre, contenu } = req.body;
+  const imagePath = req.file ? req.file.path : req.body.imagePath;
   try {
     const publication = await Publication.findByIdAndUpdate(
       id,

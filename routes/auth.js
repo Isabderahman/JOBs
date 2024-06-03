@@ -1,5 +1,3 @@
-// routes/auth.js
-
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
@@ -7,17 +5,36 @@ const router = express.Router();
 const authMiddleware = require("../middleware/authMiddleware");
 const { Recruteur, Candidat } = require("../models");
 const bcrypt = require("bcryptjs");
+const multer = require('multer');
+const path = require('path');
 
 // Clé secrète pour signer les tokens JWT
 const JWT_SECRET = "votre_clé_secrète";
-// fonction pour hache le mot de passe
+
+// Configure Multer storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/profiles/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  }
+});
+
+// Configure Multer to use the storage
+const upload = multer({ storage });
+
+// fonction pour hacher le mot de passe
 const hashPassword = async (password) => {
   const salt = await bcrypt.genSalt(10);
   return await bcrypt.hash(password, salt);
 };
+
 // Route d'inscription
-router.post("/signup", async (req, res) => {
+router.post("/signup", upload.single('profileImage'), async (req, res) => {
   const type_user = req.body.type_user;
+  const profilepath = req.file ? req.file.path : null;
+
   if (type_user === "recruteur") {
     const {
       email,
@@ -28,8 +45,8 @@ router.post("/signup", async (req, res) => {
       telephone,
       date_naissance,
       id_entreprise,
-      profilepath
     } = req.body;
+
     try {
       const hashedPassword = await hashPassword(password);
       const user = new User({ email, password: hashedPassword, type_user });
@@ -63,11 +80,11 @@ router.post("/signup", async (req, res) => {
       education,
       experiences,
       competences,
-      profilepath
     } = req.body;
+
     try {
       const hashedPassword = await hashPassword(password);
-      const user = new User({ email, password:hashedPassword, type_user });
+      const user = new User({ email, password: hashedPassword, type_user });
       await user.save();
       const candidat = new Candidat({
         id_user: user._id,
