@@ -3,27 +3,32 @@ const router = express.Router();
 const Publication = require('../models/Publication');
 const authMiddleware = require('../middleware/authMiddleware');
 const multer = require('multer');
-const path = require('path');
+const fs = require("fs");
 
-// Configure Multer storage
+// Configuration de Multer pour le stockage des fichiers
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');
+    const dir = './uploads/publication';
+    fs.exists(dir, (exist) => {
+      if (!exist) {
+        return fs.mkdir(dir, { recursive: true }, (err) => cb(err, dir));
+      }
+      return cb(null, dir);
+    });
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
+    cb(null, Date.now() + '-' + file.originalname);
   }
 });
 
-// Configure Multer to use the storage
-const upload = multer({ storage });
+const upload = multer({ storage: storage });
 
 // Create a new publication
-router.post('/publication', authMiddleware, upload.single('image'), async (req, res) => {
+router.post('/publication', authMiddleware, upload.single('imagePath'), async (req, res) => {
   const { titre, contenu, auteur } = req.body;
   const imagePath = req.file ? req.file.path : null;
   try {
-    const publication = new Publication({ titre, contenu, auteur, imagePath });
+    const publication = new Publication({ titre, contenu, auteur, imagePath:imagePath});
     await publication.save();
     res.status(201).json(publication);
   } catch (error) {
@@ -56,14 +61,14 @@ router.get('/publication/:id', async (req, res) => {
 });
 
 // Update a publication
-router.put('/publication/:id', authMiddleware, upload.single('image'), async (req, res) => {
+router.put('/publication/:id', authMiddleware, upload.single('imagePath'), async (req, res) => {
   const { id } = req.params;
   const { titre, contenu } = req.body;
   const imagePath = req.file ? req.file.path : req.body.imagePath;
   try {
     const publication = await Publication.findByIdAndUpdate(
       id,
-      { titre, contenu, imagePath },
+      { titre, contenu, imagePath:imagePath },
       { new: true, runValidators: true }
     );
     if (!publication) {
