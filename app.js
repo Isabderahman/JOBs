@@ -1,11 +1,11 @@
 // app.js
-
 const express = require('express');
 const connectDB=require('./config/mongodb')
 const apiAuth = require('./routes/auth');
 const apiEntreprise = require('./routes/entrepriseApi')
 const offreApi = require('./routes/offreApi')
 const publicationApi = require('./routes/publicationApi')
+
 // const sequelize = require('./config/db');
 
 const app = express();
@@ -17,7 +17,7 @@ connectDB();
 app.use(express.json());
 
 
-// Routes API
+//Routes API
 //authentification
 app.use('/api',apiAuth);
 //entreprise api 
