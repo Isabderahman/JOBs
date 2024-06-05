@@ -22,7 +22,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:3000/api/login', loginInputs);
+      const response = await axios.post('http://127.0.0.1:8000/api/login', loginInputs);
       console.log('Login successful!', response.data);
       if (sessionStorage.setItem('loginData', response.data)) {
         navigate('/home')
