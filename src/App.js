@@ -3,6 +3,7 @@ import "./style/App.css";
 import Login from "./components/Login";
 import Header from "./components/Home/Header.jsx";
 import Home from "./components/Home/Home.jsx";
+import Emplois from "./components/Home/Emplois.jsx"
 
 function App() {
   return (
@@ -14,9 +15,14 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/home" element={<>
-            <Header />
+            <Header/>
             <Home/>
           </>} />
+          <Route path='/emploi' element={<>
+            <Header/>
+            <Emplois/>
+          </>  
+          }/>
         </Routes>
     </div>
   );

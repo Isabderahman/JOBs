@@ -23,26 +23,17 @@ const Header = () => {
         <Nav>
           <NavListWrap>
             <NavList className="active">
-              <a>
+              <a href="/home">
                 <i className="fas fa-home"></i>
                 <span>Accueil</span>
               </a>
             </NavList>
-
             <NavList>
-              <a>
-                <i className="fas fa-users"></i>
-                <span>Mon réseau</span>
-              </a>
-            </NavList>
-
-            <NavList>
-              <a>
+              <a href="/emploi">
                 <i className="fas fa-briefcase"></i>
                 <span>Emplois</span>
               </a>
             </NavList>
-
             <NavList>
               <a>
                 <i className="fas fa-comment"></i>
@@ -80,7 +71,7 @@ const Container = styled.div`
   
   background-color: white;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  left: 0;
+  // left: 0;
   padding: 0 24px;
   position: fixed;
   top: 0;

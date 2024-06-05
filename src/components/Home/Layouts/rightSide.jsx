@@ -4,13 +4,6 @@ import styled from 'styled-components';
 export default function RightSide() {
   return (
     <Container>
-      {/* <AdsCard>
-        <AdImage src="https://picsum.photos/200/300" alt="Ad Image 1" />
-        <AdHeader>Besoin d'embaucher rapidement ?</AdHeader>
-        <AdDescription>
-          Trouvez des professionnels talentueux en un temps record et maintenez l'activité de votre entreprise.
-        </AdDescription>
-      </AdsCard> */}
       <AdsCard>
         <AdImage src="https://picsum.photos/200/300" alt="Ad Image 2" />
         <AdHeader><button className='ad'><a href="#" className='visibilité'>Boostez votre visibilité</a></button></AdHeader>
@@ -18,21 +11,6 @@ export default function RightSide() {
           Utilisez nos outils marketing pour atteindre un plus large public et augmenter vos ventes.
         </AdDescription>
       </AdsCard>
-      {/* <AdsCard>
-        <AdImage src="https://picsum.photos/200/300" alt="Ad Image 3" />
-        <AdHeader>Formations en ligne</AdHeader>
-        <AdDescription>
-          Accédez à des centaines de cours en ligne pour améliorer vos compétences professionnelles et personnelles.
-        </AdDescription>
-      </AdsCard> */}
-      {/* <AdsCard>
-        <AdImage src="https://picsum.photos/200/300" alt="Ad Image 4" />
-        <AdHeader>Partenariats stratégiques</AdHeader>
-        <AdDescription>
-          Collaborez avec des entreprises leaders pour développer des solutions innovantes et renforcer votre marché.
-        </AdDescription>
-      </AdsCard> */}
-
       <Footer>
           <FooterLinks>
             <FooterLink href="#">Infos</FooterLink>
