@@ -40,15 +40,12 @@
 
   
 
-  .recruteur {
+  .newEntreprise {
     margin-bottom: 10px;
     display: flex;
+    justify-content: space-between; 
+    align-items: center;
     width: 100%;
-
-  }
-  .recruteur p{
-    color: red;
-    margin-bottom: 50px;
   }
   
   form button {

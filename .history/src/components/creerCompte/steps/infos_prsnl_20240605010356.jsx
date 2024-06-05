@@ -5,15 +5,6 @@ import '../../../style/steps/infos_prsnl.css'
 const InfosPrsnl = (props) => {
   const [entreprises, setEntreprises] = useState([]);
   const [selectedEntreprise, setSelectedEntreprise] = useState('');
-  const [newEntrepriseFormVisible, setNewEntrepriseFormVisible] = useState(false);
-  const [newEntreprise, setNewEntreprise] = useState({
-    nom: '',
-    numEntreprise: '',
-    email: '',
-    password: '',
-    adresse: '',
-    telephone: ''
-  });
   
   useEffect(() => {
     // Effectuer une requête HTTP pour récupérer la liste des entreprises
@@ -28,35 +19,6 @@ const InfosPrsnl = (props) => {
 
   const handleEntrepriseChange = (event) => {
     setSelectedEntreprise(event.target.value);
-  };
-
-  const handleNewEntrepriseInputChange = (event) => {
-    const { name, value } = event.target;
-    setNewEntreprise(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-
-  const handleNewEntrepriseSubmit = (event) => {
-    event.preventDefault();
-    // Envoyer une requête HTTP pour ajouter la nouvelle entreprise
-    axios.post('/api/ajouter-entreprise', newEntreprise)
-      .then(response => {
-        setEntreprises(prevState => [...prevState, response.data]);
-        setNewEntrepriseFormVisible(false);
-        setNewEntreprise({
-          nom: '',
-          numEntreprise: '',
-          email: '',
-          password: '',
-          adresse: '',
-          telephone: ''
-        });
-      })
-      .catch(error => {
-        console.error('Erreur lors de l\'ajout de la nouvelle entreprise : ', error);
-      });
   };
   return (
     <div className='infos_prsnl_container'>
@@ -76,28 +38,18 @@ const InfosPrsnl = (props) => {
 
       {props.selectedOption === "recruteur" && (
         <div className="recruteur">
-
-
-
+          <input type="file" className="profile-input" id="profile-input-recruteur" />
+          <label htmlFor="profile-input-recruteur">Télécharger la photo de profil</label>
           {entreprises.length > 0 ? (
-            
             <select value={selectedEntreprise} onChange={handleEntrepriseChange}>
               <option value="">Sélectionnez une entreprise</option>
               {entreprises.map(entreprise => (
                 <option key={entreprise.id} value={entreprise.id}>{entreprise.nom}</option>
               ))}
             </select>
-
-
-            
           ) : (
             <div>
-              <p className='newEntreprise' >Aucune entreprise disponible. Ajoutez une nouvelle entreprise :</p>
-              
-              <div className="recruteur">
-              <input type="file" className="profile-input" id="profile-input-recruteur" />
-              <label htmlFor="profile-input-recruteur">Télécharger la photo de profil</label>
-              </div>
+              <p>Aucune entreprise disponible. Ajoutez une nouvelle entreprise :</p>
               <form onSubmit={handleNewEntrepriseSubmit}>
                 <input type="text" name="nom" value={newEntreprise.nom} onChange={handleNewEntrepriseInputChange} placeholder="Nom de l'entreprise"/>
                 <input type="text" name="numEntreprise" value={newEntreprise.numEntreprise} onChange={handleNewEntrepriseInputChange} placeholder='Numéro Entreprise'/>

@@ -40,25 +40,22 @@
 
   
 
-  .recruteur {
+  .newEntreprise {
     margin-bottom: 10px;
     display: flex;
+    justify-content: space-between; 
+    align-items: center;
     width: 100%;
-
-  }
-  .recruteur p{
-    color: red;
-    margin-bottom: 50px;
   }
   
-  form button {
+  .newEntreprise button {
     padding: 10px 30px;
     border: 1px solid rgba(0, 0, 0, 0.06);
     border-radius: 5px;
     cursor: pointer;
     background-color: #fff;
   }
-   form button:hover{
+  . button:hover{
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.06);
 
   }

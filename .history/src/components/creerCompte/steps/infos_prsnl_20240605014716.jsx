@@ -88,7 +88,6 @@ const InfosPrsnl = (props) => {
               ))}
             </select>
 
-
             
           ) : (
             <div>

@@ -75,7 +75,7 @@ const InfosPrsnl = (props) => {
       )}
 
       {props.selectedOption === "recruteur" && (
-        <div className="recruteur">
+        <di className="recruteur">
 
 
 
@@ -87,12 +87,9 @@ const InfosPrsnl = (props) => {
                 <option key={entreprise.id} value={entreprise.id}>{entreprise.nom}</option>
               ))}
             </select>
-
-
-            
           ) : (
             <div>
-              <p className='newEntreprise' >Aucune entreprise disponible. Ajoutez une nouvelle entreprise :</p>
+              <p className='newEntreprise'>Aucune entreprise disponible. Ajoutez une nouvelle entreprise :</p>
               
               <div className="recruteur">
               <input type="file" className="profile-input" id="profile-input-recruteur" />
@@ -109,7 +106,6 @@ const InfosPrsnl = (props) => {
               </form>
             </div>
           )}
-        </div>
       )}
     </div>
   );

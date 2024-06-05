@@ -87,12 +87,9 @@ const InfosPrsnl = (props) => {
                 <option key={entreprise.id} value={entreprise.id}>{entreprise.nom}</option>
               ))}
             </select>
-
-
-            
           ) : (
             <div>
-              <p className='newEntreprise' >Aucune entreprise disponible. Ajoutez une nouvelle entreprise :</p>
+              <p className='newEntreprise' style={Color=""}>Aucune entreprise disponible. Ajoutez une nouvelle entreprise :</p>
               
               <div className="recruteur">
               <input type="file" className="profile-input" id="profile-input-recruteur" />

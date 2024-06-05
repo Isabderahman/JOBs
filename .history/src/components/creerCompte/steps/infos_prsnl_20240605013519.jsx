@@ -87,9 +87,6 @@ const InfosPrsnl = (props) => {
                 <option key={entreprise.id} value={entreprise.id}>{entreprise.nom}</option>
               ))}
             </select>
-
-
-            
           ) : (
             <div>
               <p className='newEntreprise' >Aucune entreprise disponible. Ajoutez une nouvelle entreprise :</p>
