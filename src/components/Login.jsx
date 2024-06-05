@@ -1,12 +1,39 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 // React Component
 const Login = () => {
   const location = useLocation();
   const navRef = useRef();
-
+  //handle navigate
+  const navigate = useNavigate();
+  const handleRedirect = () => {
+    navigate('/dashboard');
+  };
+  ///handle form input 
+  const [loginInputs,setLoginInputs]= useState({email:"",password:""})
+  const handleChange = (e)=>{
+    const {name,value}=e.target
+    setLoginInputs({...loginInputs,[name]:value})
+  }
+  // login action 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/login', loginInputs);
+      console.log('Login successful!', response.data);
+      if (sessionStorage.setItem('loginData', response.data)) {
+        navigate('/home')
+    }
+      handleRedirect();
+    } catch (error) {
+      console.error('Login failed!', error);
+      
+    }
+  };
   const showNavrBar = () => {
     navRef.current.classList.toggle("responsive_nav");
   };
@@ -111,15 +138,25 @@ const Login = () => {
               <span>ou</span>
             </div>
 
-            <form className="email-form">
+            <form className="email-form" onSubmit={handleSubmit}>
               <input
                 type="email"
                 placeholder="Entrer l'adresse email"
                 className="email-input"
+                name='email'
+                value={loginInputs.email}
+                onChange={handleChange}
               />
-              <button type="submit" className="btn btn-email">
-                Continuer avec email
-              </button>
+              <input
+                type="password"
+                placeholder="Entrer votre mot de passe"
+                className="email-input"
+                name="password"
+                value={loginInputs.password}
+                onChange={handleChange}
+              />
+              <input type="submit" className="btn btn-email" value="Continuer avec email"/>
+  
             </form>
           </div>
 
