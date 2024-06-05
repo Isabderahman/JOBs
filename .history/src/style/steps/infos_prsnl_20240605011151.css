@@ -1,0 +1,57 @@
+.infos_prsnl_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 70px 0;
+}
+.infos_prsnl_container input, .infos_prsnl_container select{
+    width: 1000px; 
+    padding: 10px 5px;
+    margin: 10px 0;
+    border-radius: 5px; 
+    border: none;
+    font-size: 16px;
+    text-align: left;
+}
+
+ 
+  .candidat, .recruteur {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .profile-input {
+    display: none;
+  }
+  
+  .profile-input + label {
+    background-color: #fff;
+    padding: 10px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .profile-input + label:hover {
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.06);
+  }
+
+  
+
+  .newEntreprise {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 97%;
+  }
+  
+  .newEntreprise button {
+    
+    padding: 5px 10px;
+    border: 1px solid ;
+    border-radius: 3px;
+    cursor: pointer;
+  }

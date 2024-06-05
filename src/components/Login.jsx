@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
-// React Component
 const Login = () => {
   const location = useLocation();
   const navRef = useRef();
@@ -137,6 +136,7 @@ const Login = () => {
             <div className="or-divider">
               <span>ou</span>
             </div>
+<<<<<<< HEAD
 
             <form className="email-form" onSubmit={handleSubmit}>
               <input
@@ -158,6 +158,23 @@ const Login = () => {
               <input type="submit" className="btn btn-email" value="Continuer avec email"/>
   
             </form>
+=======
+            <form className="email-form">
+          <input
+            type="email"
+            placeholder="Entrer l'adresse email"
+            className="email-input"
+          />
+          <input
+            type="password" 
+            placeholder="Mot de passe"
+            className="password-input" 
+          />
+          <button type="submit" className="btn btn-email">
+            Continuer avec email
+          </button>
+        </form>
+>>>>>>> 4b83d9ac7ed647089f0ce8075c6ef8c04d085998
           </div>
 
           <div className="terms-and-privacy">
@@ -341,12 +358,13 @@ const SearchBar = styled.div`
     width: 55%;
     margin-top: 20px;
   }
-  input[type="text"] {
+  input[type='text'] {
     margin-left: 50px;
     padding: 15px;
     width: 250px;
     outline-style: none;
     border: none;
+    box-sizing: border-box;
   }
 
   button {
@@ -461,10 +479,20 @@ const SignInContainer = styled.div`
     }
   }
 
+
+
+  .password-input { 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
   .email-form {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    display: flex;
+
 
     .email-input {
       padding: 10px;
