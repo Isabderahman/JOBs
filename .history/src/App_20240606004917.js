@@ -35,7 +35,7 @@ function App() {
           }
         />
 
-        <Route path="/créer-compte" element={<CreerCompte/>}/>
+        <Route path="/creer-compte" element={<CreerCompte/>}/>
       </Routes>
     </div>
   );

@@ -4,7 +4,6 @@ import Login from "./components/Login.jsx";
 import Header from "./components/Home/Header.jsx";
 import Home from "./components/Home/Home.jsx";
 import Emplois from "./components/Home/Emplois.jsx";
-import CreerCompte from "./components/creerCompte/creerCompte.jsx";
 
 function App() {
   return (
@@ -35,7 +34,7 @@ function App() {
           }
         />
 
-        <Route path="/créer-compte" element={<CreerCompte/>}/>
+        <Route path=""/>
       </Routes>
     </div>
   );
