@@ -61,12 +61,12 @@ const InfosPrsnl = (props) => {
   return (
     <div className='infos_prsnl_container'>
       {props.selectedOption === "candidat" && (
-        <div className="candidat">
+        <di className="candidat">
             <div className="candidat_profil">
             <input type="file" className="profile-input" id="profile-input-candidat" />
             <label htmlFor="profile-input-candidat">Télécharger la photo de profil <i className='fas fa-download'></i></label>
             </div>
-            <div className="candidat_cv">
+            <div className="candidat_profil">
             <input type="file" className="profile-input" id="profile-input-candidat" />
             <label htmlFor="profile-input-candidat">Télécharger le cv <i className='fas fa-download'></i></label>
             </div>
@@ -77,7 +77,7 @@ const InfosPrsnl = (props) => {
           <input type="text" placeholder='Adresse'/>
           <input type="number" placeholder='Téléphone'/>
           <input type="date" placeholder='Date de naissance'/>
-        </div>
+        </di>
       )}
 
       {props.selectedOption === "recruteur" && (

@@ -104,6 +104,10 @@ const InfosPrsnl = (props) => {
               <input type="file" className="profile-input" id="profile-input-recruteur" />
                 <label >Télécharger la photo de profil <i className='fas fa-download'></i></label>
               </div>
+              <div className="candidat_cv">
+            <input type="file" className="profile-input" id="profile-input-candidat" />
+            <label htmlFor="profile-input-candidat">Télécharger le cv <i className='fas fa-download'></i></label>
+            </div>
               <form onSubmit={handleNewEntrepriseSubmit}>
                 <input type="text" name="nom" value={newEntreprise.nom} onChange={handleNewEntrepriseInputChange} placeholder="Nom de l'entreprise"/>
                 <input type="text" name="numEntreprise" value={newEntreprise.numEntreprise} onChange={handleNewEntrepriseInputChange} placeholder='Numéro Entreprise'/>

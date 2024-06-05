@@ -17,10 +17,13 @@
 
 
 .candidat_cv{
-  align-items: center;
+  display: flex;
   position: relative;
-  left: 300px;
-  top: -18px;
+  left: 400px;
+  top: -30px;
+}
+.candidat_profil input + label, .candidat_cv input + label{
+  width: 300px;
 }
 
   .profile-input {
@@ -29,7 +32,7 @@
   
   .profile-input + label {
     background-color: #fff;
-    padding: 10px 5px;
+    padding: 15px 10px;
     border-radius: 5px;
     cursor: pointer;
     color: rgba(0, 0, 0, 0.4);

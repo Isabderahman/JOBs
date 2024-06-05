@@ -15,24 +15,21 @@
     text-align: left;
 }
 
+ 
 
-.candidat_cv{
-  align-items: center;
-  position: relative;
-  left: 300px;
-  top: -18px;
-}
-
+  
   .profile-input {
     display: none;
   }
+  .profile-input 
   
-  .profile-input + label {
+   label {
     background-color: #fff;
     padding: 10px 5px;
     border-radius: 5px;
     cursor: pointer;
     color: rgba(0, 0, 0, 0.4);
+
   }
   
   .profile-input + label:hover {

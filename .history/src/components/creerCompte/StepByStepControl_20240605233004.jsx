@@ -12,7 +12,7 @@ const StepByStepControl = (props) => {
         <Link to={`${props.currentStep === 1 ? "/" : ""}`}><button onClick={() => props.handleClick()} className={`${props.currentStep === 1 ? "back_not_allowed" : ""}`}>Retour</button></Link>
       </div>
       <div className="next">
-        <button type='submit' onClick={() => props.handleClick('next')}>{props.currentStep === props.steps.length - 1 ? "suivant" : "confirmer"}</button>
+        <button onClick={() => props.handleClick('next')}>{props.currentStep === props.steps.length - 1 ? "confirmer" : "confirmer"}</button>
       </div>
     </div>
   )

@@ -29,7 +29,7 @@
   
   .profile-input + label {
     background-color: #fff;
-    padding: 10px 5px;
+    padding: 15px 10px;
     border-radius: 5px;
     cursor: pointer;
     color: rgba(0, 0, 0, 0.4);
@@ -42,8 +42,9 @@
   
 
   .recruteur {
+    display: flex; 
+    fl
     margin-bottom: 10px;
-    display: flex;
     width: 100%;
 
   }

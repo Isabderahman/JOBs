@@ -101,9 +101,12 @@ const InfosPrsnl = (props) => {
               <p className='newEntreprise' >Aucune entreprise disponible. Ajoutez une nouvelle entreprise :</p>
               
               <div className="recruteur">
+              <div className="recruteur_profile">
               <input type="file" className="profile-input" id="profile-input-recruteur" />
                 <label >Télécharger la photo de profil <i className='fas fa-download'></i></label>
               </div>
+              </div>
+
               <form onSubmit={handleNewEntrepriseSubmit}>
                 <input type="text" name="nom" value={newEntreprise.nom} onChange={handleNewEntrepriseInputChange} placeholder="Nom de l'entreprise"/>
                 <input type="text" name="numEntreprise" value={newEntreprise.numEntreprise} onChange={handleNewEntrepriseInputChange} placeholder='Numéro Entreprise'/>

@@ -16,13 +16,7 @@
 }
 
 
-.candidat_cv{
-  align-items: center;
-  position: relative;
-  left: 300px;
-  top: -18px;
-}
-
+  
   .profile-input {
     display: none;
   }

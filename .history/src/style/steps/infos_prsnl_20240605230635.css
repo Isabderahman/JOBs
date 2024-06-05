@@ -15,14 +15,13 @@
     text-align: left;
 }
 
-
-.candidat_cv{
-  align-items: center;
-  position: relative;
-  left: 300px;
-  top: -18px;
-}
-
+ 
+  .candidat, .recruteur {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
   .profile-input {
     display: none;
   }

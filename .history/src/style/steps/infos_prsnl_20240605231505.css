@@ -16,20 +16,14 @@
 }
 
 
-.candidat_cv{
-  align-items: center;
-  position: relative;
-  left: 300px;
-  top: -18px;
-}
-
+  
   .profile-input {
     display: none;
   }
   
   .profile-input + label {
     background-color: #fff;
-    padding: 10px 5px;
+    padding: 10px px;
     border-radius: 5px;
     cursor: pointer;
     color: rgba(0, 0, 0, 0.4);

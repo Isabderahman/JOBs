@@ -62,14 +62,8 @@ const InfosPrsnl = (props) => {
     <div className='infos_prsnl_container'>
       {props.selectedOption === "candidat" && (
         <div className="candidat">
-            <div className="candidat_profil">
-            <input type="file" className="profile-input" id="profile-input-candidat" />
-            <label htmlFor="profile-input-candidat">Télécharger la photo de profil <i className='fas fa-download'></i></label>
-            </div>
-            <div className="candidat_cv">
-            <input type="file" className="profile-input" id="profile-input-candidat" />
-            <label htmlFor="profile-input-candidat">Télécharger le cv <i className='fas fa-download'></i></label>
-            </div>
+          <input type="file" className="profile-input" id="profile-input-candidat" />
+          <label htmlFor="profile-input-candidat">Télécharger la photo de profil</label>
           <input type="text" placeholder='Nom'/>
           <input type="text" placeholder='Prénom'/>
           <input type="email" placeholder='Email'/>
@@ -102,7 +96,8 @@ const InfosPrsnl = (props) => {
               
               <div className="recruteur">
               <input type="file" className="profile-input" id="profile-input-recruteur" />
-                <label >Télécharger la photo de profil <i className='fas fa-download'></i></label>
+              <label >Télécharger la photo de profil</label>
+              <label >Télécharger votre cv </label>
               </div>
               <form onSubmit={handleNewEntrepriseSubmit}>
                 <input type="text" name="nom" value={newEntreprise.nom} onChange={handleNewEntrepriseInputChange} placeholder="Nom de l'entreprise"/>
@@ -111,6 +106,7 @@ const InfosPrsnl = (props) => {
                 <input type="password" name="password" value={newEntreprise.password} onChange={handleNewEntrepriseInputChange} placeholder='Mot de passe'/>
                 <input type="text" name="adresse" value={newEntreprise.adresse} onChange={handleNewEntrepriseInputChange} placeholder='Adresse'/>
                 <input type="number" name="telephone" value={newEntreprise.telephone} onChange={handleNewEntrepriseInputChange} placeholder='Téléphone'/>
+                <button type="submit">Ajouter</button>
               </form>
             </div>
           )}
