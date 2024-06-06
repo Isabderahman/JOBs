@@ -7,7 +7,12 @@ const apiEntreprise = require('./routes/entrepriseApi')
 const offreApi = require('./routes/offreApi')
 const publicationApi = require('./routes/publicationApi')
 const cors = require('cors');
-
+// Use CORS middleware
+app.use(cors({
+    origin: 'http://localhost:3001', // Replace with your front-end origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
+}));
 // const sequelize = require('./config/db');
 
 const app = express();
@@ -17,14 +22,7 @@ connectDB();
 
 // Middleware
 app.use(express.json());
-// Use CORS middleware
-app.use(cors({
-    origin: 'http://localhost:3001', // Replace with your front-end origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
-}));
-// Other middleware and routes
-app.use(express.json());
+
 
 // Routes API
 //authentification

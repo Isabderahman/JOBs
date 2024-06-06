@@ -5,6 +5,7 @@ const User = require('../models/User');
 const Publication = require('../models/Publication'); 
 const bcrypt = require("bcryptjs");
 
+
 // Connexion à MongoDB
 mongoose.connect('mongodb://localhost:27017/jobs01', {
 }).then(() => {

@@ -17,14 +17,7 @@ connectDB();
 
 // Middleware
 app.use(express.json());
-// Use CORS middleware
-app.use(cors({
-    origin: 'http://localhost:3001', // Replace with your front-end origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
-}));
-// Other middleware and routes
-app.use(express.json());
+
 
 // Routes API
 //authentification
