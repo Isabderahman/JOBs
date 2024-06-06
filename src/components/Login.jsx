@@ -1,12 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import AuthContext from '../AuthContext';
 
 const Login = () => {
   const location = useLocation();
   const navRef = useRef();
+  const { setAuth } = useContext(AuthContext); // Destructure setAuth from AuthContext
+
   //handle navigate
   const navigate = useNavigate();
   const handleRedirect = () => {
@@ -26,6 +29,7 @@ const Login = () => {
       // console.log(JSON.parse(loginInputs) )
       const response = await axios.post('http://127.0.0.1:3000/api/signin',loginInputs);
       console.log('Login successful!', response.data);
+      setAuth({ token: response.data.token });
       if (sessionStorage.setItem('loginData', response.data)) {
         navigate('/home')
     }

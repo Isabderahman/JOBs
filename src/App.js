@@ -1,5 +1,7 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from 'react-router-dom';
 import "./style/App.css";
+import { useContext } from 'react';
+import AuthContext from './AuthContext';
 import Login from "./components/Login.jsx";
 import Header from "./components/Home/Header.jsx";
 import Home from "./components/Home/Home.jsx";
@@ -7,6 +9,8 @@ import Emplois from "./components/Home/Emplois.jsx";
 import CreerCompte from "./components/creerCompte/creerCompte.jsx";
 
 function App() {
+  const { auth } = useContext(AuthContext);
+
   return (
     <div className="App">
       <link
@@ -16,26 +20,31 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route
-          path="/home"
-          element={
-            <>
-              <Header />
-              <Home />
-            </>
-          }
-        />
-        <Route
-          path="/emploi"
-          element={
-            <>
-              <Header />
-              <Emplois />
-            </>
-          }
-        />
-
-        <Route path="/créer-compte" element={<CreerCompte/>}/>
+        {auth.token ? (
+          <>
+            <Route
+              path="/home"
+              element={
+                <>
+                  <Header />
+                  <Home />
+                </>
+              }
+            />
+            <Route
+              path="/emploi"
+              element={
+                <>
+                  <Header />
+                  <Emplois />
+                </>
+              }
+            />
+            <Route path="/créer-compte" element={<CreerCompte />} />
+          </>
+        ) : (
+          <Route path="*" element={<Navigate to="/" />} />
+        )}
       </Routes>
     </div>
   );
