@@ -102,7 +102,7 @@ router.post("/signin", async (req, res) => {
       return res.status(400).json({ error: "Mot de passe incorrect" });
     }
     const token = jwt.sign({ id: user._id, type_user: user.type_user }, JWT_SECRET, { expiresIn: "3h" });
-    res.json({ token });
+    res.json({ id: user._id,token:token });
   } catch (error) {
     res.status(500).json({ error: "Erreur lors de la connexion" });
   }
