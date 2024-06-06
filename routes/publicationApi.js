@@ -4,6 +4,7 @@ const Publication = require('../models/Publication');
 const authMiddleware = require('../middleware/authMiddleware');
 const multer = require('multer');
 const fs = require("fs");
+const { Candidat, Recruteur } = require('../models');
 
 // Configuration de Multer pour le stockage des fichiers
 const storage = multer.diskStorage({
@@ -37,14 +38,33 @@ router.post('/publication', authMiddleware, upload.single('imagePath'), async (r
 });
 
 // Get all publications
-router.get('/publication', async (req, res) => {
+router.get('/publication', authMiddleware, async (req, res) => {
   try {
+    // Fetch all publications with populated author and comments
     const publications = await Publication.find().populate('auteur').populate('commentaires.idCommentateur');
-    res.status(200).json(publications);
+
+    // Get unique author IDs from publications
+    const authorIds = [...new Set(publications.map(pub => pub.auteur._id))];
+
+    // Find all corresponding authors in both Candidat and Recruteur collections
+    const candidatPromise = Candidat.find({ _id: { $in: authorIds } });
+    const recruteurPromise = Recruteur.find({ _id: { $in: authorIds } });
+    const [candidats, recruteurs] = await Promise.all([candidatPromise, recruteurPromise]);
+
+    // Combine both Candidat and Recruteur results
+    const userPublications = [...candidats, ...recruteurs];
+
+    // Create the response data
+    const dataEnvoyer = { publications, userPublications };
+
+    // Send the response
+    res.status(200).json(dataEnvoyer);
   } catch (error) {
+    // Send error response in case of failure
     res.status(500).json({ error: `Erreur lors de la récupération des publications: ${error.message}` });
   }
 });
+
 
 // Get a specific publication by ID
 router.get('/publication/:id', async (req, res) => {
