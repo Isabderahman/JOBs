@@ -1,7 +1,7 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from "react-router-dom";
 import "./style/App.css";
-import { useContext } from 'react';
-import AuthContext from './AuthContext';
+import { useContext } from "react";
+import AuthContext from "./AuthContext";
 import Login from "./components/Login.jsx";
 import Header from "./components/Home/Header.jsx";
 import Home from "./components/Home/Home.jsx";
@@ -20,6 +20,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/créer-compte" element={<CreerCompte />} />
         {auth.token ? (
           <>
             <Route
@@ -40,7 +41,6 @@ function App() {
                 </>
               }
             />
-            <Route path="/créer-compte" element={<CreerCompte />} />
           </>
         ) : (
           <Route path="*" element={<Navigate to="/" />} />
