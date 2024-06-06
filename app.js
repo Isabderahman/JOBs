@@ -1,5 +1,4 @@
 // app.js
-
 const express = require('express');
 const connectDB=require('./config/mongodb')
 const apiAuth = require('./routes/auth');
@@ -26,7 +25,7 @@ app.use(cors({
 // Other middleware and routes
 app.use(express.json());
 
-// Routes API
+//Routes API
 //authentification
 app.use('/api',apiAuth);
 //entreprise api 
