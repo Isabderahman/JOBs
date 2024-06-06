@@ -24,7 +24,7 @@ const Login = () => {
     e.preventDefault();
     try {
       // console.log(JSON.parse(loginInputs) )
-      const response = await axios.post('http://127.0.0.1:3000/api/signin',loginInputs);
+      const response = await axios.post('http://127.0.0.1:3000/api/signin',);
       console.log('Login successful!', response.data);
       if (sessionStorage.setItem('loginData', response.data)) {
         navigate('/home')

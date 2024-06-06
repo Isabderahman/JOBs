@@ -10,21 +10,20 @@ const Login = () => {
   //handle navigate
   const navigate = useNavigate();
   const handleRedirect = () => {
-    navigate('/home');
+    navigate('/dashboard');
   };
   ///handle form input 
   const [loginInputs,setLoginInputs]= useState({email:"",password:""})
   const handleChange = (e)=>{
     const {name,value}=e.target
     setLoginInputs({...loginInputs,[name]:value})
-
+    cos
   }
   // login action 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // console.log(JSON.parse(loginInputs) )
-      const response = await axios.post('http://127.0.0.1:3000/api/signin',loginInputs);
+      const response = await axios.post('http://127.0.0.1:3000/api/signin', loginInputs);
       console.log('Login successful!', response.data);
       if (sessionStorage.setItem('loginData', response.data)) {
         navigate('/home')
