@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import  {useLocation } from "react-router-dom";
 
 const Header = () => {
+  const location=useLocation()
   return (
     <Container>
       <Content>
@@ -22,26 +24,25 @@ const Header = () => {
 
         <Nav>
           <NavListWrap>
-            <NavList className="active">
+            <NavList className={`${
+                  location.pathname === "/home" ? "active" : ""
+                }`}>
               <a href="/home">
                 <i className="fas fa-home"></i>
                 <span>Accueil</span>
               </a>
             </NavList>
-            <NavList>
+            <NavList className={`${
+                  location.pathname === "/emploi" ? "active" : ""
+                }`}>
               <a href="/emploi">
                 <i className="fas fa-briefcase"></i>
                 <span>Emplois</span>
               </a>
             </NavList>
-            <NavList>
-              <a>
-                <i className="fas fa-comment"></i>
-                <span>Messagerie</span>
-              </a>
-            </NavList>
-
-            <NavList>
+            <NavList className={`${
+                  location.pathname === "/notification" ? "active" : ""
+                }`}>
               <a>
                 <i className="fas fa-bell"></i>
                 <span>Notifications</span>

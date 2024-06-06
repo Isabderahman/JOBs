@@ -53,7 +53,7 @@ const Login = () => {
                 to="/"
                 className={`${location.pathname === "/" ? "active" : ""}`}
               >
-                <i className="fas fa-home"></i>Acceuil
+                <i className="fas fa-home"></i> <span id="acceuil">Acceuil</span>
               </Link>
             </li>
             <li>
@@ -63,7 +63,7 @@ const Login = () => {
                   location.pathname === "/listes-des-offres" ? "active" : ""
                 }`}
               >
-                <i className="fas fa-list"></i>Liste des offres
+                <i className="fas fa-list"></i> <span id="offre">Liste des offres</span>
               </Link>
             </li>
             <li>
@@ -73,8 +73,7 @@ const Login = () => {
                   location.pathname === "/avis-entreprises" ? "active" : ""
                 }`}
               >
-                <i className="fas fa-star-half-alt"></i> Avis sur les
-                entreprises
+                <i className="fas fa-star-half-alt"></i> <span id="avis">Avis sur les entreprises</span> 
               </Link>
             </li>
           </NavUl>
@@ -123,7 +122,7 @@ const Login = () => {
           </div>
 
           <div className="signin-options">
-            <button className="btn btn-google">
+            <button className="btn btn-google ">
               <i className="fab fa-google"></i>
               Continuer avec Google
             </button>
@@ -208,22 +207,6 @@ const Header = styled.header`
     align-items: center;
   }
 
-  // .creer{
-  //   display:flex;
-  //   align-items:center;
-  //   justify-content:center;
-  //   color:#f2f2f2;
-  // }
-
-  // .btnsign{
-  //   display:flex;
-  //   align-items:center;
-  //   justify-content:center;
-  //   height:40px;
-  //   background-color:#16db65;
-  //   border:none;
-  //   border-radius:5px;
-  // }
 
   nav ul {
     display: flex;
@@ -255,6 +238,18 @@ const Header = styled.header`
     cursor: pointer;
     display: none;
     font-size: 1.8rem;
+  }
+
+  @media only screen and (max-width:900px){
+    #acceuil{
+      display:none;
+    }
+    #offre{
+      display:none;
+    }
+    #avis{
+      display:none;
+    }
   }
 
   @media only screen and (max-width: 800px) {
@@ -505,6 +500,13 @@ const SignInContainer = styled.div`
       text-decoration: none;
     }
   }
+
+  @media only screen and (max-width: 800px){
+    .btn{
+      padding:0px;
+    }
+  }
+  
 `;
 
 const Footer = styled.footer`
