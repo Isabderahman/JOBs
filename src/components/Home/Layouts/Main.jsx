@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PostCard from '../Layouts/PostCard';
 import PostForm from '../Layouts/PostForm'; // Import the new PostForm component
+import Posts from './Posts';
 
 export default function Main() {
   const [showForm, setShowForm] = useState(false);
@@ -59,6 +60,7 @@ export default function Main() {
           postDescription="Excited to share the latest project I've been working on. Data science is truly amazing!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit, sequi deserunt! Quaerat qui mollitia eligendi"
           postImage="=https://picsum.photos/600/400?random=2"
         />
+        <Posts/>
       </Article>
 
       {showForm && <PostForm onClose={handleCloseForm} profileImage={userProfileImage} />}
