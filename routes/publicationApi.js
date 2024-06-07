@@ -4,7 +4,9 @@ const Publication = require('../models/Publication');
 const authMiddleware = require('../middleware/authMiddleware');
 const multer = require('multer');
 const fs = require("fs");
-const { Candidat, Recruteur } = require('../models');
+
+const Recruteur = require('../models/Recruteur')
+const Candidat = require('../models/Candidat')
 
 // Configuration de Multer pour le stockage des fichiers
 const storage = multer.diskStorage({
@@ -41,32 +43,35 @@ router.post('/publication', authMiddleware, upload.single('imagePath'), async (r
 router.get('/publication', authMiddleware, async (req, res) => {
   try {
     // Fetch all publications with populated author and comments
-    const publications = await Publication.find().populate('auteur').populate('commentaires.idCommentateur');
-
-    // Get unique author IDs from publications
-    const authorIds = [...new Set(publications.map(pub => pub.auteur._id.toString()))];
-
-    // Find all corresponding authors in both Candidat and Recruteur collections
-    const [candidats, recruteurs] = await Promise.all([
-      Candidat.find({ _id: { $in: authorIds } }),
-      Recruteur.find({ _id: { $in: authorIds } })
-    ]);
-
-    // Create a map for quick lookup of user info
-    const userMap = {};
-    candidats.forEach(user => userMap[user._id] = { ...user._doc, type: 'candidat' });
-    recruteurs.forEach(user => userMap[user._id] = { ...user._doc, type: 'recruteur' });
-
-    // Add user information to each publication
-    const publicationsWithAuthors = publications.map(pub => {
-      const auteurId = pub.auteur._id.toString();
-      const auteurInfo = userMap[auteurId];
-      return {
-        ...pub._doc,
-        auteur: auteurInfo
-      };
-    });
-
+    const publications = await Publication.find();
+    // Create a map to quickly look up user info
+    const publicationsAuteur = await Promise.all(publications.map(async (pub) => {
+      let auteur;
+  
+      // Vérifie si l'auteur est un recruteur
+      const recruteur = await Recruteur.findOne({ id_user: pub.auteur });
+      if (recruteur) {
+        auteur = {
+          type: 'recruteur',
+          info: recruteur
+        };
+      } else {
+        // Sinon, vérifie si l'auteur est un candidat
+        const candidat = await Candidat.findOne({ id_user: pub.auteur });
+        if (candidat) {
+          auteur = {
+            type: 'candidat',
+            info: candidat
+          };
+        } else {
+          auteur = null;
+        }
+      }
+      return auteur; // Ajoutez cette ligne pour retourner la valeur de l'auteur dans la fonction de mapping
+    }));
+    
+    let publicationsWithAuthors = { publications, publicationsAuteur }; // Fermez correctement la fonction de mapping
+    
     // Send the response
     res.status(200).json(publicationsWithAuthors);
   } catch (error) {
@@ -74,6 +79,8 @@ router.get('/publication', authMiddleware, async (req, res) => {
     res.status(500).json({ error: `Erreur lors de la récupération des publications: ${error.message}` });
   }
 });
+
+
 
 
 // Get a specific publication by ID
