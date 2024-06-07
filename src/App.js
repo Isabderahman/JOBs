@@ -7,6 +7,7 @@ import Header from "./components/Home/Header.jsx";
 import Home from "./components/Home/Home.jsx";
 import Emplois from "./components/Home/Emplois.jsx";
 import CreerCompte from "./components/creerCompte/creerCompte.jsx";
+import LoadingScreen from "./components/Home/Layouts/LoadingScreen.jsx";
 
 function App() {
   const { auth } = useContext(AuthContext);
@@ -41,10 +42,19 @@ function App() {
                 </>
               }
             />
+            
           </>
         ) : (
           <Route path="*" element={<Navigate to="/" />} />
         )}
+        <Route
+              path="/loading"
+              element={
+                <>
+                  <LoadingScreen/>
+                </>
+              }
+            />
       </Routes>
     </div>
   );
