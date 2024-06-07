@@ -30,7 +30,7 @@ const Login = () => {
       const response = await axios.post('http://127.0.0.1:3000/api/signin',loginInputs);
       console.log('Login successful!', response.data);
       setAuth({ token: response.data.token });
-      if (sessionStorage.setItem('loginData', response.data)) {
+      if (sessionStorage.setItem('loginData', response.data.token)) {
         navigate('/home')
     }
       handleRedirect();

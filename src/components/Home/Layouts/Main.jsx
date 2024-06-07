@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PostCard from '../Layouts/PostCard';
 import PostForm from '../Layouts/PostForm'; // Import the new PostForm component
+import Posts from './Posts';
 
 export default function Main() {
   const [showForm, setShowForm] = useState(false);
@@ -45,20 +46,7 @@ export default function Main() {
       </ShareBox>
 
       <Article>
-        <PostCard
-          profileImage="imgs/user-profile1.jpg"
-          profileName="Jean Dupont"
-          profileTitle="Software Engineer at ABC Corp"
-          postDescription="Here is a brief description of the post content. This is where the user can share their thoughts, updates, or anything they want. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit, sequi deserunt! Quaerat qui mollitia eligendi"
-          postImage="https://picsum.photos/600/400?random=1"
-        />
-        <PostCard
-          profileImage="imgs/user-profile2.jpg"
-          profileName="Marie Curie"
-          profileTitle="Data Scientist at XYZ Inc."
-          postDescription="Excited to share the latest project I've been working on. Data science is truly amazing!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit, sequi deserunt! Quaerat qui mollitia eligendi"
-          postImage="=https://picsum.photos/600/400?random2"
-        />
+        <Posts/>
       </Article>
 
       {showForm && <PostForm onClose={handleCloseForm} profileImage={userProfileImage} />}
