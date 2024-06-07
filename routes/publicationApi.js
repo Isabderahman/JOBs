@@ -46,39 +46,45 @@ router.get('/publication', authMiddleware, async (req, res) => {
     const publications = await Publication.find();
     // Create a map to quickly look up user info
     const publicationsAuteur = await Promise.all(publications.map(async (pub) => {
-      let auteur;
   
       // Vérifie si l'auteur est un recruteur
       const recruteur = await Recruteur.findOne({ id_user: pub.auteur });
       if (recruteur) {
-        auteur = {
-          type: 'recruteur',
-          info: recruteur
+        return {
+          publication: pub,
+          auteur: {
+            type: 'recruteur',
+            info: recruteur
+          }
         };
       } else {
         // Sinon, vérifie si l'auteur est un candidat
         const candidat = await Candidat.findOne({ id_user: pub.auteur });
         if (candidat) {
-          auteur = {
-            type: 'candidat',
-            info: candidat
+          return {
+            publication: pub,
+            auteur: {
+              type: 'candidat',
+              info: candidat
+            }
           };
         } else {
-          auteur = null;
+          return {
+            publication: pub,
+            auteur: null
+          };
         }
       }
-      return auteur; // Ajoutez cette ligne pour retourner la valeur de l'auteur dans la fonction de mapping
     }));
     
-    let publicationsWithAuthors = { publications, publicationsAuteur }; // Fermez correctement la fonction de mapping
-    
     // Send the response
-    res.status(200).json(publicationsWithAuthors);
+    res.status(200).json(publicationsAuteur);
   } catch (error) {
     // Send error response in case of failure
     res.status(500).json({ error: `Erreur lors de la récupération des publications: ${error.message}` });
   }
 });
+
 
 
 
