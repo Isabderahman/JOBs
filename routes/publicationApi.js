@@ -44,21 +44,31 @@ router.get('/publication', authMiddleware, async (req, res) => {
     const publications = await Publication.find().populate('auteur').populate('commentaires.idCommentateur');
 
     // Get unique author IDs from publications
-    const authorIds = [...new Set(publications.map(pub => pub.auteur._id))];
+    const authorIds = [...new Set(publications.map(pub => pub.auteur._id.toString()))];
 
     // Find all corresponding authors in both Candidat and Recruteur collections
-    const candidatPromise = Candidat.find({ _id: { $in: authorIds } });
-    const recruteurPromise = Recruteur.find({ _id: { $in: authorIds } });
-    const [candidats, recruteurs] = await Promise.all([candidatPromise, recruteurPromise]);
+    const [candidats, recruteurs] = await Promise.all([
+      Candidat.find({ _id: { $in: authorIds } }),
+      Recruteur.find({ _id: { $in: authorIds } })
+    ]);
 
-    // Combine both Candidat and Recruteur results
-    const userPublications = [...candidats, ...recruteurs];
+    // Create a map for quick lookup of user info
+    const userMap = {};
+    candidats.forEach(user => userMap[user._id] = { ...user._doc, type: 'candidat' });
+    recruteurs.forEach(user => userMap[user._id] = { ...user._doc, type: 'recruteur' });
 
-    // Create the response data
-    const dataEnvoyer = { publications, userPublications };
+    // Add user information to each publication
+    const publicationsWithAuthors = publications.map(pub => {
+      const auteurId = pub.auteur._id.toString();
+      const auteurInfo = userMap[auteurId];
+      return {
+        ...pub._doc,
+        auteur: auteurInfo
+      };
+    });
 
     // Send the response
-    res.status(200).json(dataEnvoyer);
+    res.status(200).json(publicationsWithAuthors);
   } catch (error) {
     // Send error response in case of failure
     res.status(500).json({ error: `Erreur lors de la récupération des publications: ${error.message}` });

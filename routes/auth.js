@@ -11,7 +11,7 @@ const router = express.Router();
 const authMiddleware = require("../middleware/authMiddleware");
 
 // Clé secrète pour signer les tokens JWT
-const JWT_SECRET = "votre_clé_secrète";
+const JWT_SECRET = "your_jwt_secret";
 
 // Configuration de Multer pour le stockage des fichiers
 const storage = multer.diskStorage({
