@@ -46,18 +46,18 @@ export default function Main() {
 
       <Article>
         <PostCard
-          profileImage="imgs/user-profile1.jpg"
+          profileImage=""
           profileName="Jean Dupont"
           profileTitle="Software Engineer at ABC Corp"
           postDescription="Here is a brief description of the post content. This is where the user can share their thoughts, updates, or anything they want. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit, sequi deserunt! Quaerat qui mollitia eligendi"
           postImage="https://picsum.photos/600/400?random=1"
         />
         <PostCard
-          profileImage="imgs/user-profile2.jpg"
+          profileImage=""
           profileName="Marie Curie"
           profileTitle="Data Scientist at XYZ Inc."
           postDescription="Excited to share the latest project I've been working on. Data science is truly amazing!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit, sequi deserunt! Quaerat qui mollitia eligendi"
-          postImage="=https://picsum.photos/600/400?random2"
+          postImage="=https://picsum.photos/600/400?random=2"
         />
       </Article>
 

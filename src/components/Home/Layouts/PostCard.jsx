@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+
 export default function PostCard({ profileImage, profileName, profileTitle, postDescription, postImage }) {
   const [showFullDescription, setShowFullDescription] = useState(false);
 
@@ -11,7 +12,7 @@ export default function PostCard({ profileImage, profileName, profileTitle, post
   return (
     <PostCardContainer>
       <PostHeader>
-        <ProfileImage src={profileImage} alt="User Profile" />
+      {profileImage?<ProfileImage src={profileImage} alt="User Profile"/>:<ProfileImage src="../imgs/download.jpeg" alt="No Profile"/>}
         <div>
           <ProfileName>{profileName}</ProfileName>
           <ProfileTitle>{profileTitle}</ProfileTitle>
@@ -50,7 +51,7 @@ const PostHeader = styled.div`
 `;
 
 const ProfileImage = styled.img`
-  width: 48px;
+  width: auto;
   height: 20px;
   border-radius: 50%;
   margin-right: 10px;

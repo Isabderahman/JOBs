@@ -26,21 +26,6 @@ export default function Emplois() {
               </a>
             </CommunityCard>
             <OffreCard/>
-            {/* <Footer>
-          <FooterLinks>
-            <FooterLink href="#">Infos</FooterLink>
-            <FooterLink href="#">Accessibilité</FooterLink>
-            <FooterLink href="#">Assistance clientèle</FooterLink>
-            <FooterLink href="#">Conditions générales et confidentialité <DropdownIcon className="fas fa-angle-down"></DropdownIcon></FooterLink>
-            <FooterLink href="#">Préférences Pubs</FooterLink>
-            <FooterLink href="#">Publicité</FooterLink>
-            <FooterLink href="#">Solutions professionnelles</FooterLink>
-          </FooterLinks>
-          <FooterBranding>
-            <JobsLogo src="logo-color-white-bg-green.png" alt="Jobs" />
-            <span>Jobs Corporation © 2024</span>
-          </FooterBranding>
-      </Footer> */}
        </Layout>
     </Container>
   )
