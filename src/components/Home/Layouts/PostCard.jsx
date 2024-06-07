@@ -52,7 +52,7 @@ const PostHeader = styled.div`
 
 const ProfileImage = styled.img`
   width: auto;
-  height: 20px;
+  height: 35px;
   border-radius: 50%;
   margin-right: 10px;
 `;

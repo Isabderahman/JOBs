@@ -6,7 +6,7 @@ import Posts from './Posts';
 
 export default function Main() {
   const [showForm, setShowForm] = useState(false);
-  const userProfileImage = 'imgs/user.svg'; // User's profile image
+  const userProfileImage = ''; // User's profile image
 
   const handleShowForm = () => {
     setShowForm(true);
@@ -20,7 +20,7 @@ export default function Main() {
     <Container>
       <ShareBox>
         <div>
-          <img src={userProfileImage} alt="User" />
+        {userProfileImage?<img src={userProfileImage} alt="User Profile"/>:<img src="../imgs/download.jpeg" alt="No Profile"/>}
           <button className='pub' onClick={handleShowForm}>
             Commencer une publication
           </button>
