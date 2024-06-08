@@ -1,0 +1,77 @@
+import React, { useState } from "react";
+import StepByStep from "./StepByStep";
+import StepByStepControl from "./StepByStepControl";
+import "../../style/CreerCompte.css";
+import StatutOptions from "./steps/statut_options";
+import InfosPrsnl from "./steps/infos_prsnl";
+import InfosPro from "./steps/infos_pro";
+
+const CreerCompte = () => {
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [currentStep, setCurrentStep] = useState(1);
+  const [errors, setErrors] = useState({});
+  const [nom, setNom] = useState('');
+  const [prenom, setPrenom] = useState('');
+
+  const steps = ["statut professionnel", "infos personnelles", "infos professionnelles"];
+
+  const validateCurrentStep = () => {
+    let validationErrors = {};
+    switch (currentStep) {
+      case 1:
+        if (!selectedOption) {
+          validationErrors.selectedOption = "Veuillez sélectionner une option.";
+        }
+        break;
+      case 2:
+        if (!nom.trim()) {
+          validationErrors.nom = 'Le nom est requis.';
+        }
+        if (!prenom.trim()) {
+          validationErrors.prenom = 'Le prénom est requis.';
+        }
+        break;
+      case 3:
+        // Ajoutez la logique de validation pour les champs d'informations professionnelles
+        break;
+      default:
+        break;
+    }
+    return validationErrors;
+  };
+
+  const handleClick = (direction) => {
+    let newStep = currentStep;
+    if (direction === "next") {
+      const validationErrors = validateCurrentStep();
+      if (Object.keys(validationErrors).length === 0) {
+        newStep++;
+      } else {
+        setErrors(validationErrors); // Assurez-vous que les erreurs sont correctement définies ici
+        return;
+      }
+    } else {
+      newStep--;
+    }
+    if (newStep > 0 && newStep <= steps.length) {
+      setCurrentStep(newStep);
+      setErrors({}); // Réinitialisez les erreurs lors du passage à l'étape suivante
+    }
+  };
+
+  return (
+    <div className="container_steps">
+      <div className="StepByStep">
+        <StepByStep steps={steps} currentStep={currentStep} />
+      </div>
+      <div className="InfosPrsnl">
+        <InfosPrsnl selectedOption={selectedOption} errors={errors} setNom={setNom} setPrenom={setPrenom} />
+      </div>
+      <div className="StepByStepControl">
+        <StepByStepControl handleClick={handleClick} currentStep={currentStep} steps={steps} validateCurrentStep={validateCurrentStep} setErrors={setErrors} />
+      </div>
+    </div>
+  );
+};
+
+export default CreerCompte;
