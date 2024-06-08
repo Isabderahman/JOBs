@@ -34,7 +34,7 @@ function App() {
       />
 
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
         <Route path="/créer-compte" element={<CreerCompte />} />
         {isAuthenticated ? (
           <>

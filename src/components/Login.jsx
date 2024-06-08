@@ -1,46 +1,55 @@
+// Login.jsx
 import React, { useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
-
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
   const location = useLocation();
   const navRef = useRef();
+  const dispatch = useDispatch();
 
-  //handle navigate
   const navigate = useNavigate();
   const handleRedirect = () => {
-    navigate('/home');
+    navigate("/home");
   };
-  ///handle form input 
-  const [loginInputs,setLoginInputs]= useState({email:"",password:""})
-  const handleChange = (e)=>{
-    const {name,value}=e.target
-    setLoginInputs({...loginInputs,[name]:value})
 
-  }
-  // login action 
+  const [loginInputs, setLoginInputs] = useState({ email: "", password: "" });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLoginInputs({ ...loginInputs, [name]: value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:3000/api/signin',loginInputs);
-      console.log('Login successful!', response.data);
-      
-      if (sessionStorage.setItem('loginData', response.data.token)) {
-        navigate('/home')
-    }
+      const response = await axios.post(
+        "http://127.0.0.1:3000/api/signin",
+        loginInputs
+      );
+      console.log("Login successful!", response.data);
+      sessionStorage.setItem("loginData", response.data.token);
+      setIsAuthenticated(true);
+      const userID = response.data.id;
+      const dataUser = await axios.get(
+        `http://localhost:3000/api/dataUer/${userID}`,
+        {
+          headers: {
+            Authorization: `Bearer ${response.data.token}`,
+          },
+        }
+      );
+      dispatch({type:'STOREUSERDATA',payload:dataUser.data})
       handleRedirect();
     } catch (error) {
-      console.error('Login failed!', error);
-      
+      console.error("Login failed!", error);
     }
   };
+
   const showNavrBar = () => {
     navRef.current.classList.toggle("responsive_nav");
   };
-
   return (
     <Header className="header">
       <div className="container">
@@ -57,7 +66,8 @@ const Login = () => {
                 to="/"
                 className={`${location.pathname === "/" ? "active" : ""}`}
               >
-                <i className="fas fa-home"></i> <span id="acceuil">Acceuil</span>
+                <i className="fas fa-home"></i>{" "}
+                <span id="acceuil">Acceuil</span>
               </Link>
             </li>
             <li>
@@ -67,7 +77,8 @@ const Login = () => {
                   location.pathname === "/listes-des-offres" ? "active" : ""
                 }`}
               >
-                <i className="fas fa-list"></i> <span id="offre">Liste des offres</span>
+                <i className="fas fa-list"></i>{" "}
+                <span id="offre">Liste des offres</span>
               </Link>
             </li>
             <li>
@@ -77,7 +88,8 @@ const Login = () => {
                   location.pathname === "/avis-entreprises" ? "active" : ""
                 }`}
               >
-                <i className="fas fa-star-half-alt"></i> <span id="avis">Avis sur les entreprises</span> 
+                <i className="fas fa-star-half-alt"></i>{" "}
+                <span id="avis">Avis sur les entreprises</span>
               </Link>
             </li>
           </NavUl>
@@ -94,7 +106,7 @@ const Login = () => {
                 class="creer"
               >
                 <i className="fas fa-user "></i>
-                <span >Créer un compte</span>
+                <span>Créer un compte</span>
               </Link>
             </li>
           </ul>
@@ -145,7 +157,7 @@ const Login = () => {
                 type="email"
                 placeholder="Entrer l'adresse email"
                 className="email-input"
-                name='email'
+                name="email"
                 value={loginInputs.email}
                 onChange={handleChange}
               />
@@ -157,16 +169,19 @@ const Login = () => {
                 value={loginInputs.password}
                 onChange={handleChange}
               />
-              <input type="submit" className="btn btn-email" value="Continuer avec email"/>
-  
+              <input
+                type="submit"
+                className="btn btn-email"
+                value="Continuer avec email"
+              />
             </form>
           </div>
 
           <div className="terms-and-privacy">
             <p>
               En continuant, vous acceptez nos{" "}
-              <link href="#">Conditions d'utilisation</link> et
-              <link href="#"> Politique de confidentialité</link>.
+              <a href="#">Conditions d'utilisation</a> et
+              <a href="#"> Politique de confidentialité</a>.
             </p>
           </div>
         </SignInContainer>
@@ -180,11 +195,11 @@ const Login = () => {
       <Footer>
         <hr />
         <ul>
-          <link href="">browse job</link>
-          <link href="">browse companies</link>
-          <link href="">countries</link>
-          <link href="">about</link>
-          <link href="">help center</link>
+          <a href="">browse job</a>
+          <a href="">browse companies</a>
+          <a href="">countries</a>
+          <a href="">about</a>
+          <a href="">help center</a>
         </ul>
         <select name="languages">
           <option value="English">English</option>
@@ -210,7 +225,6 @@ const Header = styled.header`
     display: flex;
     align-items: center;
   }
-
 
   nav ul {
     display: flex;
@@ -244,15 +258,15 @@ const Header = styled.header`
     font-size: 1.8rem;
   }
 
-  @media only screen and (max-width:900px){
-    #acceuil{
-      display:none;
+  @media only screen and (max-width: 900px) {
+    #acceuil {
+      display: none;
     }
-    #offre{
-      display:none;
+    #offre {
+      display: none;
     }
-    #avis{
-      display:none;
+    #avis {
+      display: none;
     }
   }
 
@@ -339,7 +353,7 @@ const SearchBar = styled.div`
     width: 55%;
     margin-top: 20px;
   }
-  input[type='text'] {
+  input[type="text"] {
     margin-left: 50px;
     padding: 15px;
     width: 250px;
@@ -460,9 +474,7 @@ const SignInContainer = styled.div`
     }
   }
 
-
-
-  .password-input { 
+  .password-input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -473,7 +485,6 @@ const SignInContainer = styled.div`
     display: flex;
     flex-direction: column;
     display: flex;
-
 
     .email-input {
       padding: 10px;
@@ -505,12 +516,11 @@ const SignInContainer = styled.div`
     }
   }
 
-  @media only screen and (max-width: 800px){
-    .btn{
-      padding:0px;
+  @media only screen and (max-width: 800px) {
+    .btn {
+      padding: 0px;
     }
   }
-  
 `;
 
 const Footer = styled.footer`
@@ -552,6 +562,5 @@ const Footer = styled.footer`
     margin-top: 15px;
   }
 `;
-
 
 export default Login;
