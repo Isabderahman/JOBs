@@ -1,4 +1,4 @@
-import React, { useRef, useState,useContext } from "react";
+import React, { useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
@@ -165,8 +165,8 @@ const Login = () => {
           <div className="terms-and-privacy">
             <p>
               En continuant, vous acceptez nos{" "}
-              <a href="#">Conditions d'utilisation</a> et
-              <a href="#"> Politique de confidentialité</a>.
+              <link href="#">Conditions d'utilisation</link> et
+              <link href="#"> Politique de confidentialité</link>.
             </p>
           </div>
         </SignInContainer>
@@ -180,11 +180,11 @@ const Login = () => {
       <Footer>
         <hr />
         <ul>
-          <a href="">browse job</a>
-          <a href="">browse companies</a>
-          <a href="">countries</a>
-          <a href="">about</a>
-          <a href="">help center</a>
+          <link href="">browse job</link>
+          <link href="">browse companies</link>
+          <link href="">countries</link>
+          <link href="">about</link>
+          <link href="">help center</link>
         </ul>
         <select name="languages">
           <option value="English">English</option>
