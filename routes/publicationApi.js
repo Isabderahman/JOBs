@@ -40,7 +40,7 @@ router.post('/publication', authMiddleware, upload.single('imagePath'), async (r
 });
 
 // Get all publications
-router.get('/publication', authMiddleware, async (req, res) => {
+router.get('/publication', async (req, res) => {
   try {
     // Fetch all publications with populated author and comments
     const publications = await Publication.find();

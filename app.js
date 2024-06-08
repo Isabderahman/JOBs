@@ -5,6 +5,7 @@ const apiAuth = require('./routes/auth');
 const apiEntreprise = require('./routes/entrepriseApi')
 const offreApi = require('./routes/offreApi')
 const publicationApi = require('./routes/publicationApi')
+const dataUerApi = require('./routes/dataUserApi')
 const cors = require('cors');
 
 // const sequelize = require('./config/db');
@@ -34,7 +35,8 @@ app.use('/api',apiEntreprise);
 app.use('/api',offreApi)
 // publication api
 app.use('/api',publicationApi)
-
+// dataUSer APi
+app.use('/api',dataUerApi)
 
 // Server
 app.listen(PORT, () => {
