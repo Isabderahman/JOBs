@@ -14,7 +14,6 @@ const Login = ({ setIsAuthenticated }) => {
   const handleRedirect = () => {
     navigate("/home");
   };
-
   const [loginInputs, setLoginInputs] = useState({ email: "", password: "" });
   const handleChange = (e) => {
     const { name, value } = e.target;
