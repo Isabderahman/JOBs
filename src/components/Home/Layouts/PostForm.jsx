@@ -50,7 +50,7 @@ export default function PostForm({ onClose, profileImage, profileName }) {
         <CloseButton onClick={onClose}>x</CloseButton>
         <form onSubmit={handleSubmit}>
           <ProfileSection>
-          {profileImage?<ProfileImage src={profileImage} alt="User Profile"/>:<ProfileImage src="../imgs/download.jpeg" alt="No Profile"/>}
+            {profileImage?<ProfileImage src={profileImage} alt="User Profile"/>:<ProfileImage src="../imgs/download.jpeg" alt="No Profile"/>}
             <ProfileName>{profileName}</ProfileName>
           </ProfileSection>
           <h2>Créer une publication</h2>

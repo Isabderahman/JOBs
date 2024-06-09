@@ -1,54 +1,48 @@
-// Login.jsx
-import React, { useRef, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React, { useRef, useState,useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import AuthContext from '../AuthContext';
 
-const Login = ({ setIsAuthenticated }) => {
+const Login = () => {
   const location = useLocation();
   const navRef = useRef();
-  const dispatch = useDispatch();
+  const { setAuth } = useContext(AuthContext); // Destructure setAuth from AuthContext
 
+  //handle navigate
   const navigate = useNavigate();
   const handleRedirect = () => {
-    navigate("/home");
+    navigate('/home');
   };
-  const [loginInputs, setLoginInputs] = useState({ email: "", password: "" });
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setLoginInputs({ ...loginInputs, [name]: value });
-  };
+  ///handle form input 
+  const [loginInputs,setLoginInputs]= useState({email:"",password:""})
+  const handleChange = (e)=>{
+    const {name,value}=e.target
+    setLoginInputs({...loginInputs,[name]:value})
 
+  }
+  // login action 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:3000/api/signin",
-        loginInputs
-      );
-      console.log("Login successful!", response.data);
-      sessionStorage.setItem("loginData", response.data.token);
-      setIsAuthenticated(true);
-      const userID = response.data.id;
-      const dataUser = await axios.get(
-        `http://localhost:3000/api/dataUer/${userID}`,
-        {
-          headers: {
-            Authorization: `Bearer ${response.data.token}`,
-          },
-        }
-      );
-      dispatch({type:'STOREUSERDATA',payload:dataUser.data})
+      // console.log(JSON.parse(loginInputs) )
+      const response = await axios.post('http://127.0.0.1:3000/api/signin',loginInputs);
+      console.log('Login successful!', response.data);
+      setAuth({ token: response.data.token });
+      if (sessionStorage.setItem('loginData', response.data.token)) {
+        navigate('/home')
+    }
       handleRedirect();
     } catch (error) {
-      console.error("Login failed!", error);
+      console.error('Login failed!', error);
+      
     }
   };
-
   const showNavrBar = () => {
     navRef.current.classList.toggle("responsive_nav");
   };
+
   return (
     <Header className="header">
       <div className="container">
@@ -65,8 +59,7 @@ const Login = ({ setIsAuthenticated }) => {
                 to="/"
                 className={`${location.pathname === "/" ? "active" : ""}`}
               >
-                <i className="fas fa-home"></i>{" "}
-                <span id="acceuil">Acceuil</span>
+                <i className="fas fa-home"></i> <span id="acceuil">Acceuil</span>
               </Link>
             </li>
             <li>
@@ -76,8 +69,7 @@ const Login = ({ setIsAuthenticated }) => {
                   location.pathname === "/listes-des-offres" ? "active" : ""
                 }`}
               >
-                <i className="fas fa-list"></i>{" "}
-                <span id="offre">Liste des offres</span>
+                <i className="fas fa-list"></i> <span id="offre">Liste des offres</span>
               </Link>
             </li>
             <li>
@@ -87,8 +79,7 @@ const Login = ({ setIsAuthenticated }) => {
                   location.pathname === "/avis-entreprises" ? "active" : ""
                 }`}
               >
-                <i className="fas fa-star-half-alt"></i>{" "}
-                <span id="avis">Avis sur les entreprises</span>
+                <i className="fas fa-star-half-alt"></i> <span id="avis">Avis sur les entreprises</span> 
               </Link>
             </li>
           </NavUl>
@@ -105,7 +96,7 @@ const Login = ({ setIsAuthenticated }) => {
                 class="creer"
               >
                 <i className="fas fa-user "></i>
-                <span>Créer un compte</span>
+                <span >Créer un compte</span>
               </Link>
             </li>
           </ul>
@@ -156,7 +147,7 @@ const Login = ({ setIsAuthenticated }) => {
                 type="email"
                 placeholder="Entrer l'adresse email"
                 className="email-input"
-                name="email"
+                name='email'
                 value={loginInputs.email}
                 onChange={handleChange}
               />
@@ -168,11 +159,8 @@ const Login = ({ setIsAuthenticated }) => {
                 value={loginInputs.password}
                 onChange={handleChange}
               />
-              <input
-                type="submit"
-                className="btn btn-email"
-                value="Continuer avec email"
-              />
+              <input type="submit" className="btn btn-email" value="Continuer avec email"/>
+  
             </form>
           </div>
 
@@ -225,6 +213,7 @@ const Header = styled.header`
     align-items: center;
   }
 
+
   nav ul {
     display: flex;
     justify-content: space-between;
@@ -257,15 +246,15 @@ const Header = styled.header`
     font-size: 1.8rem;
   }
 
-  @media only screen and (max-width: 900px) {
-    #acceuil {
-      display: none;
+  @media only screen and (max-width:900px){
+    #acceuil{
+      display:none;
     }
-    #offre {
-      display: none;
+    #offre{
+      display:none;
     }
-    #avis {
-      display: none;
+    #avis{
+      display:none;
     }
   }
 
@@ -352,7 +341,7 @@ const SearchBar = styled.div`
     width: 55%;
     margin-top: 20px;
   }
-  input[type="text"] {
+  input[type='text'] {
     margin-left: 50px;
     padding: 15px;
     width: 250px;
@@ -473,7 +462,9 @@ const SignInContainer = styled.div`
     }
   }
 
-  .password-input {
+
+
+  .password-input { 
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -484,6 +475,7 @@ const SignInContainer = styled.div`
     display: flex;
     flex-direction: column;
     display: flex;
+
 
     .email-input {
       padding: 10px;
@@ -515,11 +507,12 @@ const SignInContainer = styled.div`
     }
   }
 
-  @media only screen and (max-width: 800px) {
-    .btn {
-      padding: 0px;
+  @media only screen and (max-width: 800px){
+    .btn{
+      padding:0px;
     }
   }
+  
 `;
 
 const Footer = styled.footer`
@@ -561,5 +554,6 @@ const Footer = styled.footer`
     margin-top: 15px;
   }
 `;
+
 
 export default Login;

@@ -1,30 +1,17 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import "./style/App.css";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import AuthContext from "./AuthContext";
 import Login from "./components/Login.jsx";
 import Header from "./components/Home/Header.jsx";
 import Home from "./components/Home/Home.jsx";
 import Emplois from "./components/Home/Emplois.jsx";
 import CreerCompte from "./components/creerCompte/creerCompte.jsx";
 import LoadingScreen from "./components/Home/Layouts/LoadingScreen.jsx";
+import OffreForm from "./components/Home/Layouts/OffreForm.jsx";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const token = sessionStorage.getItem('loginData');
-    if (token) {
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
-    }
-    setIsLoading(false); // Set loading to false after checking the token
-  }, []);
-
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
+  const { auth } = useContext(AuthContext);
 
   return (
     <div className="App">
@@ -34,9 +21,9 @@ function App() {
       />
 
       <Routes>
-        <Route path="/" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path="/" element={<Login />} />
         <Route path="/créer-compte" element={<CreerCompte />} />
-        {isAuthenticated ? (
+        {auth.token ? (
           <>
             <Route
               path="/home"
@@ -56,18 +43,28 @@ function App() {
                 </>
               }
             />
+            
           </>
         ) : (
           <Route path="*" element={<Navigate to="/" />} />
         )}
         <Route
-          path="/loading"
-          element={
-            <>
-              <LoadingScreen />
-            </>
-          }
-        />
+              path="/loading"
+              element={
+                <>
+                  <LoadingScreen/>
+                </>
+              }
+            />
+
+        <Route
+              path="/offreform"
+              element={
+                <>
+                  <OffreForm/>
+                </>
+              }
+            />
       </Routes>
     </div>
   );

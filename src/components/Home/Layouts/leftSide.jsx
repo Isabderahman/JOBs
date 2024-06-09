@@ -84,9 +84,9 @@ const CardBackground = styled.div`
   margin: -12px -12px;
 `;
 const Photo = styled.div`
-  background: url("/imgs/photo.svg");
+  background: url("../imgs/download.jpeg");
   background-position: center;
-  background-size: 60%;
+  background-size: 100%;
   background-clip: content-box;
   box-sizing: border-box;
   width: 72px;

@@ -42,9 +42,9 @@ const Posts = () => {
       {publications.map((pub) => (
         <PostCard
           key={pub.publication._id}
-          profileImage={pub.auteur?.info.pathImage }
-          profileName={`${pub.auteur?.info.prenom || ""} ${
-            pub.auteur?.info.nom || ""
+          profileImage={pub.auteur?.pathImage }
+          profileName={`${pub.auteur?.prenom || ""} ${
+            pub.auteur?.nom || ""
           }`.trim()}
           profileTitle={pub.auteur?.type || "Unknown"}
           postDescription={
