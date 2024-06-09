@@ -6,7 +6,7 @@ const recruteurSchema = new mongoose.Schema({
   idEntreprise: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Entreprise',
-    required: false
+    required: true
   },
   id_user: {
     type: mongoose.Schema.Types.ObjectId,

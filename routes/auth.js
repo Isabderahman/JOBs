@@ -76,9 +76,9 @@ router.post("/signup", upload.single('profilePath'), async (req, res) => {
         adresse,
         telephone,
         date_naissance,
-        education: JSON.parse(education),
-        experiences: JSON.parse(experiences),
-        competences: JSON.parse(competences),
+        education: education,
+        experiences: experiences,
+        competences: competences,
         profilePath: profileImagePath
       });
       await candidat.save();
