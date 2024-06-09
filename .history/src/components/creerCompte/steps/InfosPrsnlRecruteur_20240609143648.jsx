@@ -35,6 +35,7 @@ const InfosPrsnlRecruteur = () => {
           <label>Date de naissance</label>
           <input type="date" required />
         </div>
+        <hr />
         <br /><br /><br />
         <div className="entreprise_select">
           <select name="entreprise" id="entrepriseSelect">

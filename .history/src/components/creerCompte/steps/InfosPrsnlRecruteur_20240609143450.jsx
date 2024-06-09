@@ -35,7 +35,6 @@ const InfosPrsnlRecruteur = () => {
           <label>Date de naissance</label>
           <input type="date" required />
         </div>
-        <br /><br /><br />
         <div className="entreprise_select">
           <select name="entreprise" id="entrepriseSelect">
             <option value="">--seléctionnez votre entreprise--</option>
@@ -50,15 +49,13 @@ const InfosPrsnlRecruteur = () => {
               checked={newCompany} 
               onChange={(e) => setNewCompany(e.target.checked)} 
             />
-            <label >Mon entreprise n'est pas affichée</label>
+            <label htmlFor="newCompanyCheckbox">Mon entreprise n'est pas affichée</label>
           </div>
           {newCompany && (
             <button type="button" onClick={() => alert('Ajout de la nouvelle entreprise')}>
               Ajouter une nouvelle entreprise
             </button>
-            
           )}
-
         </div>
 
         

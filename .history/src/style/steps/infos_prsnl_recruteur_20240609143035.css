@@ -32,7 +32,7 @@ display: flex;
 justify-content: space-between;
 width: 100%;
 align-items: center;
-margin-top: 100px;
+margin-top: 20px;
 }
 .infos_prsnl_candidat_container form button{
     padding: 10px 20px;
@@ -72,11 +72,13 @@ margin-top: 100px;
     align-items: center;
     margin-top: 10px;
   }
-  .new_company input{
-    position: relative;
-    left: 40px;
-  }
   .new_company label{
-    width: 100%;
+    width: 500px;
+    position: relative;
+    right: 20px;
   }
   
+
+  .check{
+    display: flex;
+  }

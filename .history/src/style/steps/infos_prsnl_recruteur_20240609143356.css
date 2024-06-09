@@ -32,7 +32,7 @@ display: flex;
 justify-content: space-between;
 width: 100%;
 align-items: center;
-margin-top: 100px;
+margin-top: 50px;
 }
 .infos_prsnl_candidat_container form button{
     padding: 10px 20px;

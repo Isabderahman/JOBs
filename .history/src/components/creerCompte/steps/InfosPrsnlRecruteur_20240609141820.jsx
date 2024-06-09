@@ -9,7 +9,7 @@ const InfosPrsnlRecruteur = () => {
     // Simulate fetching data from an API
     const fetchEntreprises = async () => {
       // Replace with your API call
-      const response = await fetch("api.example/entreprises");
+      const response = await fetch("https://api.example.com/entreprises");
       const data = await response.json();
       setEntreprises(data);
     };
@@ -35,8 +35,8 @@ const InfosPrsnlRecruteur = () => {
           <label>Date de naissance</label>
           <input type="date" required />
         </div>
-        <br /><br /><br />
         <div className="entreprise_select">
+          <label htmlFor="entrepriseSelect">Entreprise</label>
           <select name="entreprise" id="entrepriseSelect">
             <option value="">--seléctionnez votre entreprise--</option>
             {entreprises.map((x) => (
@@ -50,18 +50,14 @@ const InfosPrsnlRecruteur = () => {
               checked={newCompany} 
               onChange={(e) => setNewCompany(e.target.checked)} 
             />
-            <label >Mon entreprise n'est pas affichée</label>
+            <label htmlFor="newCompanyCheckbox">Mon entreprise n'est pas affichée</label>
           </div>
           {newCompany && (
             <button type="button" onClick={() => alert('Ajout de la nouvelle entreprise')}>
               Ajouter une nouvelle entreprise
             </button>
-            
           )}
-
         </div>
-
-        
         <div className="btn">
           <button type="button" id="retour">Retour</button>
           <button type="submit" id="suivant"> Confirmer </button>
