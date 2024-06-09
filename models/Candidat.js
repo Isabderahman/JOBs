@@ -84,7 +84,7 @@ const candidatSchema = new Schema(
       type: String,
       required: false
     },
-    education: [educationSchema],
+    educations: [educationSchema],
     experiences: [experienceSchema],
     competences: [competenceShema],
     telephone: {
