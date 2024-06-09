@@ -42,7 +42,7 @@ const Posts = () => {
       {publications.map((pub) => (
         <PostCard
           key={pub.publication._id}
-          profileImage={pub.auteur?.info.pathImage }
+          profileImage={pub.auteur?.info.profilepath }
           profileName={`${pub.auteur?.info.prenom || ""} ${
             pub.auteur?.info.nom || ""
           }`.trim()}
@@ -50,7 +50,7 @@ const Posts = () => {
           postDescription={
             pub.publication.contenu || "No description available"
           }
-          postImage={pub.publication.postImage || "defaultPostImagePath"}
+          postImage={pub.publication.imagePath || "defaultPostImagePath"}
         />
       ))}
     </div>
