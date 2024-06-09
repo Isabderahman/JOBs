@@ -7,8 +7,7 @@ const InfosPrsnlRecruteur = () => {
       <form action="">
       <div className="recruteur">
                 <input type="file" className="profile-input" id="profile-input-recruteur" />
-                <label htmlFor="profile-input-recruteur">Télécharger la photo de profil <i className='fas fa-download'></i>
-                </label>
+                <label htmlFor="profile-input-recruteur">Télécharger la photo de profil </label>
         </div>
         <input type="text" placeholder="Nom" required />
         <input type="text" placeholder="Prénom" required />

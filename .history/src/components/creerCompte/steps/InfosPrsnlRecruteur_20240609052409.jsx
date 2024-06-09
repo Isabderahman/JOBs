@@ -1,15 +1,10 @@
 import React from "react";
-import "../../../style/steps/infos_prsnl_recruteur.css";
+import "../../../style/steps/infos_prsnl_candidat.css";
 
 const InfosPrsnlRecruteur = () => {
   return (
     <div className="infos_prsnl_candidat_container">
       <form action="">
-      <div className="recruteur">
-                <input type="file" className="profile-input" id="profile-input-recruteur" />
-                <label htmlFor="profile-input-recruteur">Télécharger la photo de profil <i className='fas fa-download'></i>
-                </label>
-        </div>
         <input type="text" placeholder="Nom" required />
         <input type="text" placeholder="Prénom" required />
         <input type="email" placeholder="Email" required />

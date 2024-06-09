@@ -26,14 +26,8 @@ const InfosPrsnlCandidat = () => {
   return (
     <div className='infos_prsnl_candidat_container'>
       <form onSubmit={handleSuivant}>
-      <div className="candidat_profil">
-            <input type="file" className="profile-input" id="profile-input-candidat" />
-            <label htmlFor="profile-input-candidat">Télécharger la photo de profil <i className='fas fa-download'></i></label>
-          </div>
-          <div className="candidat_cv">
-            <input type="file" className="profile-input" id="profile-input-candidat" />
-            <label htmlFor="profile-input-candidat">Télécharger le cv <i className='fas fa-download'></i></label>
-          </div>
+        file_downloa
+        <input type="file" placeholder='télécharger votre cv'/><i className='fas fa-download'></i>
         <input type="text" placeholder='Nom' required />
         <input type="text" placeholder='Prénom' required />
         <input type="email" placeholder='Email' required />

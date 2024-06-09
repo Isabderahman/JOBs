@@ -69,29 +69,38 @@ margin-top: 20px;
     background-color: green;
     color: #fff;
 }
-.candidat_profil, .candidat_cv {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .profile-input {
-    display: none;
-  }
-  
-  .fas.fa-download {
-    margin-left: 10px;
-  }
-  
-  .candidat_profil label,   .candidat_cv label {
-    cursor: pointer;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  .candidat_profil label:hover {
-    background-color: #f5f5f5;
-  }
-  
+.candidat_profil,
+.candidat_cv {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profile-input {
+  display: none;
+}
+
+.custom-file-upload {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 20px;
+  background-color: #e9ecef;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.custom-file-upload:hover {
+  background-color: #ebebeb;
+}
+
+.custom-file-upload label {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.custom-file-upload i {
+  margin-left: 5px;
+  font-size: 16px;
+  color: #333;
+}
