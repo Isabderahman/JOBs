@@ -1,0 +1,96 @@
+.infos_pro_candidat_container form .infos{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+  width: 900px;
+}
+.infos_pro_candidat_container form .infos input, textarea{
+  padding: 15px 10px;
+  margin: 5px 0px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  letter-spacing: 1.2px;
+
+}
+.date_debut, .date_fin{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: start;
+  width: 100%; 
+}
+.date_debut label, .date_fin label{
+  width: 100%;
+}
+.date_debut input, .date_fin input{
+  transform: translateX(20px);
+}
+.infos_pro_candidat_container form .btn {
+  margin-top: 10px;
+}
+.infos_pro_candidat_container form .btn .ajouter{
+  border: 1px solid green;
+  border-radius: 3px;
+  padding: 5px 15px;
+  margin: 0 10px 0 0;
+  cursor: pointer;
+  color: green;
+}
+.infos_pro_candidat_container form .btn .ajouter:hover{
+  background-color: #6bc996;
+}
+.infos_pro_candidat_container form .btn .supprimer{
+  border: 1px solid red;
+  border-radius: 3px;
+  padding: 5px 15px;
+  margin: 0 10px 0 0;
+  cursor: pointer;
+  color: red;
+}
+.infos_pro_candidat_container form .btn .supprimer:hover{
+  background-color: rgb(255, 150, 150);
+}
+
+.infos_pro_candidat_container form button[type='submit']{
+  padding: 10px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 5px; 
+  margin: 0 10px;
+  cursor: pointer;
+  color: #fff;
+  background-color: green;
+  float: right;
+}
+.infos_pro_candidat_container form button[type='submit']{
+  padding: 10px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 5px; 
+  margin: 0 10px;
+  cursor: pointer;
+  color: #fff;
+  background-color: green;
+  float: right;
+}
+.infos_pro_candidat_container form button[type='submit']:hover{
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05);
+  transform: scale(1.02);
+  transition: ease-out 0.05s;
+}
+.infos_pro_candidat_container form button[type='button']{
+  padding: 10px 20px;
+  border: 1px solid green;
+  border-radius: 5px; 
+  margin: 0 10px;
+  color: green;
+  cursor: pointer;
+  float: left;
+}
+.infos_pro_candidat_container form button[type='button']:hover{
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05);
+  transform: scale(1.02);
+  transition: ease-out 0.05s;
+  background-color: green;
+  color: #fff;
+}

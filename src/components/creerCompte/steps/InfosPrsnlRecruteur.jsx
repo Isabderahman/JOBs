@@ -1,0 +1,29 @@
+import React from "react";
+import "../../../style/steps/infos_prsnl_candidat.css";
+
+const InfosPrsnlRecruteur = () => {
+  return (
+    <div className="infos_prsnl_candidat_container">
+      <form action="">
+        <input type="text" placeholder="Nom" required />
+        <input type="text" placeholder="Prénom" required />
+        <input type="email" placeholder="Email" required />
+        <input type="password" placeholder="Mot de passe" required />
+        <input type="text" placeholder="Adresse" required />
+        <input type="number" placeholder="Téléphone" required />
+        <div className="input_date">
+          <label>Date de naissance</label>
+          <input type="date" required />
+        </div>
+        <div className="btn">
+          <button id="retour">Retour</button>
+          <button type="submit" id="suivant">
+            Confirmer
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default InfosPrsnlRecruteur;
