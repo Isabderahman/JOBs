@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../../../style/steps/infos_prsnl_recruteur.css";
-import StatutOptions from './StatutOptions';
 
 const InfosPrsnlRecruteur = () => {
   const [entreprises, setEntreprises] = useState([]);
   const [newCompany, setNewCompany] = useState(false);
-  const [retour, setRetour] = useState(false);
 
   useEffect(() => {
     // Simulate fetching data from an API
@@ -18,15 +16,6 @@ const InfosPrsnlRecruteur = () => {
 
     fetchEntreprises();
   }, []);
-
-  const handleRetour = () => {
-    setRetour(true);
-  };
-
-  // Handle conditional rendering after hooks
-  if (retour) {
-    return <StatutOptions />;
-  }
 
   return (
     <div className="infos_prsnl_candidat_container">
@@ -46,10 +35,10 @@ const InfosPrsnlRecruteur = () => {
           <label>Date de naissance</label>
           <input type="date" required />
         </div>
+        <br /><br /><br />
         <div className="entreprise_select">
-          <label htmlFor="entrepriseSelect">Entreprise</label>
           <select name="entreprise" id="entrepriseSelect">
-            <option value="">--sélectionnez votre entreprise--</option>
+            <option value="">--seléctionnez votre entreprise--</option>
             {entreprises.map((x) => (
               <option key={x.id} value={x.nom}>{x.nom}</option>
             ))}
@@ -61,17 +50,21 @@ const InfosPrsnlRecruteur = () => {
               checked={newCompany} 
               onChange={(e) => setNewCompany(e.target.checked)} 
             />
-            <label htmlFor="newCompanyCheckbox">Mon entreprise n'est pas affichée</label>
+            <label >Mon entreprise n'est pas affichée</label>
           </div>
           {newCompany && (
             <button type="button" onClick={() => alert('Ajout de la nouvelle entreprise')}>
               Ajouter une nouvelle entreprise
             </button>
+            
           )}
+
         </div>
+
+        
         <div className="btn">
           <button type="button" id="retour" onClick={handleRetour}>Retour</button>
-          <button type="submit" id="suivant">Confirmer</button>
+          <button type="submit" id="suivant" > Confirmer </button>
         </div>
       </form>
     </div>
