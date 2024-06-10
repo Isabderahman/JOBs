@@ -18,7 +18,7 @@ router.post('/entreprise', async (req, res) => {
 });
 
 // Route pour récupérer toutes les entreprises
-router.get('/entreprise', authMiddleware,async (req, res) => {
+router.get('/entreprise',async (req, res) => {
   try {
     const entreprises = await Entreprise.find();
     res.status(200).json(entreprises);

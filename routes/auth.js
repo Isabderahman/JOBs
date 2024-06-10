@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
+const mongoose=require("mongoose")
 
 const router = express.Router();
 const authMiddleware = require("../middleware/authMiddleware");
@@ -43,7 +44,7 @@ router.post("/signup", upload.single('profilePath'), async (req, res) => {
   const profileImagePath = req.file ? req.file.path : null;
 
   if (type_user === "recruteur") {
-    const { email, password, prenom, nom, adresse, telephone, date_naissance, id_entreprise } = req.body;
+    const { email, password, prenom, nom, adresse, telephone, date_naissance, idEntreprise } = req.body;
     try {
       const hashedPassword = await hashPassword(password);
       const user = new User({ email, password: hashedPassword, type_user });
@@ -54,7 +55,7 @@ router.post("/signup", upload.single('profilePath'), async (req, res) => {
         nom,
         adresse,
         date_naissance,
-        id_entreprise,
+        idEntreprise:idEntreprise,
         telephone,
         profilePath: profileImagePath
       });
