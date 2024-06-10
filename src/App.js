@@ -7,6 +7,7 @@ import Home from "./components/Home/Home.jsx";
 import Emplois from "./components/Home/Emplois.jsx";
 import CreerCompte from "./components/creerCompte/creerCompte.jsx";
 import LoadingScreen from "./components/Home/Layouts/LoadingScreen.jsx";
+import OffreForm from "./components/Home/Layouts/OffreForm.jsx";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -61,6 +62,14 @@ function App() {
           element={
             <>
               <LoadingScreen />
+            </>
+          }
+        />
+        <Route
+          path="/offreform"
+          element={
+            <>
+              <OffreForm/>
             </>
           }
         />
