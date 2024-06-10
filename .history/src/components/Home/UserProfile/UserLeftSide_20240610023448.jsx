@@ -1,0 +1,99 @@
+import React from "react";
+import "../../../style/UserProfile/UserLeftSide.css";
+import { useState } from "react";
+
+const UserLeftSide = () => {
+  const [toggleState, setToggleState] = useState(1);
+
+  const toggleTab = (index) => {
+    setToggleState(index);
+  };
+
+  return (
+    <div className="left_side">
+      <div className="card_header">
+        <div className="userInfo">
+          <div className="cardBg">
+            <img src="" />
+            <div className="nameField">
+            <div>Abdellatif MAJD</div>
+            <div>Institut Spécialisé NTIC Sydi Youssef Ben Ali  </div>
+            </div>
+          </div>
+
+
+        </div>
+        <div className="card_infos">
+          <div className="infos">Publications</div>
+          <div className="infos">Offres d'emplois</div>
+        </div>
+      </div>
+
+
+      
+
+      <div className="bloc-tabs">
+        <button
+          className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
+          onClick={() => toggleTab(1)}
+        >
+          Publications
+        </button>
+        <button
+          className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+          onClick={() => toggleTab(2)}
+        >
+          Offres d'emplois
+        </button>
+        <button
+          className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
+          onClick={() => toggleTab(3)}
+        >
+          Tab 3
+        </button>
+      </div>
+
+      <div className="content-tabs">
+        <div
+          className={toggleState === 1 ? "content  active-content" : "content"}
+        >
+          <h2>Publications</h2>
+          <hr />
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
+            praesentium incidunt quia aspernatur quasi quidem facilis quo nihil
+            vel voluptatum?
+          </p>
+        </div>
+
+        <div
+          className={toggleState === 2 ? "content  active-content" : "content"}
+        >
+          <h2>Content 2</h2>
+          <hr />
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
+            voluptatum qui adipisci.
+          </p>
+        </div>
+
+        <div
+          className={toggleState === 3 ? "content  active-content" : "content"}
+        >
+          <h2>Content 3</h2>
+          <hr />
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos sed
+            nostrum rerum laudantium totam unde adipisci incidunt modi alias!
+            Accusamus in quia odit aspernatur provident et ad vel distinctio
+            recusandae totam quidem repudiandae omnis veritatis nostrum
+            laboriosam architecto optio rem, dignissimos voluptatum beatae
+            aperiam voluptatem atque. Beatae rerum dolores sunt.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default UserLeftSide;

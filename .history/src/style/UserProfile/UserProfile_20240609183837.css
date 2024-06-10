@@ -1,0 +1,9 @@
+.userProfile{
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
+}
+.userProfile .left{
+  width: 20%;
+}
+

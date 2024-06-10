@@ -1,0 +1,23 @@
+import React from "react";
+import "../../../style/UserProfile/UserLeftSide.css";
+
+const UserLeftSide = () => {
+  return (
+    <div className="left_side">
+      <div className="card_header">
+        <div className="userInfo">
+          <div className="cardBg">
+            <img src="" />
+          </div>
+
+        </div>
+
+
+      </div>
+
+      <div className="content_card"></div>
+    </div>
+  );
+};
+
+export default UserLeftSide;

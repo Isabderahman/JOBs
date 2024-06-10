@@ -1,0 +1,10 @@
+.donnees{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.infos, .publications, .postes{
+    border-radius: 1px solid;
+    
+}

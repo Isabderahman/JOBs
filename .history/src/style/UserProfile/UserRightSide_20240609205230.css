@@ -1,0 +1,13 @@
+.donnees{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.infos, .publications, .postes{
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    width: 100%;
+    border-radius: 5px; 
+    padding-top: ;
+    color: rgba(0, 0, 0, 0.6);
+}
