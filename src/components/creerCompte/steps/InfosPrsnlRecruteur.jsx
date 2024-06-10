@@ -1,18 +1,39 @@
 import React, { useState, useEffect } from "react";
 import "../../../style/steps/infos_prsnl_recruteur.css";
-import StatutOptions from './StatutOptions';
+import StatutOptions from "./StatutOptions";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const InfosPrsnlRecruteur = () => {
+  const navigate = useNavigate();
   const [entreprises, setEntreprises] = useState([]);
   const [newCompany, setNewCompany] = useState(false);
   const [retour, setRetour] = useState(false);
+  const [formData, setFormData] = useState({
+    nom: "",
+    siret: "",
+    adresse: "",
+    activite: "",
+    site_web: "",
+    logo: "",
+  });
+  const [recruteurData, setRecruteurData] = useState({
+    nom: "",
+    prenom: "",
+    email: "",
+    password: "",
+    adresse: "",
+    telephone: "",
+    date_naissance: "",
+    idEntreprise: "",
+    type_user: "recruteur",
+    profilePath: "",
+  });
 
   useEffect(() => {
-    // Simulate fetching data from an API
     const fetchEntreprises = async () => {
-      // Replace with your API call
-      const response = await fetch("api.example/entreprises");
-      const data = await response.json();
+      const response = await axios.get("http://localhost:3000/api/entreprise");
+      const data = await response.data;
       setEntreprises(data);
     };
 
@@ -23,55 +44,244 @@ const InfosPrsnlRecruteur = () => {
     setRetour(true);
   };
 
-  // Handle conditional rendering after hooks
+  const handleNewCompanyChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleRecruteurChange = (e) => {
+    const { name, value } = e.target;
+    setRecruteurData({ ...recruteurData, [name]: value });
+  };
+
+  const handleFileChange = (e) => {
+    setRecruteurData({ ...recruteurData, profilePath: e.target.files[0] });
+  };
+  const handleRedirecthome = () => {
+    navigate("/home");
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    let companyId = recruteurData.idEntreprise;
+
+    if (newCompany) {
+      try {
+        const newCompanyResponse = await axios.post(
+          "http://localhost:3000/api/entreprise",
+          formData
+        );
+        companyId = newCompanyResponse.data._id;
+      } catch (error) {
+        console.error("Error creating new company", error);
+        return;
+      }
+    }
+
+    try {
+      const finalRecruteurData = { ...recruteurData, idEntreprise: companyId };
+
+      // Handling file upload with FormData
+      const formDataToSend = new FormData();
+      for (const key in finalRecruteurData) {
+        formDataToSend.append(key, finalRecruteurData[key]);
+      }
+
+      if (finalRecruteurData.profilePath) {
+        formDataToSend.append("profilePath", finalRecruteurData.profilePath);
+      }
+
+      const response = await axios.post(
+        "http://localhost:3000/api/signup",
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("SignUp successful!", response.data);
+      handleRedirecthome();
+    } catch (error) {
+      console.error("Error creating recruteur", error);
+    }
+  };
+
   if (retour) {
     return <StatutOptions />;
   }
 
   return (
     <div className="infos_prsnl_candidat_container">
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <div className="recruteur">
-          <input type="file" className="profile-input" id="profile-input-recruteur" />
-          <label htmlFor="profile-input-recruteur">Télécharger la photo de profil <i className='fas fa-download'></i>
+          <input
+            type="file"
+            name="profilePath"
+            onChange={handleFileChange}
+            className="profile-input"
+            id="profile-input-recruteur"
+          />
+          <label htmlFor="profile-input-recruteur">
+            Télécharger la photo de profil <i className="fas fa-download"></i>
           </label>
         </div>
-        <input type="text" placeholder="Nom" required />
-        <input type="text" placeholder="Prénom" required />
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Mot de passe" required />
-        <input type="text" placeholder="Adresse" required />
-        <input type="number" placeholder="Téléphone" required />
+        <input
+          type="text"
+          placeholder="Nom"
+          name="nom"
+          value={recruteurData.nom}
+          onChange={handleRecruteurChange}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Prénom"
+          name="prenom"
+          value={recruteurData.prenom}
+          onChange={handleRecruteurChange}
+          required
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          name="email"
+          value={recruteurData.email}
+          onChange={handleRecruteurChange}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Mot de passe"
+          name="password"
+          value={recruteurData.password}
+          onChange={handleRecruteurChange}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Adresse"
+          name="adresse"
+          value={recruteurData.adresse}
+          onChange={handleRecruteurChange}
+          required
+        />
+        <input
+          type="number"
+          placeholder="Téléphone"
+          name="telephone"
+          value={recruteurData.telephone}
+          onChange={handleRecruteurChange}
+          required
+        />
         <div className="input_date">
           <label>Date de naissance</label>
-          <input type="date" required />
+          <input
+            type="date"
+            name="date_naissance"
+            value={recruteurData.date_naissance}
+            onChange={handleRecruteurChange}
+            required
+          />
         </div>
         <div className="entreprise_select">
           <label htmlFor="entrepriseSelect">Entreprise</label>
-          <select name="entreprise" id="entrepriseSelect">
+          <select
+            name="idEntreprise"
+            id="entrepriseSelect"
+            value={recruteurData.idEntreprise}
+            onChange={handleRecruteurChange}
+            disabled={newCompany}
+          >
             <option value="">--sélectionnez votre entreprise--</option>
             {entreprises.map((x) => (
-              <option key={x.id} value={x.nom}>{x.nom}</option>
+              <option key={x._id} value={x._id}>
+                {x.nom}
+              </option>
             ))}
           </select>
           <div className="new_company">
-            <input 
-              type="checkbox" 
-              id="newCompanyCheckbox" 
-              checked={newCompany} 
-              onChange={(e) => setNewCompany(e.target.checked)} 
+            <input
+              type="checkbox"
+              id="newCompanyCheckbox"
+              checked={newCompany}
+              onChange={(e) => setNewCompany(e.target.checked)}
             />
-            <label htmlFor="newCompanyCheckbox">Mon entreprise n'est pas affichée</label>
+            <label htmlFor="newCompanyCheckbox">
+              Mon entreprise n'est pas affichée
+            </label>
           </div>
           {newCompany && (
-            <button type="button" onClick={() => alert('Ajout de la nouvelle entreprise')}>
-              Ajouter une nouvelle entreprise
-            </button>
+            <div className="new_company_form">
+              <div>
+                <label>Nom:</label>
+                <input
+                  type="text"
+                  name="nom"
+                  value={formData.nom}
+                  onChange={handleNewCompanyChange}
+                  required
+                />
+              </div>
+              <div>
+                <label>SIRET:</label>
+                <input
+                  type="text"
+                  name="siret"
+                  value={formData.siret}
+                  onChange={handleNewCompanyChange}
+                />
+              </div>
+              <div>
+                <label>Adresse:</label>
+                <input
+                  type="text"
+                  name="adresse"
+                  value={formData.adresse}
+                  onChange={handleNewCompanyChange}
+                  required
+                />
+              </div>
+              <div>
+                <label>Activité:</label>
+                <input
+                  type="text"
+                  name="activite"
+                  value={formData.activite}
+                  onChange={handleNewCompanyChange}
+                  required
+                />
+              </div>
+              <div>
+                <label>Site Web:</label>
+                <input
+                  type="text"
+                  name="site_web"
+                  value={formData.site_web}
+                  onChange={handleNewCompanyChange}
+                />
+              </div>
+              <div>
+                <label>Logo:</label>
+                <input
+                  type="text"
+                  name="logo"
+                  value={formData.logo}
+                  onChange={handleNewCompanyChange}
+                />
+              </div>
+            </div>
           )}
         </div>
         <div className="btn">
-          <button type="button" id="retour" onClick={handleRetour}>Retour</button>
-          <button type="submit" id="suivant">Confirmer</button>
+          <button type="button" id="retour" onClick={handleRetour}>
+            Retour
+          </button>
+          <button type="submit" id="suivant">
+            Confirmer
+          </button>
         </div>
       </form>
     </div>

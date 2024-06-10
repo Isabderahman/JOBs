@@ -12,9 +12,7 @@ const Login = ({ setIsAuthenticated }) => {
 
   // Handle navigate
   const navigate = useNavigate();
-  const handleRedirect = () => {
-    navigate("/home");
-  };
+
 
   // Handle form input
   const [loginInputs, setLoginInputs] = useState({ email: "", password: "" });
@@ -42,7 +40,7 @@ const Login = ({ setIsAuthenticated }) => {
         }
       );
       dispatch({ type: 'STOREUSERDATA', payload: userData });
-      handleRedirect();
+      navigate("/home");
     } catch (error) {
       console.error("Login failed!", error);
     }

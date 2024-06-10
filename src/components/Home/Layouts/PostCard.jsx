@@ -24,7 +24,7 @@ export default function PostCard({ profileImage, profileName, profileTitle, post
           {showFullDescription ? 'Voir moins' : 'Voir plus'}
         </ShowMoreButton>
       </PostDescription>
-      {postImage && <PostImage src={postImage} alt="Post Image" />}
+      { postImage? <PostImage src={postImage} alt="Post Image" />:<br/>}
       <PostActions>
         <ActionButton><i className="fas fa-thumbs-up"></i> Like</ActionButton>
         <ActionButton><i className="fas fa-comment"></i> Comment</ActionButton>
