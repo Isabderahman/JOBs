@@ -10,21 +10,26 @@ export default function Emplois() {
           <p>Trouvez des professionnels talentueux en un temps record et maintenez l'activité de votre entreprise. </p>
        </Section>
        <Layout>
-            <CommunityCard>
-              <a>
-                <span>Groupes</span>
-              </a>
-              <a>
-                <span>Événements</span>
-                <i className="fas fa-calendar-plus"></i>
-              </a>
-              <a>
-                <span>Suivre les hashtags</span>
-              </a>
-              <a>
-                <span>Découvrir plus</span>
-              </a>
-            </CommunityCard>
+            <Sidebar>
+              <CommunityCard>
+                <a>
+                  <span>Groupes</span>
+                </a>
+                <a>
+                  <span>Événements</span>
+                  <i className="fas fa-calendar-plus"></i>
+                </a>
+                <a>
+                  <span>Suivre les hashtags</span>
+                </a>
+                <a>
+                  <span>Découvrir plus</span>
+                </a>
+              </CommunityCard>
+              <Button>
+                <button className='offre'><a href="/offreform" className='publiez'>Publiez Une Offre</a></button>
+              </Button>
+            </Sidebar>
             <OffreCard/>
        </Layout>
     </Container>
@@ -32,18 +37,15 @@ export default function Emplois() {
 }
 
 const Container = styled.div`
-padding-top: 52px; 
-top: 0;
-// max-width: 100%;
+  padding-top: 52px; 
+  top: 0;
 
-@media (max-width: 768px) {
+  @media (max-width: 768px) {
     margin-top: 12px ;
   }
-
 `;
 
 const Section = styled.section`
-  // box-sizing: content-box; 
   min-height: 52px; 
   padding-top: 10px; 
   margin-top: 10px; 
@@ -51,14 +53,17 @@ const Section = styled.section`
   text-decoration: underline;
   display: flex;
   justify-content: center; 
-  h5{
+
+  h5 {
     font-size: 14px;
   }
-  a{
+
+  a {
     font-weight: 700;
     color: #058c42;
   }
-  p{
+
+  p {
     font-weight: 600; 
     color: #434649;
     font-size: 14px;
@@ -71,27 +76,31 @@ const Section = styled.section`
 `;
 
 const Layout = styled.div`
-margin-left:150px;
-display: grid; 
-grid-template-areas: " CommunityCard OffreCard ";
-grid-template-columns: minmax(0,5fr) minmax(0, 17fr) minmax(200px, 2fr); // !!!!!!!!!!!!!!!!!!!!!!!!! 262.5px grid-template-columns: minmax(0, 5fr) minmax(0, 12fr) minmax(300px, 7fr) ;
-column-gap :15px;
-grid-template-rows: auto;
+  margin-left:150px;
+  display: grid; 
+  grid-template-areas: " Sidebar OffreCard ";
+  grid-template-columns: minmax(0,5fr) minmax(0,17fr) minmax(200px, 2fr); 
+  column-gap :15px;
+  grid-template-rows: auto;
 
-
-@media (max-width: 768px){
-  display: flex; 
-  flex-direction: column;
-  padding: 0 5px;
-  row-gap : 25px; 
-  margin-top: 15px ;
-}
+  @media (max-width: 768px){
+    display: flex; 
+    flex-direction: column;
+    padding: 0 5px;
+    row-gap : 25px; 
+    margin-top: 15px ;
+  }
 `;
 
-
+const Sidebar = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
 
 const CommunityCard = styled.div`
   margin-left:30px;
+
   a {
     background-color: #fff;
     padding: 10px 18px;
@@ -109,52 +118,27 @@ const CommunityCard = styled.div`
     color: rgba(0, 0, 0, 0.6);
     border-top: 1px solid #d6ced6;
   }
+
   a:last-child:hover {
     background-color: rgba(0, 0, 0, 0.08);
     color: #058c42;
   }
 `;
 
-// const Footer = styled.footer`
-//   padding: 16px;
-//   border-top: 1px solid #cbcbca;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   gap: 8px;
-//   margin-top: 16px;
-// `;
+const Button = styled.div`
+  .offre {
+    border: none;
+    padding: 10px;
+    margin-left:40px;
+    font-size: medium;
+    border-radius: 8px;
+    background-color: #058c42;
+    color: white;
+    margin-top: 20px;  // Adjust this value to add space between the CommunityCard and the button
+  }
 
-// const FooterLinks = styled.div`
-//   display: flex;
-//   flex-wrap: wrap;
-//   justify-content: center;
-//   gap: 16px;
-// `;
-
-// const FooterLink = styled.a`
-//   color: #666666;
-//   text-decoration: none;
-//   font-size: 12px;
-
-//   &:hover {
-//     text-decoration: underline;
-//   }
-// `;
-
-// const DropdownIcon = styled.i`
-//   margin-left: 4px;
-// `;
-
-// const FooterBranding = styled.div`
-//   display: flex;
-//   align-items: center;
-//   gap: 8px;
-//   font-size: 12px;
-//   color: #666;
-// `;
-
-// const JobsLogo = styled.img`
-//   height: 16px;
-//   width: auto;
-// `;
+  .publiez {
+    color: white;
+    text-decoration: none; // Ensure the link text has no underline
+  }
+`;

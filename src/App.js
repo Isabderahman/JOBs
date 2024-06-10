@@ -1,19 +1,33 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import "./style/App.css";
-import { useContext } from "react";
-import AuthContext from "./AuthContext";
+import { useEffect, useState } from "react";
 import Login from "./components/Login.jsx";
 import Header from "./components/Home/Header.jsx";
 import Home from "./components/Home/Home.jsx";
 import Emplois from "./components/Home/Emplois.jsx";
-import CreerCompte from "./components/creerCompte/CreerCompte.jsx";
+import CreerCompte from "./components/creerCompte/creerCompte.jsx";
 import LoadingScreen from "./components/Home/Layouts/LoadingScreen.jsx";
 import OffreForm from "./components/Home/Layouts/OffreForm.jsx";
+<<<<<<< HEAD
 import UserProfile from "./components/Home/UserProfile/UserProfile.jsx";
 
+=======
+>>>>>>> 470dae65a98f1d1e7d909edbb9e1a9f15ad6703c
 function App() {
-  const { auth } = useContext(AuthContext);
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const token = sessionStorage.getItem('loginData');
+    if (token) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+    setIsLoading(false); // Set loading to false after checking the token
+  }, []);
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
   return (
     <div className="App">
       <link
@@ -22,9 +36,9 @@ function App() {
       />
 
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
         <Route path="/créer-compte" element={<CreerCompte />} />
-        {auth.token ? (
+        {isAuthenticated ? (
           <>
             <Route
               path="/home"
@@ -44,6 +58,7 @@ function App() {
                 </>
               }
             />
+<<<<<<< HEAD
 
             <Route
               path="/profile-utilisateur"
@@ -55,30 +70,30 @@ function App() {
               }
             />
             
+=======
+>>>>>>> 470dae65a98f1d1e7d909edbb9e1a9f15ad6703c
           </>
         ) : (
           <Route path="*" element={<Navigate to="/" />} />
         )}
         <Route
-              path="/loading"
-              element={
-                <>
-                  <LoadingScreen/>
-                </>
-              }
-            />
-
+          path="/loading"
+          element={
+            <>
+              <LoadingScreen />
+            </>
+          }
+        />
         <Route
-              path="/offreform"
-              element={
-                <>
-                  <OffreForm/>
-                </>
-              }
-            />
+          path="/offreform"
+          element={
+            <>
+              <OffreForm/>
+            </>
+          }
+        />
       </Routes>
     </div>
   );
 }
-
 export default App;
