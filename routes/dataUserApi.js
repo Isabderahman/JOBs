@@ -7,7 +7,7 @@ const authMiddleware = require('../middleware/authMiddleware')
 
 //get all user data if the user is candidat or recruteur
 
-router.get('/dataUer/:id',async(req,res)=>{
+router.get('/dataUser/:id',async(req,res)=>{
     const {id} = req.params;
     try{
         const recruteurData = await Recruteur.findOne({ id_user: id });
