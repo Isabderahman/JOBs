@@ -52,17 +52,6 @@ const InfosPrsnlCandidat = () => {
             Télécharger la photo de profil <i className="fas fa-download"></i>
           </label>
         </div>
-        <div className="candidat_cv">
-          <input
-            type="file"
-            className="profile-input"
-            id="profile-input-candidat"
-            name="cv"
-          />
-          <label htmlFor="profile-input-candidat">
-            Télécharger le cv <i className="fas fa-download"></i>
-          </label>
-        </div>
         <input type="text" name="nom" placeholder="Nom" required onChange={handleChnangeFormPer} />
         <input type="text" name="prenom" placeholder="Prénom" required onChange={handleChnangeFormPer} />
         <input type="email" name="email" placeholder="Email" required onChange={handleChnangeFormPer} />
