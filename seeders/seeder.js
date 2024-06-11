@@ -193,6 +193,7 @@ async function seedDatabase() {
         titre: "Publication 1",
         contenu: "Contenu de la publication 1",
         auteur: insertedUsers[0]._id,
+        imagePath:"sqjflkjdsqlkfjd",
       },
       {
         titre: "Publication 2",
@@ -576,11 +577,6 @@ async function seedDatabase() {
         logo: "http://www.entreprise-b.com/logo.png",
       },
       {
-        nom: "Entreprise Chocho",
-        adresse: "789789 Boulevard de Exemple, 13000 Marseille, France",
-        activite: "Consulting",
-      },
-      {
         nom: "Entreprise samar",
         siret: "12347887",
         adresse: "123 Rue de Exemple, 75000 Paris, France",
@@ -700,6 +696,7 @@ async function seedDatabase() {
         adresse: "456 Avenue de Exemple, 69000 Lyon, France",
         date_naissance: new Date("1985-02-15"),
         telephone: "0787654321",
+        profilepath:"kjfsdlkjlkdsjlk"
       },
     ];
 
@@ -780,7 +777,7 @@ async function seedDatabase() {
       typeContrat: 'CDI',
       salaire: '50000',
       lieu: 'Paris',
-      idEntreprises: entreprisess[Math.floor(Math.random() * entreprisess.length)]._id,
+      idEntreprises: insertedEntreprise[0]._id,
       competences: ['Compétence 1', 'Compétence 2'],
       experiences: ['Experience 1', 'Experience 2'],
       autres_informations: 'Autres informations pertinentes',
