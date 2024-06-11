@@ -1,8 +1,5 @@
-
 .cards_infos {
   display: flex;
-
-
 }
 .tabs {
   padding: 15px;
@@ -36,7 +33,7 @@
   background: #058c42;
 }
 
-.cards_infos button {
+button {
   border: none;
 }
 .content-tabs {
@@ -63,8 +60,6 @@
 }
 .active-content {
   display: block;
-  color: #058c42;
-
 }
 .card {
   background-color: #fff;
@@ -76,6 +71,7 @@
   position: relative;
   box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 0 0 rgb(0 0 0 / 20%);
   padding: 15px;
+  background-color: #454955;
 }
 
 .cardContent {

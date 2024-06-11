@@ -31,7 +31,7 @@ export default function LeftSide() {
 
   return (
     <div className="container">
-      <aside className="carduser">
+      <aside className="card">
         <div className="userInfo">
           <div className="cardBackground"></div>
           <Link to={"/profile-utilisateur"}>
@@ -62,7 +62,7 @@ export default function LeftSide() {
 
       {user.type_user === "candidat" && (
         <>
-          <aside className="carduser">
+          <aside className="card">
             <div className="details">
               <h3 className="sectionTitle">Éducation</h3>
               <div className="sectionContent">
@@ -77,7 +77,7 @@ export default function LeftSide() {
             </div>
           </aside>
 
-          <aside className="card">
+          <aside className="carduser">
             <div className="details">
               <h3 className="sectionTitle">Expériences</h3>
               <div className="sectionContent">
@@ -92,7 +92,7 @@ export default function LeftSide() {
             </div>
           </aside>
 
-          <aside className="carduser">
+          <aside className="card">
             <div className="details">
               <h3 className="sectionTitle">Compétences</h3>
               <div className="sectionContent">

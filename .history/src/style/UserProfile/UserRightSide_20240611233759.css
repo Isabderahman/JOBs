@@ -38,6 +38,7 @@
 
 .cards_infos button {
   border: none;
+  color: #058c42;
 }
 .content-tabs {
   flex-grow: 1;
@@ -63,8 +64,6 @@
 }
 .active-content {
   display: block;
-  color: #058c42;
-
 }
 .card {
   background-color: #fff;

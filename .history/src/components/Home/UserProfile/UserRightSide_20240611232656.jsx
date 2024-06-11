@@ -35,7 +35,9 @@ const UserRightSide = () => {
           <div className="card">
             <div className="cardContent">
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos facilis eum minus ullam error illo cupiditate aperiam fugit ab, ut unde aliquid non natus a animi dolorum suscipit beatae fuga minima? Quas quasi provident sit aliquid! Quod, eos exercitationem laboriosam maxime veniam quae blanditiis! Corporis repellat, eligendi cupiditate possimus voluptate laborum eius saepe mollitia minima nisi culpa pariatur sequi veritatis deleniti quo? Earum, debitis eum sunt molestias harum placeat laudantium incidunt quis ipsam fugiat iste corporis dignissimos aspernatur asperiores dolores tenetur cumque iusto nobis est modi, adipisci sint? Culpa nihil temporibus maiores qui eligendi iure necessitatibus veniam? Autem, labore neque enim cupiditate qui asperiores culpa ullam iure. Corrupti temporibus molestias non vitae! Voluptate veniam eum nulla rem consectetur aperiam fugit velit deleniti ullam neque accusamus odit fugiat quos nisi ad et, eius facere a dolores. Esse consectetur delectus cum dicta ducimus aliquid rem porro voluptatibus, exercitationem sint laborum atque non, reiciendis quisquam accusantium unde iure neque commodi. Animi adipisci reprehenderit consequatur impedit itaque maiores dolorum velit mollitia corrupti ducimus dolore quam, numquam nemo nihil unde distinctio, repudiandae recusandae inventore aperiam. Totam, dolorem repellendus. Iusto numquam tenetur reprehenderit voluptatibus deserunt, consectetur corporis quidem, atque dolorem quasi quam autem eaque commodi quae.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Obcaecati praesentium incidunt quia aspernatur quasi quidem
+                facilis quo nihil vel voluptatum?
               </p>
             </div>
           </div>

@@ -1,7 +1,8 @@
 
 .cards_infos {
   display: flex;
-
+  background-color: #f2f2f2;
+  border-radius: 5px;
 
 }
 .tabs {
@@ -36,7 +37,7 @@
   background: #058c42;
 }
 
-.cards_infos button {
+button {
   border: none;
 }
 .content-tabs {
@@ -63,8 +64,6 @@
 }
 .active-content {
   display: block;
-  color: #058c42;
-
 }
 .card {
   background-color: #fff;
