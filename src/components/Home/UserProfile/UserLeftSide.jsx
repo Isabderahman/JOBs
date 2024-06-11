@@ -77,7 +77,7 @@ export default function LeftSide() {
             </div>
           </aside>
 
-          <aside className="card">
+          <aside className="carduser">
             <div className="details">
               <h3 className="sectionTitle">Expériences</h3>
               <div className="sectionContent">
