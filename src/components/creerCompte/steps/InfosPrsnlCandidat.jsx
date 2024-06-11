@@ -40,6 +40,7 @@ const InfosPrsnlCandidat = () => {
   return (
     <div className="infos_prsnl_candidat_container">
       <form>
+        <div className="without_btn">
         <div className="candidat_profil">
           <input
             type="file"
@@ -73,6 +74,7 @@ const InfosPrsnlCandidat = () => {
         <div className="input_date">
           <label>Date de naissance</label>
           <input type="date" name="date_naissance" required onChange={handleChnangeFormPer}/>
+        </div>
         </div>
         <div className="btn">
           <button type="button" id="retour" onClick={handleRetour}>

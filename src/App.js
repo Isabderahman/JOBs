@@ -66,6 +66,10 @@ function App() {
               }
             />
             
+<<<<<<< HEAD
+=======
+
+>>>>>>> 601a9c3a (rajout du style du formulaire d'inscription)
           </>
         ) : (
           <Route path="*" element={<Navigate to="/" />} />

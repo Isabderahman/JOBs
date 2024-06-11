@@ -140,7 +140,7 @@ const InfosProsCandidat = ({ infos_prsnl_candidat }) => {
     </>
   ) : (
     <div className="infos_pro_candidat_container">
-      <form action="" on onSubmit={handleCVSubmit}>
+      <form action=""  onSubmit={handleCVSubmit}>
         <div className="candidat_cv">
           <input
             type="file"
@@ -155,6 +155,8 @@ const InfosProsCandidat = ({ infos_prsnl_candidat }) => {
           <input type="submit" value="traitement de AI" />
         </div>
       </form>
+
+
       <form action="" onSubmit={handleSubmit}>
         {/* Education Section */}
         {formData.educations.map((education, index) => (
@@ -217,7 +219,6 @@ const InfosProsCandidat = ({ infos_prsnl_candidat }) => {
                 Supprimer
               </button>
             </div>
-            <hr />
           </div>
         ))}
 
@@ -282,7 +283,6 @@ const InfosProsCandidat = ({ infos_prsnl_candidat }) => {
                 Supprimer
               </button>
             </div>
-            <hr />
           </div>
         ))}
 
@@ -312,7 +312,6 @@ const InfosProsCandidat = ({ infos_prsnl_candidat }) => {
                 Supprimer
               </button>
             </div>
-            <hr />
           </div>
         ))}
 
