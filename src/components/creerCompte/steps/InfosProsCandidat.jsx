@@ -113,7 +113,7 @@ const InfosProsCandidat = ({ infos_prsnl_candidat }) => {
   }
 
   const handleRedirecthome = () => {
-    navigate("/home");
+    navigate("/");
   };
 
   const handleSubmit = async (e) => {
