@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export default function LeftSide() {
+  const userData = JSON.parse(sessionStorage.getItem("userData"));
+  console.log(userData)
   return (
     <Container>
       <Card>
@@ -10,6 +12,7 @@ export default function LeftSide() {
           <CardBackground />
           <Link to={"/profile-utilisateur"}>
             <Photo />
+            <span>{`${userData.nom} ${userData.prenom}`}</span>
           </Link>
           <a>
             <AddPhotoText></AddPhotoText>
@@ -85,7 +88,7 @@ const CardBackground = styled.div`
 `;
 
 const Photo = styled.div`
-  background: url("../imgs/download.jpeg");
+  background: url(${"../imgs/download.jpeg"});
   background-position: center;
   background-size: 100%;
   background-clip: content-box;
