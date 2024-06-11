@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import  {useLocation } from "react-router-dom";
 
@@ -50,11 +51,14 @@ const Header = () => {
             </NavList>
 
             <User>
+            <Link to={"/profile-utilisateur"}>
               <a>
                 <i className="fas fa-user"></i>
                 <span>Moi</span>
                 <i className="fas fa-caret-down"></i>
               </a>
+            </Link>
+              
 
               <SignOut>
                 <a>Déconnexion</a>
