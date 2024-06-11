@@ -5,11 +5,19 @@ export default function OfferDetails({ offer, onClose }) {
   return (
     <DetailsContainer>
       <CloseButton onClick={onClose}>X</CloseButton>
-      <CompanyImage src={offer.companyImage} alt={offer.companyName} />
-      <CompanyName>{offer.companyName}</CompanyName>
-      <CompanySpecialty>{offer.companySpecialty}</CompanySpecialty>
-      <CompanyLocation>{offer.companyLocation}</CompanyLocation>
-      <CompanyDescription>{offer.companyDescription}</CompanyDescription>
+      <CompanyImage src={offer.idEntreprises.logo} alt={offer.idEntreprises.nom} />
+      <CompanyName>{offer.idEntreprises.nom}</CompanyName>
+      <CompanySpecialty>{offer.idEntreprises.activite}</CompanySpecialty>
+      <CompanyLocation>{offer.idEntreprises.adresse}</CompanyLocation>
+      <CompanyLocation>{offer.idEntreprises.email}</CompanyLocation>
+      <br />
+      <CardDescription>{`${offer.description} ${offer.autres_informations}`}</CardDescription>
+      <CardDescription>{`salaire :  ${offer.salaire}`}</CardDescription>
+      <CardDescription>{`experiences :  ${offer.experiences}`}</CardDescription>
+      <CardDescription>{`competences :  ${offer.competences}`}</CardDescription>
+      <CardDescription>{`date début de postulation :  ${new Date(offer.date_debut).toLocaleDateString("en-CA")}`}</CardDescription>
+      <CardDescription>{`date fin de postulation:  ${new Date(offer.date_fin).toLocaleDateString("en-CA")}`}</CardDescription>
+
     </DetailsContainer>
   );
 }
@@ -58,8 +66,6 @@ const CompanyLocation = styled.p`
   font-size: 16px;
   color: #333;
 `;
-
-const CompanyDescription = styled.p`
-  font-size: 14px;
-  color: #333;
+const CardDescription = styled.div`
+  margin: 8px 0;
 `;

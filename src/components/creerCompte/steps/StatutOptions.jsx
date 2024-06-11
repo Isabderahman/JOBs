@@ -1,34 +1,61 @@
-import React, { useState } from 'react';
-import '../../../style/steps/statut_options.css';
-import InfosPrsnlCandidat from './InfosPrsnlCandidat';
-import InfosPrsnlRecruteur from './InfosPrsnlRecruteur';
+import React, { useState } from "react";
+import "../../../style/steps/statut_options.css";
+import InfosPrsnlCandidat from "./InfosPrsnlCandidat";
+import InfosPrsnlRecruteur from "./InfosPrsnlRecruteur";
 
 const StatutOptions = () => {
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState("");
   const [buttonClicked, setButtonClicked] = useState(false);
+  const [dropdownActive, setDropdownActive] = useState(false);
 
-  const handleSelect = (e) => {
-    setSelectedOption(e.target.value);
-    setButtonClicked(false); 
+  const handleSelect = (option) => {
+    setSelectedOption(option);
+    setButtonClicked(false);
+    setDropdownActive(false);
   };
 
   const handleButtonClick = () => {
     if (selectedOption) {
       setButtonClicked(true);
     } else {
-      alert('Veuillez sélectionner une option avant de continuer.');
+      alert("Veuillez sélectionner une option avant de continuer.");
     }
   };
 
+  const toggleDropdown = () => {
+    setDropdownActive(!dropdownActive);
+  };
+
   return (
-    <div className='statut_options_container'>
+    <div className="statut_options_container">
       {!buttonClicked ? (
         <>
-          <select name="statut_options"  onChange={handleSelect}>
-            <option value="">--sélectionner votre option--</option>
-            <option value="candidat">Candidat</option>
-            <option value="recruteur">Recruteur</option>
-          </select>
+          <div
+            className={`dropdown ${dropdownActive ? "active" : ""}`}
+            onClick={toggleDropdown}
+          >
+            {selectedOption
+              ? selectedOption.charAt(0).toUpperCase() + selectedOption.slice(1)
+              : "--sélectionner votre option professionnelle--"}
+            <span className="left-icon"></span>
+            <span className="right-icon"></span>
+            <div className="items">
+              <a
+                href="#"
+                onClick={() => handleSelect("candidat")}
+                style={{ "--i": 1 }}
+              >
+                <span></span>Candidat
+              </a>
+              <a
+                href="#"
+                onClick={() => handleSelect("recruteur")}
+                style={{ "--i": 2 }}
+              >
+                <span></span>Recruteur
+              </a>
+            </div>
+          </div>
 
           <div className="btnSuivant">
             <button onClick={handleButtonClick}>Suivant</button>
@@ -36,19 +63,8 @@ const StatutOptions = () => {
         </>
       ) : (
         <>
-          {selectedOption === 'candidat' && (
-            
-              <>
-              <InfosPrsnlCandidat/>
-              </>
-          )}
-
-          {selectedOption === 'recruteur' && (
-            <div className="option_details">
-               <h2>veuillez saisir vos informations personnelles </h2>
-               <InfosPrsnlRecruteur/>
-            </div>
-          )}
+          {selectedOption === "candidat" && <InfosPrsnlCandidat />}
+          {selectedOption === "recruteur" && <InfosPrsnlRecruteur />}
         </>
       )}
     </div>

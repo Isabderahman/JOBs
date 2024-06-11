@@ -1,18 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export default function LeftSide() {
+  const userData = JSON.parse(sessionStorage.getItem("userData"));
+  console.log(userData)
   return (
     <Container>
       <Card>
         <UserInfo>
           <CardBackground />
-          <a>
+          <Link to={"/profile-utilisateur"}>
             <Photo />
-            <Link>Bienvenue !</Link>
-          </a>
+            <span>{`${userData.nom} ${userData.prenom}`}</span>
+          </Link>
           <a>
-            <AddPhotoText>Ajouter une photo</AddPhotoText>
+            <AddPhotoText></AddPhotoText>
           </a>
         </UserInfo>
 
@@ -22,7 +25,6 @@ export default function LeftSide() {
               <span>Connexions</span>
               <span>Élargissez votre réseau</span>
             </div>
-
             <i className="fas fa-user-plus"></i>
           </a>
         </Widget>
@@ -36,8 +38,6 @@ export default function LeftSide() {
           </div>
         </Item>
       </Card>
-
-      {/*  *************************************************CommunityCard ************************************************** */}
 
       <CommunityCard>
         <a>
@@ -57,10 +57,12 @@ export default function LeftSide() {
     </Container>
   );
 }
+
 const Container = styled.div`
   grid-area: leftSide;
   padding-left: 12px;
 `;
+
 const Card = styled.aside`
   background-color: #fff;
   text-align: center;
@@ -76,6 +78,7 @@ const UserInfo = styled.div`
   border-bottom: 1px solid rgba(0 0 0 0.15);
   padding: 12px 12px 16px;
 `;
+
 const CardBackground = styled.div`
   background: url("/imgs/card-bg.svg");
   background-position: center;
@@ -83,8 +86,9 @@ const CardBackground = styled.div`
   height: 54px;
   margin: -12px -12px;
 `;
+
 const Photo = styled.div`
-  background: url("../imgs/download.jpeg");
+  background: url(${"../imgs/download.jpeg"});
   background-position: center;
   background-size: 100%;
   background-clip: content-box;
@@ -96,13 +100,9 @@ const Photo = styled.div`
   border: 2px solid white;
   box-shadow: none;
   border-radius: 5px;
+  cursor: pointer;
 `;
-const Link = styled.div`
-  font-size: 16px;
-  line-height: 1.5;
-  font-weight: 600;
-  color: rgba(21, 21, 21, 0.9);
-`;
+
 const AddPhotoText = styled.div`
   color: #058c42;
   margin-top: 4px;
@@ -138,6 +138,7 @@ const Widget = styled.div`
     }
   }
 `;
+
 const Item = styled.div`
   div {
     display: flex;
@@ -151,7 +152,6 @@ const Item = styled.div`
   }
 `;
 
-// *************************************************CommunityCard **************************************************
 const CommunityCard = styled(Card)`
   a {
     padding: 10px 18px;
@@ -159,12 +159,10 @@ const CommunityCard = styled(Card)`
     display: flex;
     justify-content: space-between;
   }
-
   a:hover {
     color: #058c42;
     cursor: pointer;
   }
-
   a:last-child {
     color: rgba(0, 0, 0, 0.6);
     border-top: 1px solid #d6ced6;

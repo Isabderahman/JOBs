@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const OffreForm = () => {
+  const userData = JSON.parse(sessionStorage.getItem("userData"));
+  const token = sessionStorage.getItem('loginData')
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     titre: '',
     description: '',
@@ -11,9 +15,10 @@ const OffreForm = () => {
     competences: '',
     experiences: '',
     autres_informations: '',
-    logo: null,
     date_debut: '',
-    date_fin: ''
+    date_fin: '',
+    idEntreprise :`${userData.idEntreprise}`,
+    date_publication:new Date().toLocaleDateString("en-CA")
   });
 
   const [errors, setErrors] = useState({});
@@ -26,13 +31,6 @@ const OffreForm = () => {
     });
   };
 
-  const handleFileChange = (e) => {
-    const { name, files } = e.target;
-    setFormData({
-      ...formData,
-      [name]: files[0]
-    });
-  };
 
   const validate = () => {
     let formErrors = {};
@@ -49,10 +47,20 @@ const OffreForm = () => {
     return Object.keys(formErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      // Traitement des données du formulaire
+      try {
+        const response = await axios.post('http://127.0.0.1:3000/api/offres', formData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log('Offre créée avec succès!', response.data);
+        navigate("/emploi");
+      } catch (error) {
+        console.error('Erreur lors de la création de l\'offre', error);
+      }
       console.log(formData);
     }
   };
@@ -61,7 +69,6 @@ const OffreForm = () => {
     <PageContainer>
       <Header>
         <Logo src="logo-color-white-bg-green.png" alt="JOB's Logo" />
-        <ProfileImg src="../imgs/download.jpeg" alt="Profile" />
       </Header>
       <Container>
         <Title>Publier une offre d'emploi</Title>
@@ -108,10 +115,6 @@ const OffreForm = () => {
             <Textarea id="autres_informations" name="autres_informations" value={formData.autres_informations} onChange={handleChange} />
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="logo">Logo</Label>
-            <Input type="file" id="logo" name="logo" onChange={handleFileChange} />
-          </FormGroup>
-          <FormGroup>
             <Label htmlFor="date_debut">Date de début</Label>
             <Input type="date" id="date_debut" name="date_debut" value={formData.date_debut} onChange={handleChange} />
             {errors.date_debut && <Error>{errors.date_debut}</Error>}
@@ -155,10 +158,6 @@ const Logo = styled.img`
   height: 35px;
 `;
 
-const ProfileImg = styled.img`
-  width: auto;
-  height: 30px;
-`;
 
 const Container = styled.div`
   background-color: #ffffff;

@@ -1,11 +1,10 @@
-.creer_compte_container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80vw;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.09);
-    margin: 20px;
+.creer_compte_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 20px;
 }

@@ -114,7 +114,7 @@ const InfosPrsnlRecruteur = () => {
   }
 
   return (
-    <div className="infos_prsnl_candidat_container">
+    <div className="infos_prsnl_recruteur_container">
       <form onSubmit={handleSubmit}>
         <div className="recruteur">
           <input
@@ -128,66 +128,8 @@ const InfosPrsnlRecruteur = () => {
             Télécharger la photo de profil <i className="fas fa-download"></i>
           </label>
         </div>
-        <input
-          type="text"
-          placeholder="Nom"
-          name="nom"
-          value={recruteurData.nom}
-          onChange={handleRecruteurChange}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Prénom"
-          name="prenom"
-          value={recruteurData.prenom}
-          onChange={handleRecruteurChange}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          name="email"
-          value={recruteurData.email}
-          onChange={handleRecruteurChange}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          name="password"
-          value={recruteurData.password}
-          onChange={handleRecruteurChange}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Adresse"
-          name="adresse"
-          value={recruteurData.adresse}
-          onChange={handleRecruteurChange}
-          required
-        />
-        <input
-          type="number"
-          placeholder="Téléphone"
-          name="telephone"
-          value={recruteurData.telephone}
-          onChange={handleRecruteurChange}
-          required
-        />
-        <div className="input_date">
-          <label>Date de naissance</label>
-          <input
-            type="date"
-            name="date_naissance"
-            value={recruteurData.date_naissance}
-            onChange={handleRecruteurChange}
-            required
-          />
-        </div>
+
         <div className="entreprise_select">
-          <label htmlFor="entrepriseSelect">Entreprise</label>
           <select
             name="idEntreprise"
             id="entrepriseSelect"
@@ -202,79 +144,143 @@ const InfosPrsnlRecruteur = () => {
               </option>
             ))}
           </select>
-          <div className="new_company">
+
+          <div className="entr_non_affiche">
+            <label> entreprise n'est pas affichée?</label>
             <input
               type="checkbox"
-              id="newCompanyCheckbox"
               checked={newCompany}
               onChange={(e) => setNewCompany(e.target.checked)}
             />
-            <label htmlFor="newCompanyCheckbox">
-              Mon entreprise n'est pas affichée
-            </label>
           </div>
-          {newCompany && (
-            <div className="new_company_form">
-              <div>
-                <label>Nom:</label>
-                <input
-                  type="text"
-                  name="nom"
-                  value={formData.nom}
-                  onChange={handleNewCompanyChange}
-                  required
-                />
-              </div>
-              <div>
-                <label>SIRET:</label>
-                <input
-                  type="text"
-                  name="siret"
-                  value={formData.siret}
-                  onChange={handleNewCompanyChange}
-                />
-              </div>
-              <div>
-                <label>Adresse:</label>
-                <input
-                  type="text"
-                  name="adresse"
-                  value={formData.adresse}
-                  onChange={handleNewCompanyChange}
-                  required
-                />
-              </div>
-              <div>
-                <label>Activité:</label>
-                <input
-                  type="text"
-                  name="activite"
-                  value={formData.activite}
-                  onChange={handleNewCompanyChange}
-                  required
-                />
-              </div>
-              <div>
-                <label>Site Web:</label>
-                <input
-                  type="text"
-                  name="site_web"
-                  value={formData.site_web}
-                  onChange={handleNewCompanyChange}
-                />
-              </div>
-              <div>
-                <label>Logo:</label>
-                <input
-                  type="text"
-                  name="logo"
-                  value={formData.logo}
-                  onChange={handleNewCompanyChange}
-                />
-              </div>
-            </div>
-          )}
         </div>
+
+        {/* -------------------------------------------------------------------------------------------------------------------  */}
+
+        {newCompany && (
+          <div className="new_company_form">
+            <div>
+              <input
+                placeholder="Nom de l'entreprise"
+                type="text"
+                name="nom"
+                value={formData.nom}
+                onChange={handleNewCompanyChange}
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="siret"
+                placeholder="Siret"
+                value={formData.siret}
+                onChange={handleNewCompanyChange}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Adresse"
+                name="adresse"
+                value={formData.adresse}
+                onChange={handleNewCompanyChange}
+                required
+              />
+            </div>
+            <div>
+              <input
+                placeholder="Activité"
+                type="text"
+                name="activite"
+                value={formData.activite}
+                onChange={handleNewCompanyChange}
+                required
+              />
+            </div>
+            <div>
+              <input
+                placeholder="Site Web"
+                type="text"
+                name="site_web"
+                value={formData.site_web}
+                onChange={handleNewCompanyChange}
+              />
+            </div>
+            <div>
+              <input
+                placeholder="Logo"
+                type="text"
+                name="logo"
+                value={formData.logo}
+                onChange={handleNewCompanyChange}
+              />
+            </div>
+          </div>
+        )}
+
+        <div className="recruteur_infos">
+          <h3>Recruteur Infos: </h3>
+          <input
+            type="text"
+            placeholder="Nom"
+            name="nom"
+            value={recruteurData.nom}
+            onChange={handleRecruteurChange}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Prénom"
+            name="prenom"
+            value={recruteurData.prenom}
+            onChange={handleRecruteurChange}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            name="email"
+            value={recruteurData.email}
+            onChange={handleRecruteurChange}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Mot de passe"
+            name="password"
+            value={recruteurData.password}
+            onChange={handleRecruteurChange}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Adresse"
+            name="adresse"
+            value={recruteurData.adresse}
+            onChange={handleRecruteurChange}
+            required
+          />
+          <input
+            type="number"
+            placeholder="Téléphone"
+            name="telephone"
+            value={recruteurData.telephone}
+            onChange={handleRecruteurChange}
+            required
+          />
+          <div className="input_date">
+            <label>Date de naissance</label>
+            <input
+              type="date"
+              name="date_naissance"
+              value={recruteurData.date_naissance}
+              onChange={handleRecruteurChange}
+              required
+            />
+          </div>
+        </div>
+
         <div className="btn">
           <button type="button" id="retour" onClick={handleRetour}>
             Retour

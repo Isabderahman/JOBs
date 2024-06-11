@@ -8,6 +8,8 @@ import Emplois from "./components/Home/Emplois.jsx";
 import CreerCompte from "./components/creerCompte/creerCompte.jsx";
 import LoadingScreen from "./components/Home/Layouts/LoadingScreen.jsx";
 import OffreForm from "./components/Home/Layouts/OffreForm.jsx";
+import UserProfile from "./components/Home/UserProfile/UserProfile.jsx";
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -53,6 +55,21 @@ function App() {
                 </>
               }
             />
+
+            <Route
+              path="/profile-utilisateur"
+              element={
+                <>
+                  <Header />
+                  <UserProfile/>
+                </>
+              }
+            />
+            
+<<<<<<< HEAD
+=======
+
+>>>>>>> 601a9c3a (rajout du style du formulaire d'inscription)
           </>
         ) : (
           <Route path="*" element={<Navigate to="/" />} />

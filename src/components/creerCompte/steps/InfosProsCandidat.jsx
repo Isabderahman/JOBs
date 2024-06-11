@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import InfosPrsnlCandidat from "./InfosPrsnlCandidat";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import LoadingScreen from "../../Home/Layouts/LoadingScreen";
 
 const InfosProsCandidat = ({ infos_prsnl_candidat }) => {
+  const [loding, setLoading] = useState(false);
   const inforpersonnel = useState(infos_prsnl_candidat);
   const [formData, setFormData] = useState({
     educations: [
@@ -34,38 +36,49 @@ const InfosProsCandidat = ({ infos_prsnl_candidat }) => {
   const handleCVSubmit = async (e) => {
     try {
       e.preventDefault();
+      setLoading(true);
       const formDataToSend = new FormData();
       formDataToSend.append("cv", CV);
-  
+
       const response = await axios.post(
         "http://127.0.0.1:5000/process_cv",
         formDataToSend
       );
-  
+
       // Formatting dates
       const formattedResponseData = {
         ...response.data.response,
         educations: response.data.response.educations.map((education) => ({
           ...education,
-          date_debut: education.date_debut ? new Date(education.date_debut).toLocaleDateString('en-CA') : null,
-          date_fin: education.date_fin ? new Date(education.date_fin).toLocaleDateString('en-CA') : null,
+          date_debut: education.date_debut
+            ? new Date(education.date_debut).toLocaleDateString("en-CA")
+            : null,
+          date_fin: education.date_fin
+            ? new Date(education.date_fin).toLocaleDateString("en-CA")
+            : null,
         })),
         experiences: response.data.response.experiences.map((experience) => ({
           ...experience,
-          date_debut: experience.date_debut ? new Date(experience.date_debut).toLocaleDateString('en-CA') : null,
-          date_fin: experience.date_fin ? new Date(experience.date_fin).toLocaleDateString('en-CA') : null,
+          date_debut: experience.date_debut
+            ? new Date(experience.date_debut).toLocaleDateString("en-CA")
+            : null,
+          date_fin: experience.date_fin
+            ? new Date(experience.date_fin).toLocaleDateString("en-CA")
+            : null,
         })),
       };
-  
+
       console.log(formattedResponseData);
-  
+
       // Update the state with formatted data
       setFormData(formattedResponseData);
     } catch (error) {
       console.error("Erreur de traitement OCR extraction !! ", error);
+    } finally {
+      setLoading(false);
     }
   };
-  
+
   const [retour, setRetour] = useState(false);
   const navigate = useNavigate();
 
@@ -119,9 +132,15 @@ const InfosProsCandidat = ({ infos_prsnl_candidat }) => {
     }
   };
 
-  return (
+  return loding ? (
+    <>
+      {" "}
+      <LoadingScreen />
+      <h1>Traitemant de l'extraxtion des donnés de votre cv</h1>
+    </>
+  ) : (
     <div className="infos_pro_candidat_container">
-      <form action="" on onSubmit={handleCVSubmit}>
+      <form action=""  onSubmit={handleCVSubmit}>
         <div className="candidat_cv">
           <input
             type="file"
@@ -136,6 +155,8 @@ const InfosProsCandidat = ({ infos_prsnl_candidat }) => {
           <input type="submit" value="traitement de AI" />
         </div>
       </form>
+
+
       <form action="" onSubmit={handleSubmit}>
         {/* Education Section */}
         {formData.educations.map((education, index) => (
@@ -198,7 +219,6 @@ const InfosProsCandidat = ({ infos_prsnl_candidat }) => {
                 Supprimer
               </button>
             </div>
-            <hr />
           </div>
         ))}
 
@@ -263,7 +283,6 @@ const InfosProsCandidat = ({ infos_prsnl_candidat }) => {
                 Supprimer
               </button>
             </div>
-            <hr />
           </div>
         ))}
 
@@ -293,7 +312,6 @@ const InfosProsCandidat = ({ infos_prsnl_candidat }) => {
                 Supprimer
               </button>
             </div>
-            <hr />
           </div>
         ))}
 
