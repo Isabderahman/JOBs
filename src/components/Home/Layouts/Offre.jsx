@@ -1,7 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
+import axios from "axios";
+import React from "react";
+import styled from "styled-components";
 
 export default function CompanyCard({ offer, onMoreInfoClick }) {
+  const userData = JSON.parse(sessionStorage.getItem("userData"));
+  console.log(userData._id)
   return (
     <CardContainer>
       <CardImage src={offer.idEntreprises.logo} alt={offer.idEntreprises.nom} />
@@ -11,8 +14,27 @@ export default function CompanyCard({ offer, onMoreInfoClick }) {
         <CardLocation>{offer.idEntreprises.adresse}</CardLocation>
         <CardDescription>{`${offer.description} ${offer.autres_informations}`}</CardDescription>
         <CardActions>
-          <ActionButton>Postuler</ActionButton>
-          <ActionButton onClick={() => onMoreInfoClick(offer)}>Plus d'information</ActionButton>
+          {!userData.idEntreprise && (
+            <ActionButton
+              onClick={async () => {
+                try {
+                  
+                  const response=await axios.post(
+                    `http://127.0.0.1:3000/api/offres/${offer._id}/candidatures`,{candidatId:`${userData._id}`}
+                  );
+                  console.log("postulation", response.data);
+                } catch (e) {
+                  console.error("erreur", e);
+                }
+              }}
+            >
+              Postuler
+            </ActionButton>
+          )}
+
+          <ActionButton onClick={() => onMoreInfoClick(offer)}>
+            Plus d'information
+          </ActionButton>
         </CardActions>
       </CardContent>
     </CardContainer>
