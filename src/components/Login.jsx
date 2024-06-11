@@ -124,7 +124,7 @@ const Login = ({ setIsAuthenticated }) => {
       </SearchBar>
 
       <Section>
-        <div className="card">
+        <div>
           <img src="imgs/1.png" alt="" />
           <img src="imgs/4.png" alt="" />
         </div>
@@ -180,7 +180,7 @@ const Login = ({ setIsAuthenticated }) => {
           </div>
         </SignInContainer>
 
-        <div className="card">
+        <div >
           <img src="imgs/2.png" alt="" />
           <img src="imgs/3.png" alt="" />
         </div>
