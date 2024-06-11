@@ -7,7 +7,7 @@ const Publication = require("../models/Publication");
 const Entreprise = require("../models/Entreprise");
 const Recruteur = require("../models/Recruteur");
 const Candidat = require("../models/Candidat");
-
+const Offre = require('../models/Offre')
 // Connexion à MongoDB
 mongoose
   .connect("mongodb://localhost:27017/jobs01", {})
@@ -32,6 +32,8 @@ async function seedDatabase() {
     await Entreprise.deleteMany({});
     await Recruteur.deleteMany({});
     await Candidat.deleteMany({});
+    await Offre.deleteMany({});
+    
 
     // Ajouter des utilisateurs
     const users = [
@@ -763,12 +765,39 @@ async function seedDatabase() {
     ];
     insertedCnadidat = await Candidat.insertMany(candidats);
     console.log("les candidat ajouté avec success");
+
+
+    const entreprisess = await Entreprise.find(); // Assurez-vous d'avoir quelques entreprises dans votre collection
+    if (entreprises.length === 0) {
+      console.log('Veuillez ajouter quelques entreprises avant d\'exécuter le seeder.');
+      return;
+    }
+
+    const offres = Array.from({ length: 20 }).map((_, index) => ({
+      titre: `Offre ${index + 1}`,
+      description: `Description de l'offre ${index + 1}`,
+      date_publication: new Date(),
+      typeContrat: 'CDI',
+      salaire: '50000',
+      lieu: 'Paris',
+      idEntreprises: entreprisess[Math.floor(Math.random() * entreprisess.length)]._id,
+      competences: ['Compétence 1', 'Compétence 2'],
+      experiences: ['Experience 1', 'Experience 2'],
+      autres_informations: 'Autres informations pertinentes',
+      logo: 'https://via.placeholder.com/150',
+      date_debut: new Date(),
+      date_fin: new Date(),
+    }));
+
+    await Offre.insertMany(offres);
+    console.log('Seeder exécuté avec succès.');
     // Fermer la connexion à MongoDB
     mongoose.connection.close();
     console.log("Connexion à MongoDB fermée");
   } catch (error) {
     console.error("Erreur lors du seeding de la base de données:", error);
   }
+
 }
 
 //pour exucuter le seeder saisi la commande suivant :

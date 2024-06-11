@@ -3,21 +3,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const commentaireSchema = new Schema({
-  idCommentateur: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
-  contenu: {
-    type: String,
-    required: true
-  },
-  date_creation: {
-    type: Date,
-    required: true
-  }
-}, { _id: false });
+
 
 const offreSchema = new Schema({
   titre: {
@@ -73,7 +59,6 @@ const offreSchema = new Schema({
     type: Date,
     required: false
   },
-  commentaires: [commentaireSchema],
   candidature: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Candidat'
