@@ -67,12 +67,15 @@ const InfosPrsnlRecruteur = () => {
     let companyId = recruteurData.idEntreprise;
 
     if (newCompany) {
+      console.log(formData)
       try {
         const newCompanyResponse = await axios.post(
           "http://localhost:3000/api/entreprise",
           formData
         );
-        companyId = newCompanyResponse.data._id;
+        console.log(newCompanyResponse)
+        companyId =newCompanyResponse.data.entreprise._id;
+        console.log(companyId)
       } catch (error) {
         console.error("Error creating new company", error);
         return;
@@ -91,7 +94,7 @@ const InfosPrsnlRecruteur = () => {
       if (finalRecruteurData.profilePath) {
         formDataToSend.append("profilePath", finalRecruteurData.profilePath);
       }
-
+      console.log(finalRecruteurData)
       const response = await axios.post(
         "http://localhost:3000/api/signup",
         formDataToSend,
@@ -103,7 +106,7 @@ const InfosPrsnlRecruteur = () => {
       );
 
       console.log("SignUp successful!", response.data);
-      handleRedirecthome();
+      navigate('/');
     } catch (error) {
       console.error("Error creating recruteur", error);
     }
