@@ -23,15 +23,11 @@ export default function PostForm({ onClose, profileImage, profileName }) {
       valid = false;
     }
 
-    if (!image) {
-      newErrors.image = 'L\'image est requise.';
-      valid = false;
-    }
-
     setErrors(newErrors);
 
     if (valid) {
       // Envoyer les données ou faire une autre action
+      
       onClose();
     }
   };

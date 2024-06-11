@@ -3,12 +3,11 @@ import React, { useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+
 
 const Login = ({ setIsAuthenticated }) => {
   const location = useLocation();
   const navRef = useRef();
-  const dispatch = useDispatch();
 
   // Handle navigate
   const navigate = useNavigate();
@@ -31,7 +30,7 @@ const Login = ({ setIsAuthenticated }) => {
       setIsAuthenticated(true);
       
       const userID = response.data.id;
-      const { data: userData } = await axios.get(
+      const userData= await axios.get(
         `http://localhost:3000/api/dataUser/${userID}`,
         {
           headers: {
@@ -39,8 +38,9 @@ const Login = ({ setIsAuthenticated }) => {
           },
         }
       );
-      dispatch({ type: 'STOREUSERDATA', payload: userData });
+      sessionStorage.setItem("userData", JSON.stringify(userData.data));
       navigate("/home");
+      
     } catch (error) {
       console.error("Login failed!", error);
     }

@@ -12,7 +12,7 @@ const loginReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: true,
-        token: action.payload, // Assuming action.payload is the token
+        token: action.payload, 
       };
     case LOGOUT:
       return {

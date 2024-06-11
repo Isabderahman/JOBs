@@ -8,11 +8,8 @@ import Emplois from "./components/Home/Emplois.jsx";
 import CreerCompte from "./components/creerCompte/creerCompte.jsx";
 import LoadingScreen from "./components/Home/Layouts/LoadingScreen.jsx";
 import OffreForm from "./components/Home/Layouts/OffreForm.jsx";
-<<<<<<< HEAD
 import UserProfile from "./components/Home/UserProfile/UserProfile.jsx";
 
-=======
->>>>>>> 470dae65a98f1d1e7d909edbb9e1a9f15ad6703c
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -58,7 +55,6 @@ function App() {
                 </>
               }
             />
-<<<<<<< HEAD
 
             <Route
               path="/profile-utilisateur"
@@ -70,8 +66,6 @@ function App() {
               }
             />
             
-=======
->>>>>>> 470dae65a98f1d1e7d909edbb9e1a9f15ad6703c
           </>
         ) : (
           <Route path="*" element={<Navigate to="/" />} />

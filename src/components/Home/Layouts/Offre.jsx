@@ -4,12 +4,12 @@ import styled from 'styled-components';
 export default function CompanyCard({ offer, onMoreInfoClick }) {
   return (
     <CardContainer>
-      <CardImage src={offer.companyImage} alt={offer.companyName} />
+      <CardImage src={offer.idEntreprises.logo} alt={offer.idEntreprises.nom} />
       <CardContent>
-        <CardHeader>{offer.companyName}</CardHeader>
-        <CardSpecialty>{offer.companySpecialty}</CardSpecialty>
-        <CardLocation>{offer.companyLocation}</CardLocation>
-        <CardDescription>{offer.companyDescription}</CardDescription>
+        <CardHeader>{offer.idEntreprises.nom}</CardHeader>
+        <CardSpecialty>{offer.idEntreprises.activite}</CardSpecialty>
+        <CardLocation>{offer.idEntreprises.adresse}</CardLocation>
+        <CardDescription>{`${offer.description} ${offer.autres_informations}`}</CardDescription>
         <CardActions>
           <ActionButton>Postuler</ActionButton>
           <ActionButton onClick={() => onMoreInfoClick(offer)}>Plus d'information</ActionButton>
