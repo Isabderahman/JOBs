@@ -1,34 +1,61 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
+import axios from "axios";
 
-export default function PostForm({ onClose, profileImage, profileName }) {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+export default function PostForm({ onClose }) {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
-  const [errors, setErrors] = useState({ title: '', content: '', image: '' });
+  const [errors, setErrors] = useState({ title: "", content: "", image: "" });
+  const token = sessionStorage.getItem("loginData");
+  const userData = JSON.parse(sessionStorage.getItem("userData"));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let valid = true;
-    let newErrors = { title: '', content: '', image: '' };
+    let newErrors = { title: "", content: "", image: "" };
 
-    if (title.trim() === '') {
-      newErrors.title = 'Le titre est requis.';
+    if (title.trim() === "") {
+      newErrors.title = "Le titre est requis.";
       valid = false;
     }
 
-    if (content.trim() === '') {
-      newErrors.content = 'Le contenu est requis.';
+    if (content.trim() === "") {
+      newErrors.content = "Le contenu est requis.";
+      valid = false;
+    }
+
+    if (!image) {
+      newErrors.image = "L'image est requise.";
       valid = false;
     }
 
     setErrors(newErrors);
 
     if (valid) {
-      // Envoyer les données ou faire une autre action
-      
-      onClose();
+      const formData = new FormData();
+      formData.append("titre", title);
+      formData.append("contenu", content);
+      formData.append("imagePath", image);
+      formData.append("auteur", userData.id_user);
+
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/api/publication",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log("Publication created successfully!", response.data);
+        onClose();
+      } catch (error) {
+        console.error("Error creating publication:", error);
+      }
     }
   };
 
@@ -46,8 +73,12 @@ export default function PostForm({ onClose, profileImage, profileName }) {
         <CloseButton onClick={onClose}>x</CloseButton>
         <form onSubmit={handleSubmit}>
           <ProfileSection>
-            {profileImage?<ProfileImage src={profileImage} alt="User Profile"/>:<ProfileImage src="../imgs/download.jpeg" alt="No Profile"/>}
-            <ProfileName>{profileName}</ProfileName>
+            {userData.profilePath ==="../imgs/download.jpeg" ? (
+              <ProfileImage src={`${userData.profilePath}` } alt="User Profile" />
+            ) : (
+              <ProfileImage src="../imgs/download.jpeg" alt="No Profile" />
+            )}
+            <ProfileName>{`${userData.nom} ${userData.prenom}` }</ProfileName>
           </ProfileSection>
           <h2>Créer une publication</h2>
           <FormLabel htmlFor="title">Titre</FormLabel>
@@ -76,7 +107,9 @@ export default function PostForm({ onClose, profileImage, profileName }) {
               accept="image/*"
               onChange={handleImageChange}
             />
-            {imagePreview && <ImagePreview src={imagePreview} alt="Image Preview" />}
+            {imagePreview && (
+              <ImagePreview src={imagePreview} alt="Image Preview" />
+            )}
           </FileInputContainer>
           {errors.image && <ErrorMessage>{errors.image}</ErrorMessage>}
           <SubmitButton type="submit">Publier</SubmitButton>
@@ -121,7 +154,7 @@ const CloseButton = styled.button`
   border-radius: 4px;
   &:hover {
     background: #797979;
-    color:white;
+    color: white;
   }
 `;
 
@@ -168,7 +201,7 @@ const TextArea = styled.textarea`
 
 const FileInputContainer = styled.div`
   display: flex;
-  margin-bottom: 10px ;
+  margin-bottom: 10px;
 `;
 
 const FileInputLabel = styled.label`
@@ -181,7 +214,7 @@ const FileInputLabel = styled.label`
 
   &:hover {
     background: #838383;
-    color:white;
+    color: white;
   }
 `;
 
