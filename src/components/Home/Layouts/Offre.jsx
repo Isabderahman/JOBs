@@ -23,8 +23,10 @@ export default function CompanyCard({ offer, onMoreInfoClick }) {
                     `http://127.0.0.1:3000/api/offres/${offer._id}/candidatures`,{candidatId:`${userData._id}`}
                   );
                   console.log("postulation", response.data);
+                  alert("vous avez postulez à cette offre!");
                 } catch (e) {
                   console.error("erreur", e);
+
                 }
               }}
             >
