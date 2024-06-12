@@ -33,7 +33,7 @@ export default function LeftSide(userData) {
           {user.id_entreprise && (
             <>
               <h3 className="sectionTitle">Entreprise</h3>
-              <div className="sectionContent">{user.id_entreprise}</div>
+              <div className="sectionContent">{new Date(user.id_entreprise).toLocaleDateString("en-CA")}</div>
             </>
           )}
         </div>
