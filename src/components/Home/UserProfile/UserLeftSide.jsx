@@ -38,7 +38,7 @@ export default function LeftSide(userData) {
         </div>
       </aside>
 
-      {user.id_entreprise ? (
+      {!user.id_entreprise ? (
         <>
           <aside className="card">
             <div className="details">
