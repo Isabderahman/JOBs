@@ -1,7 +1,7 @@
 // Login.jsx
 import React, { useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import axios from "axios";
 
 
@@ -186,22 +186,6 @@ const Login = ({ setIsAuthenticated }) => {
         </div>
       </Section>
 
-      <Footer>
-        <hr />
-        <ul>
-          <a href="">browse job</a>
-          <a href="">browse companies</a>
-          <a href="">countries</a>
-          <a href="">about</a>
-          <a href="">help center</a>
-        </ul>
-        <select name="languages">
-          <option value="English">English</option>
-          <option value="Français">Français</option>
-          <option value="العربية">العربية</option>
-        </select>
-        <p>&copy; Job's {new Date().getFullYear()} . All rights reserved.</p>
-      </Footer>
     </Header>
   );
 };
@@ -404,6 +388,55 @@ const SignInContainer = styled.div`
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
+
+
+
+
+
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 40px -10px rgba(0, 128, 36, 0.2);
+  border-radius: 5px;
+
+  /* Styles pour l'animation rainbow */
+  ${(props) =>
+    props.rainbow &&
+    css`
+      animation: ${rotateAnimation} linear 8s infinite;
+
+      div {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(
+          to right,
+          green,
+          skyblue
+        );
+
+        &:after {
+          display: block;
+          content: "";
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left: 100%;
+          background: linear-gradient(
+            to right,
+            green,
+            skyblue
+          );
+        }
+      }
+
+
+    `}
+
+
+  
+
   .signin-header {
     text-align: center;
     margin-bottom: 20px;
@@ -515,52 +548,22 @@ const SignInContainer = styled.div`
   }
 
   @media only screen and (max-width: 800px){
-    .btn{
-      padding:0px;
+    .btn :not(.btn-google, .btn-facebook){
+      padding:10px;
     }
   }
   
 `;
 
-const Footer = styled.footer`
-  width: 100%;
-  height: 90px;
-  bottom: 0;
-  color: #454955;
 
-  hr {
-    margin: 5px 0;
-    border-top: #454955 solid;
-    opacity: 0.3;
-  }
-
-  ul {
-    width: 60%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: 50px;
-
-    a {
-      color: #0d0a0b;
-    }
-  }
-
-  select {
-    width: 120px;
-    float: right;
-    transform: translateY(-20px);
-    margin-right: 15px;
-  }
-
-  p {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    margin-top: 15px;
-  }
+const rotateAnimation = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 `;
+
+
+
+
 
 
 export default Login;
