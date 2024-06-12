@@ -1,14 +1,14 @@
 import React from "react";
 import "../../../style/UserProfile/UserRightSide.css";
 import { useState } from "react";
+import axios from "axios";
 
-const UserRightSide = () => {
+const UserRightSide = ({ offres, publications }) => {
   const [toggleState, setToggleState] = useState(1);
-
+  const token = sessionStorage.getItem("loginData");
   const toggleTab = (index) => {
     setToggleState(index);
   };
-
   return (
     <div className="right_side">
       <div className="cards_infos">
@@ -32,13 +32,30 @@ const UserRightSide = () => {
         >
           <h2>Publications</h2>
           <hr />
-          <div className="card">
-            <div className="cardContent">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos facilis eum minus ullam error illo cupiditate aperiam fugit ab, ut unde aliquid non natus a animi dolorum suscipit beatae fuga minima? Quas quasi provident sit aliquid! Quod, eos exercitationem laboriosam maxime veniam quae blanditiis! Corporis repellat, eligendi cupiditate possimus voluptate laborum eius saepe mollitia minima nisi culpa pariatur sequi veritatis deleniti quo? Earum, debitis eum sunt molestias harum placeat laudantium incidunt quis ipsam fugiat iste corporis dignissimos aspernatur asperiores dolores tenetur cumque iusto nobis est modi, adipisci sint? Culpa nihil temporibus maiores qui eligendi iure necessitatibus veniam? Autem, labore neque enim cupiditate qui asperiores culpa ullam iure. Corrupti temporibus molestias non vitae! Voluptate veniam eum nulla rem consectetur aperiam fugit velit deleniti ullam neque accusamus odit fugiat quos nisi ad et, eius facere a dolores. Esse consectetur delectus cum dicta ducimus aliquid rem porro voluptatibus, exercitationem sint laborum atque non, reiciendis quisquam accusantium unde iure neque commodi. Animi adipisci reprehenderit consequatur impedit itaque maiores dolorum velit mollitia corrupti ducimus dolore quam, numquam nemo nihil unde distinctio, repudiandae recusandae inventore aperiam. Totam, dolorem repellendus. Iusto numquam tenetur reprehenderit voluptatibus deserunt, consectetur corporis quidem, atque dolorem quasi quam autem eaque commodi quae.
-              </p>
+
+          {publications.map((pub) => (
+            <div className="card">
+              <div className="cardContent" key={pub._id}>
+                <h4>{pub.titre}</h4>
+                <h5>
+                  {new Date(pub.date_publication).toLocaleDateString("en-CA")}
+                </h5>
+                <p>{pub.contenu}</p>
+                <button onClick={async() => {
+                  try{
+                    axios.delete(`http://localhost:3000/api/publication/${pub._id}`,{
+                      headers:{
+                        Authorization: `Bearer ${token}`
+                      }
+                    })
+                    window.location.reload();
+                  }catch(e){
+                    console.error('erreur hors de supression',e)
+                  }
+                }}>supprimer</button>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
 
         <div
@@ -46,12 +63,36 @@ const UserRightSide = () => {
         >
           <h2>Offres d'emplois</h2>
           <hr />
-          <div className="card">
-            <div className="cardContent">
-              <p>
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus hic est dolor unde ipsa reiciendis earum at neque maxime, vel quo ab necessitatibus soluta, beatae, fugit magni ipsum quaerat inventore id ratione laborum dolorum tempora voluptatibus? Expedita libero temporibus repellendus quae tempora delectus error minus similique eius saepe, aperiam nulla, praesentium quos optio. Velit, exercitationem ducimus, quae obcaecati suscipit sed saepe ratione error sapiente recusandae laborum consequatur blanditiis illo ullam quisquam quibusdam? Saepe nesciunt maiores ipsum eveniet recusandae officiis, cumque reprehenderit autem quis dicta minima explicabo facere? Nihil, suscipit laboriosam reprehenderit neque maiores nisi eum nam consequuntur itaque maxime minima voluptate molestiae voluptatem modi nulla nobis dolores, labore rerum sequi facilis dolorem, sunt dolorum. Rerum dicta quisquam impedit excepturi placeat accusantium illo blanditiis cumque eius, molestiae deleniti obcaecati? Veritatis ad dolore voluptatem quibusdam velit facere et quasi consectetur veniam doloribus ut aspernatur reprehenderit architecto blanditiis, nihil error? Quo, suscipit quia! Cupiditate tempore possimus adipisci illum animi similique non neque! Tenetur alias nihil accusantium nemo natus illum cum dolorem ea sit harum veritatis corrupti eaque, deserunt incidunt dolor est totam sed! Commodi porro veritatis, voluptate quia in vel saepe nam amet fugit hic, doloribus iste praesentium ducimus optio ratione culpa ullam!              </p>
+
+          {
+            offres.map((offre)=>(
+              <div className="card" key={offre._id}>
+              <div className="cardContent">
+                <h4>{offre.titre}</h4>
+                <h4>Entreprise : {offre.idEntreprises.nom}</h4>
+                <h5>date:{new Date(offre.date_publication).toLocaleDateString("en-CA")} lieu : {offre.lieu}</h5>
+                <h5>type de contrat : {offre.typeContrat}</h5>
+                <h5>salaire : {offre.salaire}</h5>
+                <p>{offre.autres_informations} {offre.description}</p>
+                <h4>competences :</h4>
+                {offre.competences.map((comp)=>(<><span className="skill" key={comp.index}>{comp}</span></>))}
+                <br />
+                <button onClick={async() => {
+                  try{
+                    axios.delete(`http://localhost:3000/api/offres/${offre._id}`,{
+                      headers:{
+                        Authorization: `Bearer ${token}`
+                      }
+                    })
+                    window.location.reload();
+                  }catch(e){
+                    console.error('erreur hors de supression',e)
+                  }
+                }}>supprimer</button>
+              </div>
             </div>
-          </div>
+            ))
+          }
         </div>
       </div>
     </div>

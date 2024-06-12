@@ -2,32 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../../style/UserProfile/UserLeftSide.css";
 
-export default function LeftSide() {
-  
-  const recruteur = {
-    type_user: "recruteur",
-    email: "recruteur@example.com",
-    prenom: "Abderrahman",
-    nom: "L7alawat",
-    adresse: "Tangier",
-    telephone: "0123456789",
-    date_naissance: "1999-01-01",
-    id_entreprise: "ent123",
-  };
-
-  
-  const candidat = {
-    type_user: "candidat",
-    email: "AbdellatifMajd10@gmail.com",
-    prenom: "Abdellatif",
-    nom: "Majd",
-    adresse: "Marrakech",
-    telephone: "+212 687494073",
-    date_naissance: "08-10-2002",
-  };
-
-  
-  const user = candidat; 
+export default function LeftSide(userData) {
+  const user = userData.userData;
+  console.log(user);
 
   return (
     <div className="container">
@@ -37,7 +14,9 @@ export default function LeftSide() {
           <Link to={"/profile-utilisateur"}>
             <div className="photo"></div>
           </Link>
-          <div className="userName">{user.prenom} {user.nom}</div>
+          <div className="userName">
+            {user.prenom} {user.nom}
+          </div>
           <div className="userEmail">{user.email}</div>
         </div>
 
@@ -51,7 +30,7 @@ export default function LeftSide() {
           <h3 className="sectionTitle">Date de Naissance</h3>
           <div className="sectionContent">{user.date_naissance}</div>
 
-          {user.type_user === "recruteur" && (
+          {user.id_entreprise && (
             <>
               <h3 className="sectionTitle">Entreprise</h3>
               <div className="sectionContent">{user.id_entreprise}</div>
@@ -60,35 +39,35 @@ export default function LeftSide() {
         </div>
       </aside>
 
-      {user.type_user === "candidat" && (
+      {!user.id_entreprise && (
         <>
           <aside className="card">
             <div className="details">
               <h3 className="sectionTitle">Éducation</h3>
-              <div className="sectionContent">
-                <strong>Baccalauriat</strong> - Tamesloht (2020 - 2021)
-                <br />
-                <em>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Inventore nulla magni eligendi voluptatibus officia veritatis
-                  aspernatur ut quibusdam nostrum facilis.
-                </em>
-              </div>
+              {user.educations && user.educations.map((edu, index) => (
+                <div className="sectionContent" key={index}>
+                  <strong>{edu.diplome}</strong> - {edu.institut} (
+                  {new Date(edu.date_debut).toLocaleDateString("en-CA")} -{" "}
+                  {new Date(edu.date_fin).toLocaleDateString("en-CA")})
+                  <br />
+                  <em>{edu.description}</em>
+                </div>
+              ))}
             </div>
           </aside>
 
           <aside className="card">
             <div className="details">
               <h3 className="sectionTitle">Expériences</h3>
-              <div className="sectionContent">
-                <strong>Stagiaire</strong> - CTT (2024 - 2024)
-                <br />
-                <em>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
-                  animi est dolorum nisi magni rem corrupti provident ipsum adipisci
-                  vero.
-                </em>
-              </div>
+              {user.experiences && user.experiences.map((exp) => (
+                <div className="sectionContent" key={exp.index}>
+                  <strong>{exp.poste}</strong> {exp.entreprise} ({" "}
+                  {new Date(exp.date_debut).toLocaleDateString("en-CA")} -{" "}
+                  {new Date(exp.date_fin).toLocaleDateString("en-CA")}))
+                  <br />
+                  <em>{exp.description}</em>
+                </div>
+              ))}
             </div>
           </aside>
 
@@ -96,10 +75,11 @@ export default function LeftSide() {
             <div className="details">
               <h3 className="sectionTitle">Compétences</h3>
               <div className="sectionContent">
-                <span className="skill">Html</span>
-                <span className="skill">Css</span>
-                <span className="skill">JS</span>
-                <span className="skill">React</span>
+                {user.competences && user.competences.map((com) => (
+                  <span className="skill" key={com.index}>
+                    {com.competence}
+                  </span>
+                ))}
               </div>
             </div>
           </aside>
