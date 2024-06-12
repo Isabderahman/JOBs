@@ -34,145 +34,155 @@ async function seedDatabase() {
     await Candidat.deleteMany({});
     await Offre.deleteMany({});
     
-    // ----------------------------------------------------------------------------------------------------------------------------------------------------------
+
     // Ajouter des utilisateurs
     const users = [
       {
-        username: "Abdelaziz",
-        email: "abdelaziz@example.com",
+        username: "user1",
+        email: "user1@example.com",
         password: await hashPassword("password"),
         type_user: "candidat",
       },
       {
-        username: "Fatima",
-        email: "fatima@example.com",
+        username: "user2",
+        email: "user2@example.com",
         password: await hashPassword("password"),
         type_user: "recruteur",
       },
       {
-        username: "Youssef",
-        email: "youssef@example.com",
+        username: "user3",
+        email: "user39@example.com",
         password: await hashPassword("password"),
         type_user: "candidat",
       },
       {
-        username: "Khadija",
-        email: "khadija@example.com",
+        username: "user4",
+        email: "user44@example.com",
         password: await hashPassword("password"),
         type_user: "recruteur",
       },
       {
-        username: "Hassan",
-        email: "hassan@example.com",
+        username: "user5",
+        email: "ahmad66@example.com",
         password: await hashPassword("password"),
         type_user: "candidat",
       },
       {
-        username: "Amina",
-        email: "amina@example.com",
+        username: "user6",
+        email: "youssef26@example.com",
         password: await hashPassword("password"),
         type_user: "recruteur",
       },
       {
-        username: "Mohammed",
-        email: "mohammed@example.com",
+        username: "user7",
+        email: "Amire333@example.com",
         password: await hashPassword("password"),
         type_user: "candidat",
       },
       {
-        username: "Nadia",
-        email: "nadia@example.com",
+        username: "user8",
+        email: "asame444@example.com",
         password: await hashPassword("password"),
         type_user: "recruteur",
       },
       {
-        username: "Zineb",
-        email: "zineb@example.com",
+        username: "user9",
+        email: "lamia111@example.com",
         password: await hashPassword("password"),
         type_user: "candidat",
       },
       {
-        username: "Said",
-        email: "said@example.com",
+        username: "user10",
+        email: "ferdaous22@example.com",
         password: await hashPassword("password"),
         type_user: "recruteur",
       },
       {
-        username: "Loubna",
-        email: "loubna@example.com",
+        username: "user11",
+        email: "laila37@example.com",
         password: await hashPassword("password"),
         type_user: "candidat",
       },
       {
-        username: "Mehdi",
-        email: "mehdi@example.com",
+        username: "user12",
+        email: "jaalal46@example.com",
         password: await hashPassword("password"),
         type_user: "recruteur",
       },
       {
-        username: "Najat",
-        email: "najat@example.com",
+        username: "user13",
+        email: "chams166@example.com",
         password: await hashPassword("password"),
         type_user: "candidat",
       },
       {
-        username: "Karim",
-        email: "karim@example.com",
+        username: "user14",
+        email: "Nour22@example.com",
         password: await hashPassword("password"),
         type_user: "recruteur",
       },
       {
-        username: "Sanaa",
-        email: "sanaa@example.com",
+        username: "user15",
+        email: "riad33@example.com",
         password: await hashPassword("password"),
         type_user: "candidat",
       },
       {
-        username: "Abdellah",
-        email: "abdellah@example.com",
+        username: "user16",
+        email: "brahim4@example.com",
         password: await hashPassword("password"),
         type_user: "recruteur",
       },
       {
-        username: "Aicha",
-        email: "aicha@example.com",
+        username: "user17",
+        email: "Messi10@example.com",
         password: await hashPassword("password"),
         type_user: "candidat",
       },
       {
-        username: "Hicham",
-        email: "hicham@example.com",
+        username: "user18",
+        email: "ronaldo0@example.com",
         password: await hashPassword("password"),
         type_user: "recruteur",
       },
       {
-        username: "Samira",
-        email: "samira@example.com",
+        username: "user19",
+        email: "Xavi5@example.com",
         password: await hashPassword("password"),
         type_user: "candidat",
       },
       {
-        username: "Fouad",
-        email: "fouad@example.com",
+        username: "user20",
+        email: "Alonso14@example.com",
         password: await hashPassword("password"),
         type_user: "recruteur",
-      }
+      },
+      {
+        username: "user21",
+        email: "Yamal123@example.com",
+        password: await hashPassword("password"),
+        type_user: "candidat",
+      },
+      {
+        username: "user22",
+        email: "hamid342@example.com",
+        password: await hashPassword("password"),
+        type_user: "recruteur",
+      },
+      {
+        username: "user23",
+        email: "samir53@example.com",
+        password: await hashPassword("password"),
+        type_user: "candidat",
+      },
+      {
+        username: "user24",
+        email: "Kadiri49@example.com",
+        password: await hashPassword("password"),
+        type_user: "recruteur",
+      },
+      // Ajoutez plus d'utilisateurs ici
     ];
-    // Ajoutez plus d'utilisateurs ici
-    // ----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     const insertedUsers = await User.insertMany(users);
     console.log("Users ajoutés avec succès");
@@ -180,368 +190,578 @@ async function seedDatabase() {
     // Ajouter des publications
     const publications = [
       {
-        titre: "Les nouvelles tendances en matière de développement web",
-        contenu: "La technologie évolue rapidement, et avec elle, les tendances en matière de développement web. Découvrez les dernières avancées et comment elles peuvent impacter votre projet.",
+        titre: "Publication 1",
+        contenu: "Contenu de la publication 1",
         auteur: insertedUsers[0]._id,
-        imagePath: "https://picsum.photos/600/400",
+        imagePath:"sqjflkjdsqlkfjd",
       },
       {
-        titre: "L'avenir de l'intelligence artificielle dans l'industrie automobile",
-        contenu: "L'intelligence artificielle révolutionne l'industrie automobile. De la conduite autonome à la maintenance prédictive, découvrez comment les innovations IA transforment ce secteur.",
+        titre: "Publication 2",
+        contenu: "Contenu de la publication 2",
         auteur: insertedUsers[1]._id,
-        imagePath: "https://picsum.photos/600/400",
       },
       {
-        titre: "Les bienfaits du yoga pour la santé mentale",
-        contenu: "Pratiquer le yoga régulièrement peut avoir des effets bénéfiques sur la santé mentale. Découvrez comment cette pratique millénaire peut vous aider à réduire le stress et l'anxiété.",
-        auteur: insertedUsers[2]._id,
-        imagePath: "https://picsum.photos/600/400",
-      },
-      {
-        titre: "Les meilleures destinations pour un voyage écologique",
-        contenu: "Envie de voyager tout en respectant l'environnement ? Découvrez les destinations éco-responsables qui vous permettront de vivre une expérience de voyage unique tout en préservant la planète.",
+        titre: "Publication 3",
+        contenu: "Contenu de la publication 3",
         auteur: insertedUsers[3]._id,
-        imagePath: "https://picsum.photos/600/400",
       },
       {
-        titre: "Comment améliorer sa productivité au travail",
-        contenu: "Être productif au travail est essentiel pour accomplir ses tâches efficacement. Découvrez des astuces et des outils pour booster votre productivité et atteindre vos objectifs professionnels.",
+        titre: "Publication 4",
+        contenu: "Contenu de la publication 4",
         auteur: insertedUsers[4]._id,
-        imagePath: "https://picsum.photos/600/400",
       },
       {
-        titre: "Les secrets d'une alimentation saine et équilibrée",
-        contenu: "Une alimentation saine est la clé d'une vie en bonne santé. Découvrez les principes de base d'une alimentation équilibrée et des conseils pour adopter de bonnes habitudes alimentaires.",
+        titre: "Publication 5",
+        contenu: "Contenu de la publication 5",
         auteur: insertedUsers[5]._id,
-        imagePath: "https://picsum.photos/600/400",
       },
       {
-        titre: "Les dernières tendances en matière de mode pour cet été",
-        contenu: "Envie de rafraîchir votre garde-robe pour l'été ? Découvrez les dernières tendances en matière de mode, des couleurs vives aux motifs floraux, et adoptez un look tendance cet été.",
+        titre: "Publication 6",
+        contenu: "Contenu de la publication 6",
         auteur: insertedUsers[6]._id,
-        imagePath: "https://picsum.photos/600/400",
       },
       {
-        titre: "Les bienfaits de la méditation pour la santé",
-        contenu: "La méditation est une pratique ancienne qui peut avoir des effets positifs sur la santé mentale et physique. Découvrez comment la méditation peut vous aider à réduire le stress et à améliorer votre bien-être.",
+        titre: "Publication 7",
+        contenu: "Contenu de la publication 7",
         auteur: insertedUsers[7]._id,
-        imagePath: "https://picsum.photos/600/400",
       },
       {
-        titre: "Les dernières innovations technologiques dans le domaine de la santé",
-        contenu: "La technologie transforme le domaine de la santé à une vitesse impressionnante. Découvrez les dernières innovations, des applications de suivi de la santé aux dispositifs médicaux intelligents, qui révolutionnent les soins de santé.",
+        titre: "Publication 8",
+        contenu: "Contenu de la publication 8",
         auteur: insertedUsers[8]._id,
-        imagePath: "https://picsum.photos/600/400",
       },
       {
-        titre: "Les meilleures pratiques pour améliorer votre référencement SEO",
-        contenu: "Un bon référencement SEO est essentiel pour améliorer la visibilité de votre site web sur les moteurs de recherche. Découvrez les meilleures pratiques et les outils pour optimiser votre stratégie SEO et augmenter votre trafic organique.",
+        titre: "Publication 9",
+        contenu: "Contenu de la publication 9",
         auteur: insertedUsers[9]._id,
-        imagePath: "https://picsum.photos/600/400",
       },
+      {
+        titre: "Publication 10",
+        contenu: "Contenu de la publication 10",
+        auteur: insertedUsers[10]._id,
+      },
+      {
+        titre: "Publication 11",
+        contenu: "Contenu de la publication 11",
+        auteur: insertedUsers[11]._id,
+      },
+      {
+        titre: "Publication 12",
+        contenu: "Contenu de la publication 12",
+        auteur: insertedUsers[12]._id,
+      },
+      {
+        titre: "Publication 13",
+        contenu: "Contenu de la publication 13",
+        auteur: insertedUsers[13]._id,
+      },
+      {
+        titre: "Publication 14",
+        contenu: "Contenu de la publication 14",
+        auteur: insertedUsers[14]._id,
+      },
+      {
+        titre: "Publication 15",
+        contenu: "Contenu de la publication 15",
+        auteur: insertedUsers[15]._id,
+      },
+      {
+        titre: "Publication 16",
+        contenu: "Contenu de la publication 16",
+        auteur: insertedUsers[16]._id,
+      },
+      {
+        titre: "Publication 17",
+        contenu: "Contenu de la publication 17",
+        auteur: insertedUsers[17]._id,
+      },
+      {
+        titre: "Publication 18",
+        contenu: "Contenu de la publication 18",
+        auteur: insertedUsers[18]._id,
+      },
+      {
+        titre: "Publication 19",
+        contenu: "Contenu de la publication 19",
+        auteur: insertedUsers[19]._id,
+      },
+      {
+        titre: "Publication 20",
+        contenu: "Contenu de la publication 20",
+        auteur: insertedUsers[20]._id,
+      },
+      {
+        titre: "Publication 21",
+        contenu: "Contenu de la publication 21",
+        auteur: insertedUsers[21]._id,
+      },
+      {
+        titre: "Publication 22",
+        contenu: "Contenu de la publication 21",
+        auteur: insertedUsers[22]._id,
+      },
+      {
+        titre: "Publication 23",
+        contenu: "Contenu de la publication 22",
+        auteur: insertedUsers[23]._id,
+      },
+      {
+        titre: "Publication 24",
+        contenu: "Contenu de la publication 23",
+        auteur: insertedUsers[1]._id,
+      },
+      {
+        titre: "Publication 25",
+        contenu: "Contenu de la publication 24",
+        auteur: insertedUsers[14]._id,
+      },
+      {
+        titre: "Publication 26",
+        contenu: "Contenu de la publication 25",
+        auteur: insertedUsers[16]._id,
+      },
+      {
+        titre: "Publication 27",
+        contenu: "Contenu de la publication 26",
+        auteur: insertedUsers[0]._id,
+      },
+      {
+        titre: "Publication 28",
+        contenu: "Contenu de la publication 27",
+        auteur: insertedUsers[1]._id,
+      },
+      {
+        titre: "Publication 29",
+        contenu: "Contenu de la publication 28",
+        auteur: insertedUsers[0]._id,
+      },
+      {
+        titre: "Publication 30",
+        contenu: "Contenu de la publication 29",
+        auteur: insertedUsers[1]._id,
+      },
+      {
+        titre: "Publication 31",
+        contenu: "Contenu de la publication 30",
+        auteur: insertedUsers[0]._id,
+      },
+      {
+        titre: "Publication 32",
+        contenu: "Contenu de la publication 31",
+        auteur: insertedUsers[1]._id,
+      },
+      {
+        titre: "Publication 33",
+        contenu: "Contenu de la publication 32",
+        auteur: insertedUsers[0]._id,
+      },
+      {
+        titre: "Publication 34",
+        contenu: "Contenu de la publication 34",
+        auteur: insertedUsers[1]._id,
+      },
+      {
+        titre: "Publication 35",
+        contenu: "Contenu de la publication 35",
+        auteur: insertedUsers[10]._id,
+      },
+      {
+        titre: "Publication 36",
+        contenu: "Contenu de la publication 36",
+        auteur: insertedUsers[11]._id,
+      },
+      {
+        titre: "Publication 37",
+        contenu: "Contenu de la publication 37",
+        auteur: insertedUsers[12]._id,
+      },
+      {
+        titre: "Publication 38",
+        contenu: "Contenu de la publication 38",
+        auteur: insertedUsers[13]._id,
+      },
+      {
+        titre: "Publication 39",
+        contenu: "Contenu de la publication 39",
+        auteur: insertedUsers[14]._id,
+      },
+      {
+        titre: "Publication 40",
+        contenu: "Contenu de la publication 40",
+        auteur: insertedUsers[15]._id,
+      },
+      {
+        titre: "Publication 41",
+        contenu: "Contenu de la publication 41",
+        auteur: insertedUsers[16]._id,
+      },
+      {
+        titre: "Publication 42",
+        contenu: "Contenu de la publication 42",
+        auteur: insertedUsers[17]._id,
+      },
+      {
+        titre: "Publication 43",
+        contenu: "Contenu de la publication 43",
+        auteur: insertedUsers[18]._id,
+      },
+      {
+        titre: "Publication 44",
+        contenu: "Contenu de la publication 44",
+        auteur: insertedUsers[19]._id,
+      },
+      {
+        titre: "Publication 45",
+        contenu: "Contenu de la publication 45",
+        auteur: insertedUsers[20]._id,
+      },
+      {
+        titre: "Publication 46",
+        contenu: "Contenu de la publication 46",
+        auteur: insertedUsers[21]._id,
+      },
+      {
+        titre: "Publication 47",
+        contenu: "Contenu de la publication 47",
+        auteur: insertedUsers[10]._id,
+      },
+      {
+        titre: "Publication 48",
+        contenu: "Contenu de la publication 48",
+        auteur: insertedUsers[11]._id,
+      },
+      {
+        titre: "Publication 49",
+        contenu: "Contenu de la publication 49",
+        auteur: insertedUsers[12]._id,
+      },
+      {
+        titre: "Publication 50 ",
+        contenu: "Contenu de la publication 50",
+        auteur: insertedUsers[13]._id,
+      },
+      {
+        titre: "Publication 51",
+        contenu: "Contenu de la publication 51",
+        auteur: insertedUsers[14]._id,
+      },
+      {
+        titre: "Publication 52",
+        contenu: "Contenu de la publication 52",
+        auteur: insertedUsers[15]._id,
+      },
+      {
+        titre: "Publication 53",
+        contenu: "Contenu de la publication 53",
+        auteur: insertedUsers[16]._id,
+      },
+      {
+        titre: "Publication 54",
+        contenu: "Contenu de la publication 54",
+        auteur: insertedUsers[17]._id,
+      },
+      {
+        titre: "Publication 55",
+        contenu: "Contenu de la publication 55",
+        auteur: insertedUsers[18]._id,
+      },
+      {
+        titre: "Publication 56",
+        contenu: "Contenu de la publication 56",
+        auteur: insertedUsers[19]._id,
+      },
+      {
+        titre: "Publication 57",
+        contenu: "Contenu de la publication 57",
+        auteur: insertedUsers[20]._id,
+      },
+      {
+        titre: "Publication 58",
+        contenu: "Contenu de la publication 58",
+        auteur: insertedUsers[21]._id,
+      },
+      {
+        titre: "Publication 59",
+        contenu: "Contenu de la publication 59",
+        auteur: insertedUsers[20]._id,
+      },
+      {
+        titre: "Publication 60",
+        contenu: "Contenu de la publication 60",
+        auteur: insertedUsers[21]._id,
+      },
+      // Ajoutez plus de publications ici
     ];
-
-
-
-
-
-
-
-
-        // ----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-    
 
     await Publication.insertMany(publications);
     console.log("Publications ajoutées avec succès");
 
     const entreprises = [
-  {
-    nom: "Société Marocaine de Développement",
-    adresse: "123 Avenue Mohammed V, Casablanca, Maroc",
-    activite: "Informatique",
-    site_web: "http://www.smd.ma",
-    logo: "https://picsum.photos/200/200",
-  },
-  {
-    nom: "Construction Atlas",
-    adresse: "456 Rue Ibn Khaldoun, Rabat, Maroc",
-    activite: "Construction",
-    site_web: "http://www.atlasconstruction.ma",
-    logo: "https://picsum.photos/200/200",
-  },
-  {
-    nom: "Consulting Maghreb",
-    adresse: "789 Avenue Hassan II, Marrakech, Maroc",
-    activite: "Consulting",
-    site_web: "http://www.consulting-maghreb.ma",
-    logo: "https://picsum.photos/200/200",
-  },
-  {
-    nom: "TechMaroc",
-    adresse: "101 Boulevard Mohammed VI, Tanger, Maroc",
-    activite: "Informatique",
-    site_web: "http://www.techmaroc.ma",
-    logo: "https://picsum.photos/200/200",
-  },
-  {
-    nom: "BTP Casablanca",
-    adresse: "32 Avenue des FAR, Casablanca, Maroc",
-    activite: "Construction",
-    site_web: "http://www.btp-casablanca.ma",
-    logo: "https://picsum.photos/200/200",
-  },
-  {
-    nom: "Gestion Maroc",
-    adresse: "55 Rue Moulay Rachid, Fès, Maroc",
-    activite: "Consulting",
-    site_web: "http://www.gestion-maroc.ma",
-    logo: "https://picsum.photos/200/200",
-  },
-  {
-    nom: "TechMaroc",
-    adresse: "23 Avenue Mohammed V, Agadir, Maroc",
-    activite: "Informatique",
-    site_web: "http://www.techmaroc.ma",
-    logo: "https://picsum.photos/200/200",
-  },
-  {
-    nom: "BTP Marrakech",
-    adresse: "89 Rue Ahmed El Mokri, Marrakech, Maroc",
-    activite: "Construction",
-    site_web: "http://www.btp-marrakech.ma",
-    logo: "https://picsum.photos/200/200",
-  },
-  {
-    nom: "Consulting Rabat",
-    adresse: "11 Rue Oued Ziz, Rabat, Maroc",
-    activite: "Consulting",
-    site_web: "http://www.consulting-rabat.ma",
-    logo: "https://picsum.photos/200/200",
-  },
-  {
-    nom: "Développement Tanger",
-    adresse: "15 Avenue Pasteur, Tanger, Maroc",
-    activite: "Informatique",
-    site_web: "http://www.dev-tanger.ma",
-    logo: "https://picsum.photos/200/200",
-  },
-];
-
+      {
+        nom: "Entreprise Ajax",
+        siret: "12345601234",
+        adresse: "123 Rue de Exemple, 75000 Paris, France",
+        activite: "Informatique",
+        site_web: "http://www.entreprise-a.com",
+        logo: "http://www.entreprise-a.com/logo.png",
+      },
+      {
+        nom: "Entreprise gttp",
+        siret: "6789012345",
+        adresse: "456 Avenue de Exemple, 69000 Lyon, France",
+        activite: "Construction",
+        site_web: "http://www.entreprise-b.com",
+        logo: "http://www.entreprise-b.com/logo.png",
+      },
+      {
+        nom: "Entreprise C++",
+        adresse: "789 Boulevard de Exemple, 13000 Marseille, France",
+        activite: "Consulting",
+      },
+      {
+        nom: "Entreprise apple",
+        siret: "78901234",
+        adresse: "123 Rue de Exemple, 75000 Paris, France",
+        activite: "Informatique",
+        site_web: "http://www.entreprise-a.com",
+        logo: "http://www.entreprise-a.com/logo.png",
+      },
+      {
+        nom: "Entreprise Bilalex",
+        siret: "23456",
+        adresse: "456 Avenue de Exemple, 69000 Lyon, France",
+        activite: "Construction",
+        site_web: "http://www.entreprise-b.com",
+        logo: "http://www.entreprise-b.com/logo.png",
+      },
+      {
+        nom: "Entreprise Cilio",
+        adresse: "78944 Boulevard de Exemple, 13000 Marseille, France",
+        activite: "Consulting",
+      },
+      {
+        nom: "Entreprise aminoux",
+        siret: "12901234",
+        adresse: "123 Rue de Exemple, 75000 Paris, France",
+        activite: "Informatique",
+        site_web: "http://www.entreprise-a.com",
+        logo: "http://www.entreprise-a.com/logo.png",
+      },
+      {
+        nom: "Entreprise Boua",
+        siret: "23456789012345",
+        adresse: "456 Avenue de Exemple, 69000 Lyon, France",
+        activite: "Construction",
+        site_web: "http://www.entreprise-b.com",
+        logo: "http://www.entreprise-b.com/logo.png",
+      },
+      {
+        nom: "Entreprise Chamse",
+        adresse: "789 Boulevard de Exemple, 13000 Marseille, France",
+        activite: "Consulting",
+      },
+      {
+        nom: "Entreprise Serve",
+        siret: "12345678901234",
+        adresse: "123 Rue de Exemple, 75000 Paris, France",
+        activite: "Informatique",
+        site_web: "http://www.entreprise-a.com",
+        logo: "http://www.entreprise-a.com/logo.png",
+      },
+      {
+        nom: "Entreprise windo",
+        siret: "23455",
+        adresse: "456 Avenue de Exemple, 69000 Lyon, France",
+        activite: "Construction",
+        site_web: "http://www.entreprise-b.com",
+        logo: "http://www.entreprise-b.com/logo.png",
+      },
+      {
+        nom: "Entreprise samar",
+        siret: "12347887",
+        adresse: "123 Rue de Exemple, 75000 Paris, France",
+        activite: "Informatique",
+        site_web: "http://www.entreprise-a.com",
+        logo: "http://www.entreprise-a.com/logo.png",
+      },
+      {
+        nom: "Entreprise rita",
+        siret: "2345666012345",
+        adresse: "456 Avenue de Exemple, 69000 Lyon, France",
+        activite: "Construction",
+        site_web: "http://www.entreprise-b.com",
+        logo: "http://www.entreprise-b.com/logo.png",
+      },
+      {
+        nom: "Entreprise inteel",
+        adresse: "13424 Boulevard de Exemple, 13000 Marseille, France",
+        activite: "Consulting",
+      },
+    ];
     const insertedEntreprise = await Entreprise.insertMany(entreprises);
-    console.log("Entreprises ajoutées avec succès" , insertedEntreprise.length);
+    console.log("Entreprises ajoutées avec succès");
 
-
-
-
-
-    
-
-
-
-        // ----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-        const recruteurs = [
-          {
-            idEntreprise: insertedEntreprise[0]._id,
-            id_user: insertedUsers[1]._id,
-            prenom: "Youssef",
-            nom: "El Amrani",
-            adresse: "123 Avenue Hassan II, Casablanca, Maroc",
-            date_naissance: new Date("1990-01-01"),
-            telephone: "0788456789",
-            profilePath: "http://www.example.com/profile/youssefelamrani",
-          },
-          {
-            idEntreprise: insertedEntreprise[1]._id,
-            id_user: insertedUsers[3]._id,
-            prenom: "Mohammed",
-            nom: "Ahmed",
-            adresse: "456 Rue Mohammed V, Rabat, Maroc",
-            date_naissance: new Date("1985-02-15"),
-            telephone: "0755654321",
-          },
-          {
-            idEntreprise: insertedEntreprise[2]._id,
-            id_user: insertedUsers[15]._id,
-            prenom: "Fatima",
-            nom: "Zahra",
-            adresse: "789 Avenue Mohammed VI, Marrakech, Maroc",
-            date_naissance: new Date("1990-01-01"),
-            telephone: "0566456789",
-            profilePath: "http://www.example.com/profile/fatimazahra",
-          },
-          {
-            idEntreprise: insertedEntreprise[3]._id,
-            id_user: insertedUsers[5]._id,
-            prenom: "Hicham",
-            nom: "El Kaddouri",
-            adresse: "456 Rue Ibn Khaldoun, Fès, Maroc",
-            date_naissance: new Date("1985-02-15"),
-            telephone: "0544654321",
-          },
-          {
-            idEntreprise: insertedEntreprise[4]._id,
-            id_user: insertedUsers[7]._id,
-            prenom: "Nadia",
-            nom: "Bouzid",
-            adresse: "123 Boulevard Mohammed V, Tanger, Maroc",
-            date_naissance: new Date("1990-01-01"),
-            telephone: "0723459989",
-            profilePath: "http://www.example.com/profile/nadiabouzid",
-          },
-          {
-            idEntreprise: insertedEntreprise[5]._id,
-            id_user: insertedUsers[9]._id,
-            prenom: "Fatima",
-            nom: "Zahra",
-            adresse: "456 Avenue des FAR, Agadir, Maroc",
-            date_naissance: new Date("1985-02-15"),
-            telephone: "0687994321",
-          },
-          {
-            idEntreprise: insertedEntreprise[6]._id,
-            id_user: insertedUsers[13]._id,
-            prenom: "Ahmed",
-            nom: "El Ghazouani",
-            adresse: "123 Rue Mohammed V, Casablanca, Maroc",
-            date_naissance: new Date("1990-01-01"),
-            telephone: "0523776789",
-            profilePath: "http://www.example.com/profile/ahmedelghazouani",
-          },
-          {
-            idEntreprise: insertedEntreprise[7]._id,
-            id_user: insertedUsers[11]._id,
-            prenom: "Samira",
-            nom: "Kouadri",
-            adresse: "456 Avenue Hassan II, Marrakech, Maroc",
-            date_naissance: new Date("1985-02-15"),
-            telephone: "078454321",
-          },
-          {
-            idEntreprise: insertedEntreprise[8]._id,
-            id_user: insertedUsers[17]._id,
-            prenom: "Omar",
-            nom: "Chami",
-            adresse: "123 Rue Ibn Sina, Rabat, Maroc",
-            date_naissance: new Date("1990-01-01"),
-            telephone: "0662456789",
-            profilePath: "http://www.example.com/profile/omarchami",
-          },
-          {
-            idEntreprise: insertedEntreprise[9]._id,
-            id_user: insertedUsers[5]._id,
-            prenom: "Khadija",
-            nom: "Zerouali",
-            adresse: "456 Rue Mohamed Diouri, Casablanca, Maroc",
-            date_naissance: new Date("1985-02-15"),
-            telephone: "0787654321",
-            profilePath: "http://www.example.com/profile/khadijazerouali",
-          },
-        ];
+    const recruteurs = [
+      {
+        idEntreprise: insertedEntreprise[0]._id,
+        id_user: insertedUsers[1]._id,
+        prenom: "fadi",
+        nom: "Doe",
+        adresse: "123 Rue de Exemple, 75000 Paris, France",
+        date_naissance: new Date("1990-01-01"),
+        telephone: "0788456789",
+        profilePath: "http://www.example.com/profile/johndoe",
+      },
+      {
+        idEntreprise: insertedEntreprise[1]._id,
+        id_user: insertedUsers[3]._id,
+        prenom: "alex",
+        nom: "rit",
+        adresse: "456 Avenue de Exemple, 69000 Lyon, France",
+        date_naissance: new Date("1985-02-15"),
+        telephone: "0755654321",
+      },
+      {
+        idEntreprise: insertedEntreprise[13]._id,
+        id_user: insertedUsers[15]._id,
+        prenom: "alberet",
+        nom: "diaz",
+        adresse: "123 Rue de Exemple, 75000 Paris, France",
+        date_naissance: new Date("1990-01-01"),
+        telephone: "0566456789",
+        profilePath: "http://www.example.com/profile/johndoe",
+      },
+      {
+        idEntreprise: insertedEntreprise[2]._id,
+        id_user: insertedUsers[5]._id,
+        prenom: "halid",
+        nom: "hafed",
+        adresse: "456 Avenue de Exemple, 69000 Lyon, France",
+        date_naissance: new Date("1985-02-15"),
+        telephone: "0544654321",
+      },
+      {
+        idEntreprise: insertedEntreprise[0]._id,
+        id_user: insertedUsers[7]._id,
+        prenom: "aeron",
+        nom: "max",
+        adresse: "123 Rue de Exemple, 75000 Paris, France",
+        date_naissance: new Date("1990-01-01"),
+        telephone: "0723459989",
+        profilePath: "http://www.example.com/profile/johndoe",
+      },
+      {
+        idEntreprise: insertedEntreprise[9]._id,
+        id_user: insertedUsers[9]._id,
+        prenom: "laila",
+        nom: "Najl",
+        adresse: "456 Avenue de Exemple, 69000 Lyon, France",
+        date_naissance: new Date("1985-02-15"),
+        telephone: "0687994321",
+      },
+      {
+        idEntreprise: insertedEntreprise[13]._id,
+        id_user: insertedUsers[13]._id,
+        prenom: "hassan",
+        nom: "lkerd",
+        adresse: "123 Rue de Exemple, 75000 Paris, France",
+        date_naissance: new Date("1990-01-01"),
+        telephone: "0523776789",
+        profilePath: "http://www.example.com/profile/johndoe",
+      },
+      {
+        idEntreprise: insertedEntreprise[12]._id,
+        id_user: insertedUsers[11]._id,
+        prenom: "tach",
+        nom: "matach",
+        adresse: "456 Avenue de Exemple, 69000 Lyon, France",
+        date_naissance: new Date("1985-02-15"),
+        telephone: "078454321",
+      },
+      {
+        idEntreprise: insertedEntreprise[7]._id,
+        id_user: insertedUsers[17]._id,
+        prenom: "fahd",
+        nom: "nasser",
+        adresse: "123 Rue de Exemple, 75000 Paris, France",
+        date_naissance: new Date("1990-01-01"),
+        telephone: "0662456789",
+        profilePath: "http://www.example.com/profile/johndoe",
+      },
+      {
+        idEntreprise: insertedEntreprise[5]._id,
+        id_user: insertedUsers[5]._id,
+        prenom: "kzabri",
+        nom: "youssef",
+        adresse: "456 Avenue de Exemple, 69000 Lyon, France",
+        date_naissance: new Date("1985-02-15"),
+        telephone: "0787654321",
+        profilepath:"kjfsdlkjlkdsjlk"
+      },
+    ];
 
     insertedRecruteur = await Recruteur.insertMany(recruteurs);
     console.log("les recruteur ajouté avec success");
 
-
-
-
-
-
-
-
-
-
-
-
     const candidats = [
-  {
-    id_user: insertedUsers[0]._id,
-    prenom: "Fatima",
-    nom: "El Alaoui",
-    adresse: "123 Rue Mohammed V, Casablanca, Maroc",
-    date_naissance: new Date("1990-01-01"),
-    telephone: "0123456789",
-    profilePath: "http://www.example.com/profile/fatimaelalaoui",
-    education: [
       {
-        diplome: "Master en Informatique",
-        institut: "Université Hassan II",
-        date_debut: new Date("2010-09-01"),
-        date_fin: new Date("2012-06-30"),
-        description: "Spécialisation en intelligence artificielle",
+        id_user: insertedUsers[0]._id,
+        prenom: "Alice",
+        nom: "Smith",
+        adresse: "123 Rue de Exemple, 75000 Paris, France",
+        date_naissance: new Date("1990-01-01"),
+        telephone: "0123456789",
+        profilepath: "http://www.example.com/profile/alicesmith",
+        education: [
+          {
+            diplome: "Master en Informatique",
+            institut: "Université de Paris",
+            date_debut: new Date("2010-09-01"),
+            date_fin: new Date("2012-06-30"),
+            description: "Spécialisation en intelligence artificielle",
+          },
+        ],
+        experiences: [
+          {
+            poste: "Développeur Full Stack",
+            entreprise: "TechCorp",
+            date_debut: new Date("2012-09-01"),
+            date_fin: new Date("2016-12-31"),
+            description: "Développement de solutions web et mobiles",
+          },
+        ],
+        competences: [{ competence: ["JavaScript", "Node.js", "React"] }],
       },
-    ],
-    experiences: [
       {
-        poste: "Développeur Full Stack",
-        entreprise: "TechCorp",
-        date_debut: new Date("2012-09-01"),
-        date_fin: new Date("2016-12-31"),
-        description: "Développement de solutions web et mobiles",
+        id_user: insertedUsers[2]._id,
+        prenom: "Bob",
+        nom: "Johnson",
+        adresse: "456 Avenue de Exemple, 69000 Lyon, France",
+        date_naissance: new Date("1985-05-15"),
+        telephone: "0987654321",
+        education: [
+          {
+            diplome: "Licence en Mathématiques",
+            institut: "Université de Lyon",
+            date_debut: new Date("2005-09-01"),
+            date_fin: new Date("2008-06-30"),
+            description: "Mathématiques appliquées et statistiques",
+          },
+        ],
+        experiences: [
+          {
+            poste: "Analyste de données",
+            entreprise: "DataCorp",
+            date_debut: new Date("2008-09-01"),
+            date_fin: new Date("2012-12-31"),
+            description: "Analyse de données et création de rapports",
+          },
+        ],
+        competences: [{ competence: ["Python", "R", "SQL"] }],
       },
-    ],
-    competences: [{ competence: ["JavaScript", "Node.js", "React"] }],
-  },
-  {
-    id_user: insertedUsers[2]._id,
-    prenom: "Ahmed",
-    nom: "Zerhouni",
-    adresse: "456 Avenue Mohammed VI, Marrakech, Maroc",
-    date_naissance: new Date("1985-05-15"),
-    telephone: "0987654321",
-    education: [
-      {
-        diplome: "Licence en Mathématiques",
-        institut: "Université Cadi Ayyad",
-        date_debut: new Date("2005-09-01"),
-        date_fin: new Date("2008-06-30"),
-        description: "Mathématiques appliquées et statistiques",
-      },
-    ],
-    experiences: [
-      {
-        poste: "Analyste de données",
-        entreprise: "DataCorp",
-        date_debut: new Date("2008-09-01"),
-        date_fin: new Date("2012-12-31"),
-        description: "Analyse de données et création de rapports",
-      },
-    ],
-    competences: [{ competence: ["Python", "R", "SQL"] }],
-  },
-];
-
+    ];
     insertedCnadidat = await Candidat.insertMany(candidats);
     console.log("les candidat ajouté avec success");
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     const entreprisess = await Entreprise.find(); // Assurez-vous d'avoir quelques entreprises dans votre collection
@@ -549,39 +769,22 @@ async function seedDatabase() {
       console.log('Veuillez ajouter quelques entreprises avant d\'exécuter le seeder.');
       return;
     }
-const offres = [
-  {
-    titre: "Développeur Full Stack",
-    description: "Description de l'offre pour un Développeur Full Stack",
-    date_publication: new Date(),
-    typeContrat: "CDI",
-    salaire: "50000",
-    lieu: "Casablanca",
-    idEntreprises: insertedEntreprise[0]._id,
-    competences: ["JavaScript", "Node.js", "React"],
-    experiences: ["Développement web", "Développement mobile"],
-    autres_informations: "Autres informations pertinentes",
-    logo: "https://via.placeholder.com/150",
-    date_debut: new Date(),
-    date_fin: new Date(),
-  },
-  {
-    titre: "Analyste de Données",
-    description: "Description de l'offre pour un Analyste de Données",
-    date_publication: new Date(),
-    typeContrat: "CDI",
-    salaire: "60000",
-    lieu: "Rabat",
-    idEntreprises: insertedEntreprise[1]._id,
-    competences: ["Python", "R", "SQL"],
-    experiences: ["Analyse de données", "Reporting"],
-    autres_informations: "Autres informations pertinentes",
-    logo: "https://via.placeholder.com/150",
-    date_debut: new Date(),
-    date_fin: new Date(),
-  },
-];
 
+    const offres = Array.from({ length: 20 }).map((_, index) => ({
+      titre: `Offre ${index + 1}`,
+      description: `Description de l'offre ${index + 1}`,
+      date_publication: new Date(),
+      typeContrat: 'CDI',
+      salaire: '50000',
+      lieu: 'Paris',
+      idEntreprises: insertedEntreprise[0]._id,
+      competences: ['Compétence 1', 'Compétence 2'],
+      experiences: ['Experience 1', 'Experience 2'],
+      autres_informations: 'Autres informations pertinentes',
+      logo: 'https://via.placeholder.com/150',
+      date_debut: new Date(),
+      date_fin: new Date(),
+    }));
 
     await Offre.insertMany(offres);
     console.log('Seeder exécuté avec succès.');
