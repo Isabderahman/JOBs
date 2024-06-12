@@ -80,18 +80,20 @@ const UserRightSide = ({ offres, publications }) => {
                 <h4>competences :</h4>
                 {offre.competences.map((comp)=>(<><span className="skill" key={comp.index}>{comp}</span></>))}
                 <br />
-                <button onClick={async() => {
-                  try{
-                    axios.delete(`http://localhost:3000/api/offres/${offre._id}`,{
-                      headers:{
-                        Authorization: `Bearer ${token}`
-                      }
-                    })
-                    window.location.reload();
-                  }catch(e){
-                    console.error('erreur hors de supression',e)
-                  }
-                }}>supprimer</button>
+                <Button>
+                  <button onClick={async() => {
+                    try{
+                      axios.delete(`http://localhost:3000/api/offres/${offre._id}`,{
+                        headers:{
+                          Authorization: `Bearer ${token}`
+                        }
+                      })
+                      window.location.reload();
+                    }catch(e){
+                      console.error('erreur hors de supression',e)
+                    }
+                  }} className="supprimer">supprimer</button>
+                </Button>
               </div>
             </div>
             ))
