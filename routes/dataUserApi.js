@@ -32,13 +32,13 @@ router.get('/allDataUser/:id', async (req, res) => {
         let allDataUser = {};
 
         if (candidatData) {
-            const offresPostulees = await Offre.find({ candidature: candidatData._id }).populate('idEntreprises');
+            const offres = await Offre.find({ candidature: candidatData._id }).populate('idEntreprises');
             const publications = await Publication.find({ auteur: id });
-            allDataUser = { ...candidatData.toObject(), offresPostulees,publications };
+            allDataUser = { ...candidatData.toObject(), offres,publications };
         } else if (recruteurData) {
-            const offresEntreprise = await Offre.find({ idEntreprises: recruteurData.idEntreprise }).populate('idEntreprises');
+            const offres = await Offre.find({ idEntreprises: recruteurData.idEntreprise }).populate('idEntreprises');
             const publications = await Publication.find({ auteur: id });
-            allDataUser = { ...recruteurData.toObject(), offresEntreprise,publications };
+            allDataUser = { ...recruteurData.toObject(), offres,publications };
         } else {
             return res.status(404).json({ message: "Aucun utilisateur trouvé avec cet ID." });
         }
