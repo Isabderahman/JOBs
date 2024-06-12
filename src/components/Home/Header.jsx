@@ -1,16 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; 
 import styled from "styled-components";
-import  {useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
-  const location=useLocation()
+  const location = useLocation();
+  const navigate = useNavigate(); 
+
+  const handleLogout = () => {
+    // Supprimer les cookies
+    document.cookie = 'token=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;' ;
+    // Supprimer les jetons d'authentification du stockage local
+    localStorage.removeItem('token');
+    navigate("/"); 
+  };
+
   return (
     <Container>
       <Content>
         <Logo>
           <a href="/home">
-            <img src="logo-color-white-bg-green.png"/>
+            <img src="logo-color-white-bg-green.png" alt="Logo" />
           </a>
         </Logo>
         <Search>
@@ -22,28 +32,21 @@ const Header = () => {
           </SearchIcon>
         </Search>
 
-
         <Nav>
           <NavListWrap>
-            <NavList className={`${
-                  location.pathname === "/home" ? "active" : ""
-                }`}>
+            <NavList className={`${location.pathname === "/home" ? "active" : ""}`}>
               <a href="/home">
                 <i className="fas fa-home"></i>
                 <span>Accueil</span>
               </a>
             </NavList>
-            <NavList className={`${
-                  location.pathname === "/emploi" ? "active" : ""
-                }`}>
+            <NavList className={`${location.pathname === "/emploi" ? "active" : ""}`}>
               <a href="/emploi">
                 <i className="fas fa-briefcase"></i>
                 <span>Emplois</span>
               </a>
             </NavList>
-            <NavList className={`${
-                  location.pathname === "/notification" ? "active" : ""
-                }`}>
+            <NavList className={`${location.pathname === "/notification" ? "active" : ""}`}>
               <a>
                 <i className="fas fa-bell"></i>
                 <span>Notifications</span>
@@ -51,20 +54,18 @@ const Header = () => {
             </NavList>
 
             <User>
-            <Link to={"/profile-utilisateur"}>
-              <a>
-                <i className="fas fa-user"></i>
-                <span>Moi</span>
-                <i className="fas fa-caret-down"></i>
-              </a>
-            </Link>
-              
+              <Link to={"/profile-utilisateur"}>
+                <a>
+                  <i className="fas fa-user"></i>
+                  <span>Moi</span>
+                  <i className="fas fa-caret-down"></i>
+                </a>
+              </Link>
 
               <SignOut>
-                <a>Déconnexion</a>
+                <a onClick={handleLogout}>Déconnexion</a>
               </SignOut>
             </User>
-
           </NavListWrap>
         </Nav>
       </Content>
