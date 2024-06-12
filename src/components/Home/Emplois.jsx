@@ -33,7 +33,7 @@ export default function Emplois() {
               <span>Découvrir plus</span>
             </a>
           </CommunityCard>
-          {!userData.idEntreprise && (
+          {userData.idEntreprise && (
             <Button>
               <button className="offre">
                 <a href="/offreform" className="publiez">
