@@ -5,7 +5,6 @@ import "../../../style/UserProfile/UserLeftSide.css";
 export default function LeftSide(userData) {
   const user = userData.userData;
   console.log(user);
-
   return (
     <div className="container">
       <aside className="card">
@@ -30,16 +29,16 @@ export default function LeftSide(userData) {
           <h3 className="sectionTitle">Date de Naissance</h3>
           <div className="sectionContent">{user.date_naissance}</div>
 
-          {user.id_entreprise && (
+          {user.id_entreprise ? (
             <>
               <h3 className="sectionTitle">Entreprise</h3>
               <div className="sectionContent">{new Date(user.id_entreprise).toLocaleDateString("en-CA")}</div>
             </>
-          )}
+          ):<></>}
         </div>
       </aside>
 
-      {!user.id_entreprise && (
+      {user.id_entreprise ? (
         <>
           <aside className="card">
             <div className="details">
@@ -84,7 +83,7 @@ export default function LeftSide(userData) {
             </div>
           </aside>
         </>
-      )}
+      ):<></>}
     </div>
   );
 }
