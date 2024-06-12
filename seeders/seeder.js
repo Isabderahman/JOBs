@@ -503,7 +503,7 @@ async function seedDatabase() {
         adresse: "123 Rue de Exemple, 75000 Paris, France",
         activite: "Informatique",
         site_web: "http://www.entreprise-a.com",
-        logo: "http://www.entreprise-a.com/logo.png",
+        logo: "https://picsum.photos/200/300",
       },
       {
         nom: "Entreprise gttp",
@@ -511,7 +511,7 @@ async function seedDatabase() {
         adresse: "456 Avenue de Exemple, 69000 Lyon, France",
         activite: "Construction",
         site_web: "http://www.entreprise-b.com",
-        logo: "http://www.entreprise-b.com/logo.png",
+        logo: "https://picsum.photos/200/300",
       },
       {
         nom: "Entreprise C++",
@@ -524,7 +524,7 @@ async function seedDatabase() {
         adresse: "123 Rue de Exemple, 75000 Paris, France",
         activite: "Informatique",
         site_web: "http://www.entreprise-a.com",
-        logo: "http://www.entreprise-a.com/logo.png",
+        logo: "https://picsum.photos/200/300",
       },
       {
         nom: "Entreprise Bilalex",
@@ -532,7 +532,7 @@ async function seedDatabase() {
         adresse: "456 Avenue de Exemple, 69000 Lyon, France",
         activite: "Construction",
         site_web: "http://www.entreprise-b.com",
-        logo: "http://www.entreprise-b.com/logo.png",
+        logo: "https://picsum.photos/200/300",
       },
       {
         nom: "Entreprise Cilio",
@@ -545,7 +545,7 @@ async function seedDatabase() {
         adresse: "123 Rue de Exemple, 75000 Paris, France",
         activite: "Informatique",
         site_web: "http://www.entreprise-a.com",
-        logo: "http://www.entreprise-a.com/logo.png",
+        logo: "https://picsum.photos/200/300",
       },
       {
         nom: "Entreprise Boua",
@@ -553,7 +553,7 @@ async function seedDatabase() {
         adresse: "456 Avenue de Exemple, 69000 Lyon, France",
         activite: "Construction",
         site_web: "http://www.entreprise-b.com",
-        logo: "http://www.entreprise-b.com/logo.png",
+        logo: "https://picsum.photos/200/300",
       },
       {
         nom: "Entreprise Chamse",
@@ -566,7 +566,7 @@ async function seedDatabase() {
         adresse: "123 Rue de Exemple, 75000 Paris, France",
         activite: "Informatique",
         site_web: "http://www.entreprise-a.com",
-        logo: "http://www.entreprise-a.com/logo.png",
+        logo: "https://picsum.photos/200/300",
       },
       {
         nom: "Entreprise windo",
@@ -574,7 +574,7 @@ async function seedDatabase() {
         adresse: "456 Avenue de Exemple, 69000 Lyon, France",
         activite: "Construction",
         site_web: "http://www.entreprise-b.com",
-        logo: "http://www.entreprise-b.com/logo.png",
+        logo: "https://picsum.photos/200/300",
       },
       {
         nom: "Entreprise samar",
@@ -582,7 +582,7 @@ async function seedDatabase() {
         adresse: "123 Rue de Exemple, 75000 Paris, France",
         activite: "Informatique",
         site_web: "http://www.entreprise-a.com",
-        logo: "http://www.entreprise-a.com/logo.png",
+        logo: "https://picsum.photos/200/300",
       },
       {
         nom: "Entreprise rita",
@@ -590,7 +590,7 @@ async function seedDatabase() {
         adresse: "456 Avenue de Exemple, 69000 Lyon, France",
         activite: "Construction",
         site_web: "http://www.entreprise-b.com",
-        logo: "http://www.entreprise-b.com/logo.png",
+        logo: "https://picsum.photos/200/300",
       },
       {
         nom: "Entreprise inteel",
