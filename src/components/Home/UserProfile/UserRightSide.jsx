@@ -2,6 +2,7 @@ import React from "react";
 import "../../../style/UserProfile/UserRightSide.css";
 import { useState } from "react";
 import axios from "axios";
+import styled from "styled-components";
 
 const UserRightSide = ({ offres, publications }) => {
   const [toggleState, setToggleState] = useState(1);
@@ -41,18 +42,20 @@ const UserRightSide = ({ offres, publications }) => {
                   {new Date(pub.date_publication).toLocaleDateString("en-CA")}
                 </h5>
                 <p>{pub.contenu}</p>
-                <button onClick={async() => {
-                  try{
-                    axios.delete(`http://localhost:3000/api/publication/${pub._id}`,{
-                      headers:{
-                        Authorization: `Bearer ${token}`
-                      }
-                    })
-                    window.location.reload();
-                  }catch(e){
-                    console.error('erreur hors de supression',e)
-                  }
-                }}>supprimer</button>
+                <Button>
+                  <button onClick={async() => {
+                    try{
+                      axios.delete(`http://localhost:3000/api/publication/${pub._id}`,{
+                        headers:{
+                          Authorization: `Bearer ${token}`
+                        }
+                      })
+                      window.location.reload();
+                    }catch(e){
+                      console.error('erreur hors de supression',e)
+                    }
+                  }} className="supprimer">supprimer</button>
+                </Button>
               </div>
             </div>
           ))}
@@ -98,5 +101,18 @@ const UserRightSide = ({ offres, publications }) => {
     </div>
   );
 };
+
+const Button =styled.div`
+.supprimer {
+    border: none;
+    padding: 10px;
+    cursor:pointer;
+    margin:10px 0;
+    font-size: medium;
+    border-radius: 8px;
+    background-color: #058c42;
+    color: white;
+}
+`
 
 export default UserRightSide;
